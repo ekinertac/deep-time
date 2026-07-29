@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- 04-ediacaran.html — structure contract as documented in 01-hadean.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ediacaran — how long would you survive? | Deep Time</title>
+<meta name="description" content="About fifteen minutes. Oxygen is climbing and still far short. The first large living things on Earth are here, and none of them have mouths.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="ediacaran">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 04 / 16</span>
+      <span class="eyebrow">Late Precambrian</span>
+    </div>
+    <h1 class="hero__name">Ediacaran</h1>
+    <div class="hero__dates">635 – 538.8 million years ago &nbsp;·&nbsp; 96 Myr long &nbsp;·&nbsp; 2.1% of Earth's history</div>
+    <p class="hero__lede">
+      Immediately after the last Snowball melts, the sea floor fills with large soft
+      bodies: fronds, discs, quilted mats up to a metre across. Nothing has a mouth, a
+      gut, an eye or a skeleton. It is the only chapter of animal life with no
+      predation in it.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~15 minutes</span>
+      <p class="verdict__note">
+        The first era where the number is a range rather than a certainty, because
+        the oxygen estimate is a range. At the high end you get an hour of severe
+        altitude sickness. At the low end you get the Proterozoic answer.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="An Ediacaran sea floor: Charnia fronds and flat quilted Dickinsonia bodies on a microbial mat, lit dimly from above.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-3)"/>
+            <stop offset="0.45" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-1)"/>
+          </linearGradient>
+          <linearGradient id="mat" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#243b3d"/>
+            <stop offset="1" stop-color="#0a1517"/>
+          </linearGradient>
+          <linearGradient id="frond" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--accent-2)"/>
+            <stop offset="1" stop-color="var(--accent)"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- Light shafts through shallow water. -->
+        <g fill="#bfe8ff" opacity="0.05">
+          <path d="M120 0 L200 0 L150 340 L110 340 Z"/><path d="M420 0 L520 0 L450 340 L400 340 Z"/>
+          <path d="M760 0 L840 0 L790 340 L750 340 Z"/><path d="M1000 0 L1090 0 L1030 340 L990 340 Z"/>
+        </g>
+
+        <!-- Suspended particles. -->
+        <g fill="#cfeff5" opacity="0.22">
+          <circle cx="180" cy="120" r="2"/><circle cx="340" cy="76" r="1.5"/><circle cx="520" cy="160" r="2.2"/>
+          <circle cx="660" cy="92" r="1.6"/><circle cx="880" cy="140" r="2"/><circle cx="1040" cy="98" r="1.8"/>
+          <circle cx="260" cy="210" r="1.4"/><circle cx="740" cy="222" r="1.7"/><circle cx="960" cy="196" r="1.5"/>
+        </g>
+
+        <!-- Microbial mat: the sea floor is carpeted, and that carpet is what the
+             Ediacarans lie on and probably feed through. -->
+        <path d="M0 336 Q160 326 320 338 T660 332 T1000 342 T1200 334 L1200 520 L0 520 Z" fill="url(#mat)"/>
+        <g stroke="var(--accent)" stroke-opacity="0.14" stroke-width="1.2" fill="none">
+          <path d="M0 366 q100 -8 200 2 t200 -2 t200 4 t200 -4 t200 2 t200 -2"/>
+          <path d="M0 402 q100 8 200 -2 t200 2 t200 -4 t200 4 t200 -2 t200 2"/>
+          <path d="M0 446 q100 -8 200 2 t200 -2 t200 4 t200 -4 t200 2 t200 -2"/>
+        </g>
+
+        <!-- Charnia: the frond that proved Precambrian animals existed. Fractal
+             branching, anchored by a holdfast disc, no mouth anywhere on it. -->
+        <g>
+          <ellipse cx="270" cy="368" rx="26" ry="9" fill="#2f4f52"/>
+          <path d="M270 366 Q252 260 268 138 Q288 260 270 366 Z" fill="url(#frond)" opacity="0.85"/>
+          <g stroke="#0d2224" stroke-width="1.1" opacity="0.65">
+            <path d="M268 160 l-10 12"/><path d="M269 186 l-12 14"/><path d="M270 214 l-13 15"/>
+            <path d="M271 244 l-13 15"/><path d="M271 276 l-12 14"/><path d="M271 308 l-10 12"/>
+            <path d="M270 160 l10 12"/><path d="M271 186 l12 14"/><path d="M272 214 l13 15"/>
+            <path d="M272 244 l13 15"/><path d="M272 276 l12 14"/><path d="M272 308 l10 12"/>
+          </g>
+
+          <ellipse cx="840" cy="352" rx="20" ry="7" fill="#2f4f52"/>
+          <path d="M840 350 Q826 264 838 176 Q854 264 840 350 Z" fill="url(#frond)" opacity="0.7"/>
+          <g stroke="#0d2224" stroke-width="1" opacity="0.6">
+            <path d="M838 196 l-9 11"/><path d="M839 222 l-10 12"/><path d="M840 250 l-11 12"/><path d="M840 282 l-10 12"/>
+            <path d="M840 196 l9 11"/><path d="M841 222 l10 12"/><path d="M842 250 l11 12"/><path d="M842 282 l10 12"/>
+          </g>
+
+          <ellipse cx="1090" cy="360" rx="16" ry="6" fill="#2f4f52"/>
+          <path d="M1090 358 Q1080 296 1088 240 Q1100 296 1090 358 Z" fill="url(#frond)" opacity="0.55"/>
+        </g>
+
+        <!-- Dickinsonia: flat, bilaterally quilted, up to 1.4 m. It moved, slowly,
+             leaving a trail of feeding marks on the mat behind it. -->
+        <g>
+          <ellipse cx="530" cy="430" rx="118" ry="42" fill="#3a6668" opacity="0.9"/>
+          <g stroke="#12292b" stroke-width="1.6" opacity="0.8">
+            <path d="M530 392 L530 468"/>
+            <path d="M448 404 Q470 430 448 456"/><path d="M478 396 Q498 430 478 464"/>
+            <path d="M508 392 Q524 430 508 468"/><path d="M552 392 Q536 430 552 468"/>
+            <path d="M582 396 Q562 430 582 464"/><path d="M612 404 Q590 430 612 456"/>
+          </g>
+          <!-- Its feeding trail: the same shape, repeated, fading. -->
+          <g fill="#2b4b4d" opacity="0.35">
+            <ellipse cx="300" cy="452" rx="72" ry="26"/><ellipse cx="160" cy="470" rx="60" ry="21"/>
+          </g>
+        </g>
+
+        <!-- Tribrachidium: three-fold radial symmetry, a body plan with no
+             descendants and no modern analogue at all. -->
+        <g transform="translate(950 452)" fill="#3a6668" opacity="0.85">
+          <circle cx="0" cy="0" r="34"/>
+          <g stroke="#12292b" stroke-width="2.4" fill="none">
+            <path d="M0 -26 Q20 -10 8 14"/><path d="M22 13 Q4 22 -16 12"/><path d="M-22 13 Q-24 -8 -8 -20"/>
+          </g>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Ediacaran sea floor, ~560 Ma · Charnia, Dickinsonia, Tribrachidium</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~2–10%<small>contested</small></span>
+        <div class="meter" style="--pct:15; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. The Neoproterozoic Oxygenation Event is underway. Even the optimistic end of this range is thinner than the summit of Everest.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">21.9<small>hours at 620 Ma</small></span>
+        <div class="meter" style="--pct:91; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Measured, not modelled: tidal rhythmites from the Elatina Formation in South Australia preserve individual tides, and the count gives about 400 days per year.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Largest organism</span>
+        <span class="vital__v">~2 m<small>charnia</small></span>
+        <div class="meter" style="--pct:7; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–30 m. After three billion years of microbes, bodies you can see without a lens appear in the space of a few million.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Predators</span>
+        <span class="vital__v">zero</span>
+        <div class="meter" style="--pct:0; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">No mouths, no guts, no eyes, no shells, no burrows. Nothing here eats anything else, which is the strongest argument that these are animals from before the arms race began.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Life on land</span>
+        <span class="vital__v">none<small>visible</small></span>
+        <div class="meter" style="--pct:2; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Possibly microbial crusts on damp rock. Everything on this page happens underwater; the land is sterile stone.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Ozone layer</span>
+        <span class="vital__v">thin</span>
+        <div class="meter" style="--pct:20; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Forming as oxygen rises, and one of the reasons life is still confined to water: a few metres of sea absorbs the UV that the atmosphere cannot.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">00:00</span>
+        <h3 class="beat__h">You can breathe, badly</h3>
+        <p>The first air on this site that does anything for you at all. At the optimistic end of the estimates it is roughly what a climber meets above 8,000 metres, in the zone where the body deteriorates continuously and no amount of rest recovers it.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:02</span>
+        <h3 class="beat__h">Hyperventilation, then worse</h3>
+        <p>Breathing hard flushes CO₂ out of your blood without bringing enough O₂ in. That drives blood alkaline, which makes haemoglobin hold its oxygen more tightly instead of releasing it. Trying harder actively works against you.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:08</span>
+        <h3 class="beat__h">Vision narrows, hands stop working</h3>
+        <p>Peripheral vision goes first, then fine motor control, then the ability to recognise that either has happened.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">00:15 – 01:00</span>
+        <h3 class="beat__h">Unconscious, then gone</h3>
+        <p>The wide bracket is honest. Where in it you land depends entirely on which oxygen estimate is right, and that is a live argument in the literature rather than a settled figure.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">With bottled air, the Ediacaran is the strangest place on this site and the safest of the first four.</p>
+    <div class="kit">
+      <div class="kit__item kit__item--none"><h3>Air</h3><p>Present, insufficient. Everything else here is fine.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Warm shallow seas, recovering from the Marinoan glaciation. Fresh water on land, unfiltered by anything living.</p></div>
+      <div class="kit__item kit__item--none"><h3>Food</h3><p>Soft, mostly water, and of completely unknown chemistry. Some Ediacarans may be fungi or lichen-grade organisms rather than animals.</p></div>
+      <div class="kit__item kit__item--none"><h3>Fire</h3><p>No. Below roughly 16% oxygen a flame will not sustain itself, and there is nothing dry to burn anyway.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>Sedimentary rock, sand, clay. Buildable, if pointlessly.</p></div>
+      <div class="kit__item"><h3>Threats</h3><p>None. This is the only entry on the site where nothing living has any capacity to harm you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>Nobody agrees what the Ediacarans were.</strong> They have been classified as animals, fungi, lichens, giant protists and an extinct kingdom with no living relatives. Cholesteroids recovered from <em>Dickinsonia</em> fossils in 2018 argue strongly for animal, which is currently the leading reading.
+    </div>
+    <div class="caveat">
+      <strong>The oxygen bracket is the whole uncertainty on this page.</strong> Estimates run from a couple of percent to over ten. Iron-speciation data suggests deep oceans stayed anoxic while shallow water oxygenated, which means "atmospheric oxygen" was not one number even at the time.
+    </div>
+    <div class="caveat">
+      <strong>Where the Ediacarans went is unsettled.</strong> Options include predation by newly evolved Cambrian animals, sea-floor disruption once burrowing began, and an oxygen or ocean-chemistry shift. The disappearance is real; the mechanism is not established.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 04 / 16 · Ediacaran</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

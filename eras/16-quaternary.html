@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- 16-quaternary.html — last of the sixteen. Structure contract as documented
+     in 01-hadean.html. The pager renders only a "prev" cell here, since nav.js
+     emits .pager__empty when there is no adjacent era. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quaternary — how long would you survive? | Deep Time</title>
+<meta name="description" content="Indefinitely. This is the era your species was built by. The only entry on the list where you are the dangerous thing that arrived.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="quaternary">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 16 / 16</span>
+      <span class="eyebrow">Cenozoic</span>
+    </div>
+    <h1 class="hero__name">Quaternary</h1>
+    <div class="hero__dates">2.58 million years ago – today &nbsp;·&nbsp; 2.58 Myr long &nbsp;·&nbsp; 0.06% of Earth's history</div>
+    <p class="hero__lede">
+      Six hundredths of one percent of Earth's history, and it contains everything you
+      have ever heard of. Ice sheets advance and retreat roughly every hundred
+      thousand years. Somewhere in the middle of it, a primate in East Africa starts
+      making better tools than it needs.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">Indefinite</span>
+      <p class="verdict__note">
+        Not because it is gentle — a glacial maximum is brutally cold and the megafauna
+        is genuinely dangerous — but because this is the environment that selected you.
+        Every instinct you have is calibrated for this world.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A glacial-maximum mammoth steppe: dry grassland under a cold blue sky, with a woolly mammoth herd in the middle distance and an ice sheet on the horizon.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.55" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <linearGradient id="steppe" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8a8054"/>
+            <stop offset="0.4" stop-color="#5a5334"/>
+            <stop offset="1" stop-color="#22200f"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- Low winter sun. -->
+        <circle cx="260" cy="176" r="26" fill="#f2f7fb" opacity="0.6"/>
+        <g fill="#d8e6f0" opacity="0.08">
+          <ellipse cx="620" cy="120" rx="240" ry="22"/><ellipse cx="1000" cy="150" rx="180" ry="18"/>
+        </g>
+
+        <!-- The Laurentide-grade ice sheet on the horizon: kilometres thick, and
+             holding enough water to drop sea level 120 m. -->
+        <path d="M0 268 L120 244 L280 258 L440 238 L620 254 L800 240 L980 256 L1140 242 L1200 254 L1200 300 L0 300 Z" fill="#c3d8e6" opacity="0.55"/>
+        <path d="M0 300 L1200 300 L1200 314 L0 314 Z" fill="#96b3c6" opacity="0.45"/>
+        <g fill="#eaf4fb" opacity="0.25">
+          <path d="M180 258 L220 236 L260 258 Z"/><path d="M560 254 L610 232 L660 254 Z"/><path d="M940 256 L990 234 L1040 256 Z"/>
+        </g>
+
+        <!-- Mammoth steppe: cold, dry, and far more productive than tundra.
+             This biome has no modern equivalent anywhere on Earth. -->
+        <path d="M0 312 Q300 302 600 316 T1200 310 L1200 520 L0 520 Z" fill="url(#steppe)"/>
+        <g stroke="#9d9159" stroke-width="1.6" stroke-linecap="round" opacity="0.6">
+          <path d="M60 400 q4 -26 -6 -42"/><path d="M92 404 q-4 -30 8 -46"/>
+          <path d="M420 408 q4 -28 -6 -44"/><path d="M452 404 q-4 -26 8 -42"/>
+          <path d="M820 406 q4 -28 -6 -44"/><path d="M1080 402 q-4 -26 8 -42"/>
+        </g>
+
+        <!-- Woolly mammoth herd. -->
+        <g fill="#4a3c26">
+          <g transform="translate(560 356)">
+            <path d="M-70 0 q-6 -46 30 -58 q30 -12 62 -4 q26 6 30 30 q4 24 -6 32 z"/>
+            <path d="M52 -30 q28 -8 40 10 q10 18 -6 30 q-18 10 -34 -2 z"/>
+            <path d="M84 4 q10 26 4 44 q-10 -14 -14 -40 z"/>
+            <path d="M96 -2 q22 20 44 18 q-14 14 -38 2 z" fill="#d8cfae"/>
+            <path d="M92 6 q26 24 52 22 q-16 16 -44 4 z" fill="#e6ddbc"/>
+            <g stroke="#4a3c26" stroke-width="15" stroke-linecap="round">
+              <path d="M-42 24 l-4 30"/><path d="M-6 26 l2 30"/><path d="M30 24 l6 28"/><path d="M60 20 l10 26"/>
+            </g>
+          </g>
+          <g transform="translate(760 372) scale(0.66)">
+            <path d="M-70 0 q-6 -46 30 -58 q30 -12 62 -4 q26 6 30 30 q4 24 -6 32 z"/>
+            <path d="M52 -30 q28 -8 40 10 q10 18 -6 30 q-18 10 -34 -2 z"/>
+            <path d="M96 -2 q22 20 44 18 q-14 14 -38 2 z" fill="#d8cfae"/>
+            <g stroke="#4a3c26" stroke-width="18" stroke-linecap="round">
+              <path d="M-42 24 l-4 30"/><path d="M0 26 l2 30"/><path d="M40 22 l8 28"/>
+            </g>
+          </g>
+          <g transform="translate(880 366) scale(0.44)">
+            <path d="M-70 0 q-6 -46 30 -58 q30 -12 62 -4 q26 6 30 30 q4 24 -6 32 z"/>
+            <path d="M52 -30 q28 -8 40 10 q10 18 -6 30 q-18 10 -34 -2 z"/>
+            <g stroke="#4a3c26" stroke-width="22" stroke-linecap="round">
+              <path d="M-40 24 l-4 30"/><path d="M6 26 l2 30"/><path d="M44 22 l8 28"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- A campfire and two figures. The only era on this site where the
+             scene contains people, because it is the only one where they exist. -->
+        <g transform="translate(240 460)">
+          <path d="M0 0 q-10 -26 4 -42 q4 16 14 18 q6 -14 -2 -28 q22 16 20 40 q-2 12 -14 14 z" fill="#e8964a" opacity="0.9"/>
+          <ellipse cx="16" cy="6" rx="30" ry="7" fill="#3a2a14"/>
+          <g fill="#2b2718">
+            <g transform="translate(-56 -14)">
+              <circle cx="0" cy="-26" r="7"/><path d="M-8 -18 q8 -6 16 0 l4 26 l-24 0 z"/>
+              <path d="M-8 8 l-2 20 l6 0 l4 -18 z"/><path d="M8 8 l4 20 l-6 0 l-4 -18 z"/>
+            </g>
+            <g transform="translate(74 -10) scale(0.9)">
+              <circle cx="0" cy="-26" r="7"/><path d="M-8 -18 q8 -6 16 0 l4 26 l-24 0 z"/>
+              <path d="M-8 8 l-2 20 l6 0 l4 -18 z"/><path d="M8 8 l4 20 l-6 0 l-4 -18 z"/>
+              <path d="M10 -14 l26 -22" stroke="#2b2718" stroke-width="3"/>
+            </g>
+          </g>
+          <ellipse cx="16" cy="8" rx="76" ry="12" fill="#e8964a" opacity="0.1"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Last Glacial Maximum, ~20 ka · mammoth steppe, and the first people on this site</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">20.9%</span>
+        <div class="meter" style="--pct:52; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. Exactly what you are breathing. It took 4.5 billion years to arrive at this number and it has been stable for the entire existence of your species.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Carbon dioxide</span>
+        <span class="vital__v">180–280<small>ppm, pre-industrial</small></span>
+        <div class="meter" style="--pct:6; --now:11"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–4,000 ppm. Cycling between 180 ppm at glacial maxima and 280 in warm intervals, read directly from air bubbles in Antarctic ice. Today's ~425 ppm is outside the entire 800,000-year record.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Sea level at LGM</span>
+        <span class="vital__v">−120 m<small>vs today</small></span>
+        <div class="meter" style="--pct:3; --now:34"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −130 to +250 m. Enough water locked in ice to walk from Siberia to Alaska, from Britain to France, and from mainland Asia most of the way to Australia.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Glacial cycle</span>
+        <span class="vital__v">~100<small>kyr</small></span>
+        <div class="meter" style="--pct:100; --now:0"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Driven by orbital variation in eccentricity, tilt and precession. Roughly 90,000 years of ice, 10,000 of warmth. You have spent your whole life in one of the short warm intervals.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">24<small>hours</small></span>
+        <div class="meter" style="--pct:100; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Home. The Moon is still receding at about 3.8 cm a year, so this is the longest day Earth has ever had.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Other humans</span>
+        <span class="vital__v">several<small>species</small></span>
+        <div class="meter" style="--pct:30; --now:8"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Neanderthals, Denisovans, <em>Homo erectus</em>, <em>Homo floresiensis</em>, <em>Homo naledi</em>. For most of this era Earth carries several human species at once. That is the normal condition; ours is the anomaly.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">Day 1</span>
+        <h3 class="beat__h">Cold, if you land badly</h3>
+        <p>At a glacial maximum, mid-latitude winters are severe and the growing season is short. This is the one era on the site where clothing is not a detail — it is the technology the whole occupation depends on.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 1</span>
+        <h3 class="beat__h">The megafauna</h3>
+        <p>Mammoth, woolly rhino, cave lion, short-faced bear, <em>Smilodon</em>. Large, cold-adapted, and in the Americas entirely unfamiliar with humans. Dangerous, and also the largest concentration of calories on the landscape.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Month 1</span>
+        <h3 class="beat__h">You are the invasive species</h3>
+        <p>Reverse the usual worry. You carry a modern microbiome and modern respiratory viruses into populations with no exposure to them. Every other page on this site notes that ancient pathogens cannot touch you. Here, yours can touch them.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Year 1</span>
+        <h3 class="beat__h">You find people</h3>
+        <p>And they are as intelligent as you are, with far better local knowledge and toolkits refined over thousands of years. Whether that is the best or worst thing that happens to you depends entirely on the encounter.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">A lifetime</span>
+        <h3 class="beat__h">Nothing environmental</h3>
+        <p>Life expectancy here is around 30 to 35 years, dragged down by infant mortality; reach adulthood and 60 is common. That is not the planet failing you. That is simply what being human costs without medicine.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">You do. This is the only era on the site that was built for you, by you.</p>
+    <div class="kit">
+      <div class="kit__item"><h3>Air</h3><p>Yours exactly.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Everywhere, and glacial meltwater is as clean as water gets.</p></div>
+      <div class="kit__item"><h3>Food</h3><p>Megafauna, fish, birds, berries, nuts, roots. The mammoth steppe supports more animal biomass per hectare than the tundra that replaced it.</p></div>
+      <div class="kit__item"><h3>Fire</h3><p>Universal. Every human population here already has it and has had it for hundreds of thousands of years.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>Hide tents, mammoth-bone huts, caves. Some of it engineered better than you would manage on a first attempt.</p></div>
+      <div class="kit__item"><h3>Company</h3><p>Yes, for the first and only time on this site. Whether that improves your odds is the interesting question.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>What killed the megafauna is the field's longest-running argument.</strong> Human hunting and rapid climate change at the end of the last glacial both fit parts of the evidence. The extinctions track human arrival closely in Australia and the Americas and less cleanly in Eurasia and Africa, which is why neither explanation has won.
+    </div>
+    <div class="caveat">
+      <strong>The disease-transmission point is reasoning, not evidence.</strong> It follows from the Columbian exchange, where introduced pathogens devastated populations with no prior exposure. Nothing tests it for the Pleistocene, and Neanderthals and modern humans did interbreed, which implies plenty of contact without documented catastrophe.
+    </div>
+    <div class="caveat">
+      <strong>Whether the Holocene is a separate epoch or an interglacial is a live question.</strong> The last 11,700 years look like previous warm intervals, and the Anthropocene proposal to formalise a further division was rejected by the stratigraphic commission in 2024. The naming is contested; the physical record is not.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 16 / 16 · Quaternary</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

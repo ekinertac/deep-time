@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- 10-permian.html — structure contract as documented in 01-hadean.html.
+     Two verdicts in one era: the ordinary Permian and the last 60,000 years of it.
+     The final .beat--fatal covers the second. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Permian — how long would you survive? | Deep Time</title>
+<meta name="description" content="About four months, or a few hours if you arrive at the end. One supercontinent, a desert the size of a hemisphere, and the worst extinction in Earth's history.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="permian">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 10 / 16</span>
+      <span class="eyebrow">Paleozoic</span>
+    </div>
+    <h1 class="hero__name">Permian</h1>
+    <div class="hero__dates">298.9 – 251.9 million years ago &nbsp;·&nbsp; 47 Myr long &nbsp;·&nbsp; 1.0% of Earth's history</div>
+    <p class="hero__lede">
+      All the land on Earth is welded into one continent, and the middle of it is the
+      driest place the planet has ever produced: thousands of kilometres from any
+      coast, monsoon-flooded then baked. Also the first era with animals that will
+      deliberately hunt you.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~4 months</span>
+      <p class="verdict__note">
+        On the coast, with forests and rivers, this is close to Devonian-grade
+        liveable. Inland, it is a continental desert with 40 °C swings between seasons.
+        Arrive in the last 60,000 years of the period and the number becomes hours.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A Permian desert interior: red dunes and a dry riverbed under a dust-laden sky, with a gorgonopsid predator silhouetted on a ridge.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.5" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <linearGradient id="dune" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a35d2c"/>
+            <stop offset="1" stop-color="#3d1d0d"/>
+          </linearGradient>
+          <linearGradient id="dune2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7c4320"/>
+            <stop offset="1" stop-color="#2a1409"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- Sun through airborne dust: a hard disc with no glare. -->
+        <circle cx="330" cy="170" r="38" fill="#ffd28a" opacity="0.55"/>
+        <circle cx="330" cy="170" r="22" fill="#fff0cd" opacity="0.6"/>
+        <g fill="#c07a3a" opacity="0.12">
+          <rect x="0" y="140" width="1200" height="46"/><rect x="0" y="206" width="1200" height="34"/>
+          <rect x="0" y="256" width="1200" height="26"/>
+        </g>
+
+        <!-- Distant mountain front: the Pangaean interior is ringed by highlands
+             that strip moisture out of everything reaching it. -->
+        <path d="M0 300 L90 246 L160 278 L250 224 L340 272 L430 236 L520 284 L610 250 L700 292 L800 260 L900 296 L1010 264 L1110 300 L1200 276 L1200 320 L0 320 Z" fill="#43220f" opacity="0.85"/>
+
+        <!-- Dune fields. -->
+        <path d="M0 340 Q160 300 340 336 T700 328 T1040 348 T1200 330 L1200 400 L0 400 Z" fill="url(#dune2)"/>
+        <path d="M0 392 Q220 352 460 392 T900 384 T1200 404 L1200 520 L0 520 Z" fill="url(#dune)"/>
+        <g stroke="#c07a3a" stroke-opacity="0.22" stroke-width="1.6" fill="none">
+          <path d="M0 430 q200 -16 400 4 t400 -6 t400 8"/>
+          <path d="M0 466 q200 14 400 -6 t400 8 t400 -8"/>
+          <path d="M0 500 q200 -14 400 6 t400 -8 t400 10"/>
+        </g>
+
+        <!-- Dry riverbed: monsoon-fed for weeks a year, bone dry the rest. -->
+        <path d="M300 520 Q380 452 460 424 Q540 398 600 392 Q540 410 480 440 Q400 476 340 520 Z" fill="#5c3216" opacity="0.75"/>
+        <g fill="#8a5228" opacity="0.6">
+          <ellipse cx="420" cy="452" rx="16" ry="5"/><ellipse cx="500" cy="424" rx="12" ry="4"/><ellipse cx="360" cy="486" rx="19" ry="6"/>
+        </g>
+
+        <!-- Glossopteris-grade scrub clinging to the wash. -->
+        <g stroke="#6a6a34" stroke-width="2.6" fill="none" stroke-linecap="round" opacity="0.8">
+          <path d="M560 400 Q554 376 540 362"/><path d="M560 400 Q568 374 584 360"/>
+          <path d="M652 392 Q646 370 634 358"/><path d="M652 392 Q660 370 674 356"/>
+        </g>
+        <g fill="#7d8140" opacity="0.75">
+          <ellipse cx="540" cy="360" rx="16" ry="6"/><ellipse cx="584" cy="358" rx="15" ry="6"/>
+          <ellipse cx="634" cy="356" rx="13" ry="5"/><ellipse cx="674" cy="354" rx="13" ry="5"/>
+        </g>
+
+        <!-- Gorgonopsid on the ridge. Sabre-toothed, up to ~3 m, warm-blooded
+             enough to hunt in the open, and a closer relative of yours than of
+             any reptile. -->
+        <g transform="translate(880 396)" fill="#2a1409">
+          <path d="M0 0 q10 -26 40 -28 q24 -18 52 -12 q18 -14 34 -2 q12 -2 16 8 l-6 10 l-10 -4 l-6 10 l-14 2 l-4 -8 l-18 6 l-12 -2 l-6 10 l-14 2 l-4 -10 l-16 8 l-14 0 l-6 -10 z"/>
+          <g stroke="#2a1409" stroke-width="6" stroke-linecap="round">
+            <path d="M22 4 l-4 22"/><path d="M52 2 l2 24"/><path d="M92 -2 l-2 26"/><path d="M118 -4 l6 26"/>
+          </g>
+          <path d="M138 -30 l14 -4 l-2 10 z"/>
+        </g>
+
+        <!-- Dust devil. -->
+        <path d="M1080 400 q-8 -60 8 -110 q14 -46 4 -86" stroke="#c07a3a" stroke-opacity="0.2" stroke-width="14" fill="none" stroke-linecap="round"/>
+      </svg>
+      <figcaption class="scene__cap">Mid-Permian Pangaean interior, ~270 Ma · a gorgonopsid on the ridge</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">30% → 15%</span>
+        <div class="meter" style="--pct:56; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. Starts near the Carboniferous peak and collapses through the period. By the end you are breathing thinner air than today while the temperature climbs.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Seasonal temp swing</span>
+        <span class="vital__v">40 °C+<small>inland</small></span>
+        <div class="meter" style="--pct:80; --now:20"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">A supercontinent has no maritime buffer at its centre. Summer heat and winter freeze in the same place, with a violent monsoon in between. The megamonsoon is the defining Permian weather system.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Land in one piece</span>
+        <span class="vital__v">100%<small>pangaea</small></span>
+        <div class="meter" style="--pct:100; --now:0"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Every continent is joined. You could in principle walk from what will become Siberia to what will become Antarctica, which is also why land faunas everywhere look identical.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~22.6<small>hours</small></span>
+        <div class="meter" style="--pct:94; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. About 381 days per year.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">End-Permian extinction</span>
+        <span class="vital__v">81%<small>marine species</small></span>
+        <div class="meter" style="--pct:81; --now:0"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">The Great Dying, at 251.9 Ma. The worst event in the history of life, and the only one that came close to ending complex animals entirely. Recovery took around 10 million years.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Apex predator</span>
+        <span class="vital__v">3.5 m<small>inostrancevia</small></span>
+        <div class="meter" style="--pct:12; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–30 m. A sabre-toothed therapsid, and part of the lineage that leads to mammals. The first animal on this site that would treat you as food.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">Day 1</span>
+        <h3 class="beat__h">Where you land decides everything</h3>
+        <p>Coastal Permian is forested, watered and workable. Interior Permian is a desert bigger than any that has existed since. There is no gradient between them worth walking, because the interior is thousands of kilometres across.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 1</span>
+        <h3 class="beat__h">Something is hunting you</h3>
+        <p>Gorgonopsids are fast, sabre-toothed and built for open ground. Unlike the Jurassic theropods that would simply be curious, these are predators at roughly your size class, in terrain with nowhere to hide.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Month 1</span>
+        <h3 class="beat__h">Water becomes the whole problem</h3>
+        <p>The megamonsoon delivers a year of rain in weeks and then nothing. Surviving inland means reading a landscape you have never seen for water that appears twice a year.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Month 4</span>
+        <h3 class="beat__h">The season turns</h3>
+        <p>Whatever strategy got you through one half of the year fails in the other. Coastal, you would keep going; inland, four months is generous.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">251.9 Ma</span>
+        <h3 class="beat__h">The Great Dying</h3>
+        <p>The Siberian Traps erupt through coal beds and inject CO₂ for tens of thousands of years. Global temperature rises about 10 °C, tropical sea surface passes 40 °C, oceans go anoxic and euxinic, and hydrogen sulfide vents from the water. In the tropics, hours.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">Stay coastal, stay early, and stay out of the middle of the continent.</p>
+    <div class="kit">
+      <div class="kit__item"><h3>Air</h3><p>Good early, deteriorating late. Early Permian air is the best on this site after the Carboniferous.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Seasonal and unreliable inland. Coastal rivers are dependable.</p></div>
+      <div class="kit__item"><h3>Food</h3><p>Fish, amphibians, small reptiles, seed-fern seeds. <em>Glossopteris</em> forests dominate the southern continents.</p></div>
+      <div class="kit__item"><h3>Fire</h3><p>Yes, and easily. Dry season plus high oxygen makes control the issue, not ignition.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>Timber on the coast, rock and sand inland. You will want walls here, for the first time on this site.</p></div>
+      <div class="kit__item kit__item--none"><h3>Safety</h3><p>Gone. The Permian is where being a slow, soft, medium-sized animal starts to cost you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>The Siberian Traps are the leading cause of the extinction, not a proven one.</strong> The timing match is very tight and the mechanism is plausible, but ocean anoxia, methane release and acidification all contribute, and the relative weights are argued. Whether one kill mechanism dominated is unresolved.
+    </div>
+    <div class="caveat">
+      <strong>The 81% figure counts marine species and comes from a statistical estimate.</strong> It derives from reverse rarefaction on genus-level data, not from a headcount. The magnitude is not disputed; the precise percentage should be read as approximate.
+    </div>
+    <div class="caveat">
+      <strong>Permian oxygen decline is model-derived.</strong> The same geochemical models that give the Carboniferous peak give this fall, and inherit the same uncertainty. The direction is well supported, the rate less so.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 10 / 16 · Permian</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

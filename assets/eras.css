@@ -1,0 +1,154 @@
+/*
+ * eras.css — one colour identity per era, and nothing else.
+ *
+ * Responsibility: override the colour custom properties declared in site.css,
+ * keyed off the `data-era` attribute on <body>. site.css owns every rule about
+ * size, spacing and type; this file owns only hue. Keeping them apart is what
+ * makes the sixteen pages feel like one publication rather than sixteen sites.
+ *
+ * The --sky-* triple is consumed twice: once by the page chrome, and once by the
+ * inline <svg> scene on each era page, which fills its gradients with
+ * var(--sky-1..3). Changing a theme here restyles the illustration too.
+ *
+ * Themes are chosen from the era's dominant physical condition, not from taste:
+ * Hadean = molten rock, Archean = photochemical methane haze, Proterozoic =
+ * snowball ice, Carboniferous = hyperoxic swamp with permanent fire, and so on.
+ *
+ * Read alongside: assets/site.css (what these variables feed), eras/*.html
+ * (each sets data-era on <body>).
+ */
+
+/* 01 — molten surface, sulfur sky, no ocean worth the name */
+[data-era='hadean'] {
+  --bg: #0a0605; --bg-raise: #150a06; --rule: #2b1610;
+  --ink: #f0e2d6; --ink-dim: #9c7f6e; --ink-faint: #62483c;
+  --accent: #ff5a1f; --accent-2: #ffc247;
+  --sky-1: #1c0a05; --sky-2: #4a1607; --sky-3: #ff6a24;
+}
+
+/* 02 — Titan-like orange organic haze over a green iron ocean */
+[data-era='archean'] {
+  --bg: #0b0806; --bg-raise: #161009; --rule: #2c2113;
+  --ink: #efe6d4; --ink-dim: #9d8b6b; --ink-faint: #61553f;
+  --accent: #e09330; --accent-2: #c3cc42;
+  --sky-1: #241705; --sky-2: #6b3a0c; --sky-3: #d8912f;
+}
+
+/* 03 — snowball white over a black anoxic sea */
+[data-era='proterozoic'] {
+  --bg: #05090d; --bg-raise: #0b1219; --rule: #17242e;
+  --ink: #e4edf3; --ink-dim: #7b8d99; --ink-faint: #46565f;
+  --accent: #6cc6ec; --accent-2: #d5ecf7;
+  --sky-1: #071019; --sky-2: #123043; --sky-3: #79b8d6;
+}
+
+/* 04 — cold shallow sea, first big bodies, violet twilight */
+[data-era='ediacaran'] {
+  --bg: #06090c; --bg-raise: #0d1218; --rule: #1d2630;
+  --ink: #e6e8f0; --ink-dim: #808b9c; --ink-faint: #4a5361;
+  --accent: #4fd3c4; --accent-2: #a98cf2;
+  --sky-1: #0a1018; --sky-2: #1c2b45; --sky-3: #4a6f8c;
+}
+
+/* 05 — bare rock coast, cold green ocean, nothing alive above the tideline */
+[data-era='cambrian'] {
+  --bg: #050b0e; --bg-raise: #0b151a; --rule: #182830;
+  --ink: #e2ecef; --ink-dim: #78909a; --ink-faint: #45575e;
+  --accent: #3fbfb2; --accent-2: #e3c76b;
+  --sky-1: #08141a; --sky-2: #15343f; --sky-3: #5c9aa3;
+}
+
+/* 06 — high CO2 haze, then the Hirnantian ice sheets */
+[data-era='ordovician'] {
+  --bg: #070a0c; --bg-raise: #0e1418; --rule: #1c262d;
+  --ink: #e6eaee; --ink-dim: #7e8c97; --ink-faint: #49545d;
+  --accent: #8fbdd4; --accent-2: #d5743f;
+  --sky-1: #0b141a; --sky-2: #223642; --sky-3: #8aa8b6;
+}
+
+/* 07 — the first green on land, ankle high */
+[data-era='silurian'] {
+  --bg: #070a07; --bg-raise: #0e140e; --rule: #1e281c;
+  --ink: #e8ece2; --ink-dim: #85917a; --ink-faint: #4d5647;
+  --accent: #86b84f; --accent-2: #dcc46b;
+  --sky-1: #0c1410; --sky-2: #24382a; --sky-3: #82a276;
+}
+
+/* 08 — first forests, amber light through 30 m Archaeopteris */
+[data-era='devonian'] {
+  --bg: #080a07; --bg-raise: #10140d; --rule: #23291b;
+  --ink: #ece7d8; --ink-dim: #918a70; --ink-faint: #565243;
+  --accent: #c2913c; --accent-2: #74a447;
+  --sky-1: #101408; --sky-2: #33401a; --sky-3: #b08b3c;
+}
+
+/* 09 — hyperoxic coal swamp: green murk, permanent fire on the horizon */
+[data-era='carboniferous'] {
+  --bg: #050806; --bg-raise: #0c130c; --rule: #1b2a1c;
+  --ink: #e6efe2; --ink-dim: #7f9280; --ink-faint: #4a5a4c;
+  --accent: #5cbb4c; --accent-2: #ff7d2e;
+  --sky-1: #08120a; --sky-2: #1c3a22; --sky-3: #6aa05a;
+}
+
+/* 10 — Pangaea's interior: rust, dust, and a monsoon twice a year */
+[data-era='permian'] {
+  --bg: #0b0705; --bg-raise: #150d09; --rule: #2c1c14;
+  --ink: #f0e4d8; --ink-dim: #9d8471; --ink-faint: #5e4c3f;
+  --accent: #d0602c; --accent-2: #dfa844;
+  --sky-1: #1a0e07; --sky-2: #4c2411; --sky-3: #c9793a;
+}
+
+/* 11 — hot, thin-aired, half-empty world after the Great Dying */
+[data-era='triassic'] {
+  --bg: #0a0807; --bg-raise: #14100e; --rule: #2a2320;
+  --ink: #ece6e2; --ink-dim: #96887f; --ink-faint: #59504a;
+  --accent: #c2705a; --accent-2: #a596bb;
+  --sky-1: #171110; --sky-2: #45302c; --sky-3: #b98d7c;
+}
+
+/* 12 — humid jade greenhouse, conifers to the horizon, no flowers anywhere */
+[data-era='jurassic'] {
+  --bg: #05080a; --bg-raise: #0c1315; --rule: #1a2727;
+  --ink: #e3ece9; --ink-dim: #7b918d; --ink-faint: #465753;
+  --accent: #45a897; --accent-2: #c8b75e;
+  --sky-1: #081314; --sky-2: #1d3c3c; --sky-3: #6fa198;
+}
+
+/* 13 — hothouse blue, ice-free poles, the first fruit on Earth */
+[data-era='cretaceous'] {
+  --bg: #06080c; --bg-raise: #0d1118; --rule: #1c2331;
+  --ink: #e6eaf2; --ink-dim: #7d8899; --ink-faint: #495260;
+  --accent: #4f96e0; --accent-2: #ef8a72;
+  --sky-1: #091223; --sky-2: #1d4a7a; --sky-3: #74b3dd;
+}
+
+/* 14 — PETM heat, palm forests at the poles, mammals in every niche */
+[data-era='paleogene'] {
+  --bg: #080907; --bg-raise: #10130e; --rule: #232a1e;
+  --ink: #ece9dd; --ink-dim: #8e8c76; --ink-faint: #545345;
+  --accent: #d9a63d; --accent-2: #84b563;
+  --sky-1: #101307; --sky-2: #3b4218; --sky-3: #c4a34a;
+}
+
+/* 15 — grass takes over: dry gold, open sky, modern air */
+[data-era='neogene'] {
+  --bg: #0a0906; --bg-raise: #14120c; --rule: #29251a;
+  --ink: #efe9da; --ink-dim: #968d75; --ink-faint: #585243;
+  --accent: #d4a03d; --accent-2: #93ac6c;
+  --sky-1: #131207; --sky-2: #4a4018; --sky-3: #c9ab5e;
+}
+
+/* 16 — ice-age steel: your own era, minus the cities */
+[data-era='quaternary'] {
+  --bg: #060809; --bg-raise: #0d1114; --rule: #1c2429;
+  --ink: #e9edf1; --ink-dim: #808c95; --ink-faint: #4a545b;
+  --accent: #93bcda; --accent-2: #e8e4da;
+  --sky-1: #0a1116; --sky-2: #21384a; --sky-3: #9db9cc;
+}
+
+/* Index page: neutral, so the sixteen swatches on it read as data, not decoration */
+[data-era='index'] {
+  --bg: #07080a; --bg-raise: #0e1013; --rule: #1e2228;
+  --ink: #e9e6de; --ink-dim: #878b92; --ink-faint: #4e535a;
+  --accent: #e8e4da; --accent-2: #d8552f;
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- 12-jurassic.html — structure contract as documented in 01-hadean.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jurassic — how long would you survive? | Deep Time</title>
+<meta name="description" content="About two months. Warm, wet, and green in every direction — and not one plant on the planet is edible. The famous era is a worse bet than the Devonian.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="jurassic">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 12 / 16</span>
+      <span class="eyebrow">Mesozoic</span>
+    </div>
+    <h1 class="hero__name">Jurassic</h1>
+    <div class="hero__dates">201.4 – 145 million years ago &nbsp;·&nbsp; 56 Myr long &nbsp;·&nbsp; 1.2% of Earth's history</div>
+    <p class="hero__lede">
+      The one everybody pictures, and one of the worse places on this list to actually
+      be. Warm, humid, ice-free and covered in vegetation, none of which you can
+      digest. It is a garden with nothing to eat in it, patrolled by animals with no
+      concept of what you are.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~2 months</span>
+      <p class="verdict__note">
+        The same figure as the Silurian, 220 million years later, for the same reason:
+        no digestible plants. The Jurassic gives you excellent shelter material,
+        reliable water and a pleasant climate, and then hands you a menu of conifer
+        needles and toxic seeds.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A Jurassic forest clearing: tall conifers and cycads in humid green light, with sauropod necks rising above the canopy and a theropod in the treeline.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.5" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2a4038"/>
+            <stop offset="1" stop-color="#0b1512"/>
+          </linearGradient>
+          <linearGradient id="trunkJ" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#1f3029"/>
+            <stop offset="0.42" stop-color="#3d5245"/>
+            <stop offset="1" stop-color="#131f1a"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- Humid haze and light shafts through a closed canopy. -->
+        <g fill="#cfe8dd" opacity="0.06">
+          <path d="M240 0 L330 0 L280 380 L230 380 Z"/><path d="M660 0 L780 0 L710 380 L660 380 Z"/>
+          <path d="M980 0 L1060 0 L1010 380 L970 380 Z"/>
+        </g>
+
+        <!-- Sauropod necks above the canopy line. At Jurassic sizes the head is
+             often the only part visible from the forest floor. -->
+        <g fill="#2b4238" opacity="0.85">
+          <path d="M420 300 Q404 200 446 132 Q470 92 512 84 L520 100 Q486 108 468 142 Q436 202 448 300 Z"/>
+          <path d="M512 84 q26 -6 40 6 q-12 12 -34 12 z"/>
+          <path d="M1006 300 Q994 216 1026 158 Q1046 124 1080 118 L1086 132 Q1058 138 1044 166 Q1018 218 1028 300 Z"/>
+          <path d="M1080 118 q22 -4 34 6 q-10 10 -28 10 z"/>
+        </g>
+
+        <!-- Araucaria-grade conifers. -->
+        <g>
+          <rect x="150" y="86" width="22" height="326" fill="url(#trunkJ)"/>
+          <g fill="#3d6b4c" opacity="0.9">
+            <ellipse cx="161" cy="96" rx="76" ry="22"/><ellipse cx="161" cy="140" rx="66" ry="19"/>
+            <ellipse cx="161" cy="182" rx="56" ry="17"/><ellipse cx="161" cy="222" rx="44" ry="14"/>
+          </g>
+
+          <rect x="620" y="120" width="18" height="292" fill="url(#trunkJ)"/>
+          <g fill="#3d6b4c" opacity="0.82">
+            <ellipse cx="629" cy="128" rx="62" ry="19"/><ellipse cx="629" cy="166" rx="52" ry="16"/><ellipse cx="629" cy="202" rx="40" ry="13"/>
+          </g>
+
+          <rect x="880" y="146" width="16" height="266" fill="url(#trunkJ)"/>
+          <g fill="#3d6b4c" opacity="0.75">
+            <ellipse cx="888" cy="152" rx="54" ry="17"/><ellipse cx="888" cy="186" rx="44" ry="14"/>
+          </g>
+        </g>
+
+        <!-- Ginkgo, one of the few Jurassic plants with a living descendant. -->
+        <g>
+          <path d="M330 412 L338 268" stroke="#3d5245" stroke-width="9" stroke-linecap="round"/>
+          <path d="M338 292 L306 258 M338 300 L372 262 M338 320 L302 296" stroke="#3d5245" stroke-width="5" stroke-linecap="round"/>
+          <g fill="#87a85a" opacity="0.85">
+            <ellipse cx="304" cy="254" rx="28" ry="15"/><ellipse cx="374" cy="258" rx="26" ry="14"/>
+            <ellipse cx="298" cy="292" rx="22" ry="12"/><ellipse cx="340" cy="256" rx="24" ry="14"/>
+          </g>
+        </g>
+
+        <!-- Cycads: squat, palm-like, and toxic in every part. -->
+        <g>
+          <rect x="740" y="356" width="26" height="56" fill="#4a4433"/>
+          <g stroke="#5f8a4a" stroke-width="4" fill="none" stroke-linecap="round">
+            <path d="M753 356 Q706 336 676 344"/><path d="M753 356 Q800 336 830 344"/>
+            <path d="M753 356 Q718 320 700 300"/><path d="M753 356 Q788 320 806 300"/><path d="M753 356 Q753 320 753 296"/>
+          </g>
+          <circle cx="753" cy="350" r="9" fill="#b8933f"/>
+
+          <rect x="1090" y="368" width="20" height="44" fill="#4a4433"/>
+          <g stroke="#5f8a4a" stroke-width="3.4" fill="none" stroke-linecap="round">
+            <path d="M1100 368 Q1064 352 1042 358"/><path d="M1100 368 Q1136 352 1158 358"/>
+            <path d="M1100 368 Q1074 340 1060 324"/><path d="M1100 368 Q1126 340 1140 324"/>
+          </g>
+        </g>
+
+        <!-- Forest floor. -->
+        <path d="M0 404 Q300 394 600 408 T1200 402 L1200 520 L0 520 Z" fill="url(#ground)"/>
+
+        <!-- Tree ferns and horsetails, the whole understory. -->
+        <g stroke="#4a7a52" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9">
+          <path d="M90 520 Q78 460 46 432"/><path d="M90 520 Q104 460 140 434"/><path d="M90 520 Q92 456 90 424"/>
+          <path d="M450 520 Q440 466 412 442"/><path d="M450 520 Q462 466 492 444"/>
+          <path d="M960 520 Q950 470 926 448"/><path d="M960 520 Q972 470 996 450"/>
+        </g>
+        <g stroke="#5c8f5c" stroke-width="2.2" opacity="0.7">
+          <path d="M240 520 L240 456"/><path d="M266 520 L266 470"/><path d="M292 520 L292 448"/>
+          <path d="M660 520 L660 462"/><path d="M686 520 L686 478"/><path d="M712 520 L712 454"/>
+        </g>
+
+        <!-- Allosaurus-grade theropod in the treeline: ~8.5 m, and the reason
+             the Jurassic reads as dangerous even though hunger is the real risk. -->
+        <g transform="translate(500 404)" fill="#16241e" opacity="0.92">
+          <path d="M0 0 q6 -46 40 -60 q10 -34 44 -40 q22 -22 46 -14 q16 -10 24 2 q10 6 6 16 l-14 6 l-10 -8 l-10 14 l-18 0 l-4 -12 l-22 14 l-16 -4 l-4 18 l-16 6 l-6 -14 l-18 20 l-16 4 l-6 -14 z"/>
+          <path d="M2 -2 q-46 -6 -80 -40 q42 12 80 26 z"/>
+          <g stroke="#16241e" stroke-width="9" stroke-linecap="round">
+            <path d="M42 -22 l-8 22"/><path d="M76 -40 l10 40"/>
+          </g>
+          <circle cx="152" cy="-42" r="3" fill="#080d0b"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Late Jurassic conifer forest, ~155 Ma · no flowers, no fruit, no grass</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~13–20%<small>est.</small></span>
+        <div class="meter" style="--pct:41; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. Recovering from the Triassic minimum. Somewhere between comfortable and mildly thin, depending on which model you trust.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Edible plants</span>
+        <span class="vital__v">zero</span>
+        <div class="meter" style="--pct:0; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">No flowering plants at all. That means no fruit, no grain, no grass, no leafy greens, no tubers, no nuts. The entire flora is conifers, cycads, ginkgoes, ferns and horsetails.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Carbon dioxide</span>
+        <span class="vital__v">~1,000–2,000<small>ppm</small></span>
+        <div class="meter" style="--pct:50; --now:11"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–4,000 ppm. Enough to keep the poles ice-free and the mid-latitudes humid year round.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Mean global temp</span>
+        <span class="vital__v">~21 °C</span>
+        <div class="meter" style="--pct:15; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C. Roughly 6 °C above modern, and mild almost everywhere. As climates on this site go, the Jurassic is genuinely pleasant.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~23<small>hours</small></span>
+        <div class="meter" style="--pct:96; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. About 380 days per year.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Largest animal</span>
+        <span class="vital__v">~26 m<small>sauropod</small></span>
+        <div class="meter" style="--pct:87; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–30 m. Herbivores, and no threat by intent. A herd of forty-tonne animals moving through the same clearing you are in is a hazard for reasons that have nothing to do with aggression.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">Hour 1</span>
+        <h3 class="beat__h">It looks like the best place yet</h3>
+        <p>Warm, humid, green to the horizon, fresh water running, huge trees. Every instinct you have says this is habitat. That reading is wrong, and it is wrong in a way that takes weeks to make itself felt.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Day 1</span>
+        <h3 class="beat__h">Nothing looks at you with recognition</h3>
+        <p>Not fear, not hunger, not aggression. Nothing in the Jurassic has a category for a two-metre bipedal mammal. Large animals investigate unfamiliar objects at close range, and at eight metres and two tonnes, investigation is enough.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 1</span>
+        <h3 class="beat__h">You cannot eat the forest</h3>
+        <p>Conifer needles are indigestible. Cycad seeds are hepatotoxic and neurotoxic. Ferns contain thiaminase, which destroys vitamin B1, plus carcinogens. Ginkgo seeds are edible in small quantity and toxic in large. There is no safe staple anywhere in the Jurassic flora.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 4</span>
+        <h3 class="beat__h">Meat only, again</h3>
+        <p>Fish, small mammals, lizards, insects and eggs. Dinosaur eggs are the best calories on the planet and are guarded by animals that outweigh you by two orders of magnitude.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">Month 2</span>
+        <h3 class="beat__h">Deficiency, or one bad encounter</h3>
+        <p>Same failure mode as the Silurian. All-protein intake, no vitamin C, no carbohydrate. The Jurassic is a beautiful place to slowly starve in.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">Live on the water. Rivers and coasts are the only reliable larder.</p>
+    <div class="kit">
+      <div class="kit__item"><h3>Air</h3><p>Fine. Somewhere between modern and slightly thin.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Abundant and clean. Humid climate, permanent rivers, no drought season in most latitudes.</p></div>
+      <div class="kit__item kit__item--none"><h3>Food</h3><p>Animal protein only. The plants are decoration.</p></div>
+      <div class="kit__item"><h3>Fire</h3><p>Excellent. Conifer wood is resinous and burns hot.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>The best on this site so far. Straight conifer timber, and enough of it to build properly.</p></div>
+      <div class="kit__item kit__item--none"><h3>Threats</h3><p>Genuine. Allosaurus, Ceratosaurus and Torvosaurus all hunt animals your size, and none of them are shy.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>How dinosaurs would treat a human is unknowable.</strong> Everything on this page about behaviour is inference from body plan and from how large modern animals respond to unfamiliar objects. It should be read as reasoning, not as fact.
+    </div>
+    <div class="caveat">
+      <strong>Plant toxicity is extrapolated from living relatives.</strong> Modern cycads, ferns and ginkgo carry the compounds described here. Assuming Jurassic members of these groups had similar chemistry is reasonable — plant defence compounds are often ancient and conserved — but it is an assumption.
+    </div>
+    <div class="caveat">
+      <strong>Jurassic oxygen has a wide model spread.</strong> The range here spans "noticeably thin" to "modern", and no proxy resolves it cleanly. This uncertainty does not change the verdict, because food, not air, is what limits you.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 12 / 16 · Jurassic</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

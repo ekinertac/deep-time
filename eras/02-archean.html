@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- 02-archean.html — structure contract as documented in 01-hadean.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archean — how long would you survive? | Deep Time</title>
+<meta name="description" content="About two minutes. Life exists, the ocean is green with dissolved iron, and the sky is an orange methane haze with no oxygen in it at all.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="archean">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 02 / 16</span>
+      <span class="eyebrow">Precambrian</span>
+    </div>
+    <h1 class="hero__name">Archean</h1>
+    <div class="hero__dates">4,031 – 2,500 million years ago &nbsp;·&nbsp; 1,531 Myr long &nbsp;·&nbsp; 33.7% of Earth's history</div>
+    <p class="hero__lede">
+      A third of Earth's entire existence, and every day of it would kill you. Life is
+      here, thriving, single-celled and busily doing chemistry that does not involve
+      oxygen. The sky is orange with photochemical haze. The ocean is green.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~2 minutes</span>
+      <p class="verdict__note">
+        No hotter than a bad summer, no crushing pressure, nothing hunting you, and
+        it still ends within two minutes. This is the era that makes the point:
+        habitability is almost entirely about the gas mix.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="An Archean coast: a small volcanic island under a thick orange methane haze, with stromatolite mounds in a green iron-rich sea.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.5" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="0.32" cy="0.28" r="0.3">
+            <stop offset="0" stop-color="#ffdca0" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="#ffdca0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4a6b34"/>
+            <stop offset="0.4" stop-color="#25401f"/>
+            <stop offset="1" stop-color="#0a1409"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+        <rect width="1200" height="520" fill="url(#sun)"/>
+
+        <!-- The young Sun is 20-25% fainter than today, and the haze dims it
+             further. It reads as a disc, not a glare. -->
+        <circle cx="384" cy="146" r="34" fill="#ffe0a8" opacity="0.35"/>
+        <circle cx="384" cy="146" r="20" fill="#fff0cf" opacity="0.45"/>
+
+        <!-- Haze bands. Organic aerosol from methane photolysis, thickening after
+             about 2.7 Ga once biological methane output rises. -->
+        <g fill="#000" fill-opacity="0.1">
+          <rect x="0" y="96" width="1200" height="22"/><rect x="0" y="150" width="1200" height="16"/>
+          <rect x="0" y="196" width="1200" height="26"/><rect x="0" y="252" width="1200" height="14"/>
+        </g>
+        <g fill="#ffbb52" fill-opacity="0.07">
+          <rect x="0" y="120" width="1200" height="28"/><rect x="0" y="222" width="1200" height="30"/>
+        </g>
+
+        <!-- Volcanic island: continental crust exists but almost none of it is
+             above water yet. -->
+        <path d="M760 318 L860 176 L900 226 L940 152 L1030 318 Z" fill="#2b1c0c"/>
+        <path d="M860 176 L900 226 L940 152 L912 148 L888 190 L872 166 Z" fill="#3d290f"/>
+        <g fill="var(--accent)" opacity="0.5">
+          <path d="M934 152 q10 -34 -6 -60 q26 20 20 60 z"/>
+        </g>
+        <path d="M40 318 L120 244 L172 288 L232 226 L316 318 Z" fill="#241706"/>
+
+        <rect x="0" y="316" width="1200" height="204" fill="url(#sea)"/>
+
+        <!-- Stromatolites: layered mats built by photosynthesising bacteria. These
+             are the machines that will eventually oxygenate the planet, and they
+             need another 100 million years to start. -->
+        <g fill="#1c2f14">
+          <path d="M120 430 q-6 -60 34 -60 q40 0 34 60 z"/>
+          <path d="M210 442 q-5 -46 27 -46 q32 0 27 46 z"/>
+          <path d="M300 424 q-7 -68 38 -68 q45 0 38 68 z"/>
+          <path d="M420 448 q-4 -40 24 -40 q28 0 24 40 z"/>
+          <path d="M520 434 q-6 -56 32 -56 q38 0 32 56 z"/>
+          <path d="M640 446 q-5 -44 26 -44 q31 0 26 44 z"/>
+          <path d="M980 438 q-6 -52 30 -52 q36 0 30 52 z"/>
+          <path d="M1090 428 q-6 -62 34 -62 q40 0 34 62 z"/>
+        </g>
+        <g stroke="#3c5c26" stroke-width="1.2" stroke-opacity="0.7" fill="none">
+          <path d="M126 400 q28 -10 56 0"/><path d="M130 382 q24 -9 48 0"/>
+          <path d="M306 388 q32 -12 64 0"/><path d="M312 366 q26 -10 52 0"/>
+          <path d="M526 400 q26 -10 52 0"/>
+          <path d="M1096 396 q28 -11 56 0"/>
+        </g>
+
+        <!-- Iron banding at the sea floor. Dissolved ferrous iron is what makes
+             this ocean green and what will absorb the first free oxygen. -->
+        <g stroke="#7a4a1c" stroke-opacity="0.35" stroke-width="3">
+          <line x1="0" y1="470" x2="1200" y2="470"/><line x1="0" y1="488" x2="1200" y2="488"/>
+          <line x1="0" y1="506" x2="1200" y2="506"/>
+        </g>
+        <g stroke="#c9d13f" stroke-opacity="0.12" stroke-width="1.4">
+          <line x1="0" y1="336" x2="1200" y2="336"/><line x1="0" y1="358" x2="1200" y2="358"/>
+          <line x1="0" y1="384" x2="1200" y2="384"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Late Archean shallow shelf, ~2.7 Ga · stromatolites under organic haze</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">&lt;0.001%</span>
+        <div class="meter" style="--pct:0; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. Cyanobacteria are producing oxygen by the late Archean, but every molecule is consumed immediately by dissolved iron and volcanic gases.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Methane</span>
+        <span class="vital__v">~1,000<small>ppm, est.</small></span>
+        <div class="meter" style="--pct:66; --now:1"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–1,500 ppm; today ~1.9 ppm. Methanogens dominate the biosphere. Their waste gas is the greenhouse holding the planet above freezing.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Solar output</span>
+        <span class="vital__v">−20%<small>vs today</small></span>
+        <div class="meter" style="--pct:78; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">The Sun is a fifth dimmer. By straightforward physics Earth should be frozen solid, and it is not. That contradiction is the faint young Sun paradox, and methane is most of the answer.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Mean surface temp</span>
+        <span class="vital__v">~30 °C<small>disputed</small></span>
+        <div class="meter" style="--pct:19; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C. Some oxygen-isotope readings suggest oceans at 55–85 °C. Those are now widely challenged on the grounds that seawater chemistry, not temperature, drove the signal.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~17<small>hours, est.</small></span>
+        <div class="meter" style="--pct:71; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Roughly 515 days in a year. Extrapolated backwards from the 18.7-hour figure measured at 1.4 Ga.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Dry land</span>
+        <span class="vital__v">~2–5%<small>of surface</small></span>
+        <div class="meter" style="--pct:12; --now:73"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%; today ~29%. Continental crust is forming but most of it sits below sea level. This is a water world with volcanic islands.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">00:00</span>
+        <h3 class="beat__h">It looks almost survivable</h3>
+        <p>Warm, wet, no fire, no impacts overhead, ordinary gravity. A beach under a strange orange sky. Nothing about the scene warns you, which is exactly why the Archean is the more unsettling of the two dead eras.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:10</span>
+        <h3 class="beat__h">Oxygen leaves your blood</h3>
+        <p>Same mechanism as the Hadean: with none in the air, the gradient runs outward and each breath costs you. The CO₂ load is lower here, so the panic is less violent and the loss of consciousness is quieter.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:30</span>
+        <h3 class="beat__h">Unconscious</h3>
+        <p>Slightly longer than the Hadean because you are not also fighting heat and pressure. Longer, not survivable.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">02:00</span>
+        <h3 class="beat__h">Cardiac arrest</h3>
+        <p>You die on a planet that is fully alive. Every shallow sea is coated in bacterial mats, and not one of them is making a gas you can use.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">Only with bottled air. With it, this is the first era you could actually work in.</p>
+    <div class="kit">
+      <div class="kit__item kit__item--none"><h3>Air</h3><p>None. The one blocking problem, and it stays blocking for another 1.5 billion years.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>A global ocean, warm and mildly acidic. Fresh water exists on the volcanic islands.</p></div>
+      <div class="kit__item kit__item--none"><h3>Food</h3><p>Bacterial mats. Technically organic matter, nutritionally close to eating pond scum, and it is all there is.</p></div>
+      <div class="kit__item kit__item--none"><h3>Fire</h3><p>Impossible without oxygen, in an atmosphere loaded with methane. Bringing an ignition source would be an interesting way to test that.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>Basalt and volcanic glass. Obsidian here is as good as anywhere, if you have a reason to knap it.</p></div>
+      <div class="kit__item"><h3>Weather</h3><p>Mild, humid, and hammered by tides several times a day from a Moon much closer than yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>The haze may have come and gone.</strong> Organic haze forms only when the methane-to-CO₂ ratio passes a threshold, and sulfur-isotope records suggest it switched on and off episodically in the late Archean rather than sitting there for a billion years. Some Archean skies were probably clear.
+    </div>
+    <div class="caveat">
+      <strong>Ocean temperature is one of the field's live arguments.</strong> The hot-ocean reading comes from δ¹⁸O in cherts; the counter-argument is that the isotopic composition of seawater itself has changed, which would produce the same signal without the heat. Glacial deposits at 2.9 Ga sit awkwardly with an 80 °C ocean either way.
+    </div>
+    <div class="caveat">
+      <strong>When oxygenic photosynthesis actually started is unresolved.</strong> Estimates span 3.5 to 2.5 Ga. The Great Oxidation Event at ~2.4 Ga marks when oxygen accumulated, which can lag its first production by hundreds of millions of years while sinks absorb it.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 02 / 16 · Archean</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

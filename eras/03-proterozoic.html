@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- 03-proterozoic.html — structure contract as documented in 01-hadean.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proterozoic — how long would you survive? | Deep Time</title>
+<meta name="description" content="About three minutes. Oxygen finally exists and sits near 1%, far below what you need. Twice in this era the entire planet freezes over.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="proterozoic">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 03 / 16</span>
+      <span class="eyebrow">Precambrian</span>
+    </div>
+    <h1 class="hero__name">Proterozoic</h1>
+    <div class="hero__dates">2,500 – 635 million years ago &nbsp;·&nbsp; 1,865 Myr long &nbsp;·&nbsp; 41.1% of Earth's history</div>
+    <p class="hero__lede">
+      The longest era on this list, and the one where oxygen appears without helping.
+      It rises fast at the start, stalls near one percent for a billion years, then
+      rises again. In between, the planet freezes from the poles to the equator,
+      twice.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~3 minutes</span>
+      <p class="verdict__note">
+        A one-percent atmosphere is not a small step toward breathable. It is roughly
+        equivalent to standing at 20 kilometres altitude, above the point where blood
+        boils at body temperature. Arrive during a Snowball and hypothermia will be
+        racing the asphyxiation.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A Snowball Earth scene: an ice sheet stretching to the horizon, cracked by a black open-water lead, under a pale low sun.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.6" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <linearGradient id="ice" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#b9d6e6"/>
+            <stop offset="0.35" stop-color="#7ea6bd"/>
+            <stop offset="1" stop-color="#2e4d61"/>
+          </linearGradient>
+          <linearGradient id="lead" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0a161d"/>
+            <stop offset="1" stop-color="#020608"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- Low sun with a halo. Ice crystals in a dry, frigid atmosphere make
+             parhelia; the sky here is optically busy and thermally useless. -->
+        <circle cx="300" cy="238" r="24" fill="#eaf6ff" opacity="0.85"/>
+        <circle cx="300" cy="238" r="72" fill="none" stroke="#eaf6ff" stroke-opacity="0.16" stroke-width="2"/>
+        <circle cx="300" cy="238" r="124" fill="none" stroke="#eaf6ff" stroke-opacity="0.08" stroke-width="2"/>
+        <g fill="#eaf6ff" opacity="0.3">
+          <circle cx="228" cy="238" r="6"/><circle cx="372" cy="238" r="6"/>
+        </g>
+
+        <!-- Ice horizon: flat, because there is nothing left to make relief. -->
+        <path d="M0 288 L1200 288 L1200 520 L0 520 Z" fill="url(#ice)"/>
+        <path d="M0 288 L180 282 L340 290 L520 280 L700 291 L880 283 L1060 291 L1200 285 L1200 300 L0 300 Z" fill="#cfe6f2" opacity="0.55"/>
+
+        <!-- Pressure ridges. -->
+        <g fill="#dbeef8" opacity="0.35">
+          <path d="M80 344 L140 322 L200 346 Z"/><path d="M420 330 L470 312 L520 332 Z"/>
+          <path d="M760 350 L830 326 L900 352 Z"/><path d="M1020 336 L1070 318 L1120 338 Z"/>
+        </g>
+
+        <!-- Open-water lead. Even at maximum glaciation some equatorial water
+             probably stayed open; life survived somewhere. -->
+        <path d="M0 400 Q200 384 400 404 T820 396 T1200 412 L1200 452 Q900 434 620 448 T180 436 T0 444 Z" fill="url(#lead)"/>
+        <g stroke="#9fd0e8" stroke-opacity="0.25" stroke-width="1.4">
+          <path d="M120 418 q60 -6 120 2"/><path d="M520 424 q70 -6 140 3"/><path d="M900 428 q60 -5 120 3"/>
+        </g>
+
+        <!-- Foreground ice with crevasses. -->
+        <g stroke="#20394a" stroke-width="3" stroke-linecap="round" opacity="0.75">
+          <path d="M60 520 Q100 486 84 458"/><path d="M300 520 Q346 480 322 452"/>
+          <path d="M620 520 Q660 484 640 460"/><path d="M940 520 Q986 478 962 454"/>
+        </g>
+        <g fill="#eaf6ff" opacity="0.12">
+          <path d="M0 470 L200 462 L400 474 L600 464 L800 476 L1000 466 L1200 476 L1200 490 L0 492 Z"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Marinoan glaciation, ~650 Ma · sea ice at the equator</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~0.1–2%</span>
+        <div class="meter" style="--pct:4; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. The Great Oxidation Event at ~2.4 Ga is the single biggest change in Earth's chemistry, and it still leaves you eight times short of breathable.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Temp during Snowball</span>
+        <span class="vital__v">−50 °C<small>mean</small></span>
+        <div class="meter" style="--pct:0; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C, so this sits off the bottom. Between glaciations the climate is unremarkable; the era's problem is that it does not stay that way.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Snowball events</span>
+        <span class="vital__v">3</span>
+        <div class="meter" style="--pct:100; --now:0"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Huronian (~2.4–2.1 Ga), Sturtian (717–660 Ma) and Marinoan (650–635 Ma). The Sturtian lasted roughly 57 million years with ice reaching the tropics.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">18.7<small>hours at 1.4 Ga</small></span>
+        <div class="meter" style="--pct:78; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Not an estimate: this one is read directly from cyclic sediment layers in the Xiamaling Formation, which record the Moon's orbital rhythm.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Moon distance</span>
+        <span class="vital__v">340,900<small>km at 1.4 Ga</small></span>
+        <div class="meter" style="--pct:85; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–400,000 km. From the same sediment record. About 11% closer than today, so it looks slightly larger and pulls noticeably stronger tides.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Complex life</span>
+        <span class="vital__v">single cells</span>
+        <div class="meter" style="--pct:6; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Eukaryotes appear around 1.6 Ga and then do almost nothing for a billion years. That stretch is known informally as the Boring Billion, and low oxygen is the leading suspect.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">00:00</span>
+        <h3 class="beat__h">There is oxygen, and it is a trap</h3>
+        <p>Your body has no sensor for oxygen concentration. It measures carbon dioxide instead. In a low-O₂, low-CO₂ atmosphere you feel no urgency at all, right up until you stop being able to think.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:40</span>
+        <h3 class="beat__h">Judgement goes first</h3>
+        <p>The pattern is well documented from aviation hypoxia: fine motor control and decision-making degrade before you notice anything is wrong. Pilots in these conditions report feeling excellent while failing simple tasks.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">01:30</span>
+        <h3 class="beat__h">Unconscious</h3>
+        <p>Longer than the two dead eras before it, because there is at least some oxygen to extract. Not enough to matter.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">03:00</span>
+        <h3 class="beat__h">Cardiac arrest</h3>
+        <p>During a Snowball, subtract most of that. At −50 °C in the clothes you arrived in, cold incapacitates you on a similar timescale to the hypoxia, and the two do not queue politely.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">Only with air. The rest of the era is more welcoming than the two before it.</p>
+    <div class="kit">
+      <div class="kit__item kit__item--none"><h3>Air</h3><p>Present and useless. One percent of an atmosphere is not one percent of a solution.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Oceans, and after the Snowballs, meltwater everywhere. Between glaciations this is a normal blue planet.</p></div>
+      <div class="kit__item kit__item--none"><h3>Food</h3><p>Algal mats and single-celled eukaryotes. Nothing you could catch, chew, or get calories from.</p></div>
+      <div class="kit__item kit__item--none"><h3>Fire</h3><p>Still impossible. Sustained combustion needs roughly 16% oxygen, the same threshold you need.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>Real continents now, with sedimentary rock, caves and clay. The first era where the ground is worth anything.</p></div>
+      <div class="kit__item"><h3>Sky</h3><p>Blue. Once the haze clears with the oxygen rise, this is the first era that looks like Earth.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>Mid-Proterozoic oxygen is argued over by an order of magnitude.</strong> Chromium and other trace-metal proxies suggest below 0.1% of modern levels; other work argues for several percent. Nothing in that range changes this page's answer, but it changes what kind of life was possible.
+    </div>
+    <div class="caveat">
+      <strong>"Snowball" versus "Slushball" is unresolved.</strong> Hard Snowball has the ocean frozen over entirely; Slushball keeps an open equatorial belt. Photosynthetic life survived, which is easier to explain with open water, but thin translucent ice would also do it.
+    </div>
+    <div class="caveat">
+      <strong>The era boundary is a convention.</strong> Splitting the Ediacaran out as its own entry, as this site does, is not how the timescale is formally organised — the Ediacaran is the last period <em>of</em> the Proterozoic. It is separated here because its survivability is genuinely different.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 03 / 16 · Proterozoic</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!-- 05-cambrian.html — structure contract as documented in 01-hadean.html.
+     First page in the sequence where the clock runs in days rather than minutes,
+     and where the cause of death stops being the atmosphere. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cambrian — how long would you survive? | Deep Time</title>
+<meta name="description" content="About three weeks. The air is finally, marginally breathable. The land is bare rock with no food, no fuel and no shelter anywhere on it.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="cambrian">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 05 / 16</span>
+      <span class="eyebrow">Paleozoic</span>
+    </div>
+    <h1 class="hero__name">Cambrian</h1>
+    <div class="hero__dates">538.8 – 486.9 million years ago &nbsp;·&nbsp; 52 Myr long &nbsp;·&nbsp; 1.1% of Earth's history</div>
+    <p class="hero__lede">
+      Every major animal body plan alive today appears in this window, most of them
+      within about 20 million years. All of it happens in the sea. Stand on the shore
+      with your back to the water and you are looking at a landscape as sterile as
+      Mars.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~3 weeks</span>
+      <p class="verdict__note">
+        The atmosphere stops being the thing that kills you, which is a first. What
+        replaces it is starvation, because everything edible on this planet is
+        underwater and you have no way to cook, dry, store or shelter.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A Cambrian coast: bare grey rock and sand with no vegetation, under a hazy sky, with trilobites and an Anomalocaris visible in the shallow green sea.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.6" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4f8f8c"/>
+            <stop offset="0.3" stop-color="#1f4a4c"/>
+            <stop offset="1" stop-color="#07191c"/>
+          </linearGradient>
+          <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5a5f5c"/>
+            <stop offset="1" stop-color="#1e2422"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+
+        <!-- High CO2 haze; the sky is pale rather than blue. -->
+        <g fill="#cfe3e0" opacity="0.07">
+          <rect x="0" y="150" width="1200" height="40"/><rect x="0" y="214" width="1200" height="28"/>
+        </g>
+
+        <!-- Barren headland. No soil exists yet: without roots to hold sediment,
+             every coastline is bare rock and loose sand. -->
+        <path d="M0 306 L110 236 L180 268 L268 214 L340 262 L420 232 L500 288 L560 258 L640 300 L720 272 L820 306 L900 286 L1010 312 L1110 292 L1200 314 L1200 340 L0 340 Z" fill="url(#rock)"/>
+        <g fill="#000" opacity="0.2">
+          <path d="M110 236 L180 268 L146 268 Z"/><path d="M268 214 L340 262 L300 262 Z"/><path d="M720 272 L820 306 L770 306 Z"/>
+        </g>
+
+        <!-- Bare shore: sand and cobbles, no plant, no lichen, nothing. -->
+        <path d="M0 340 Q200 330 400 344 T800 338 T1200 348 L1200 400 L0 400 Z" fill="#3a423f"/>
+        <g fill="#4c534f">
+          <ellipse cx="90" cy="368" rx="14" ry="6"/><ellipse cx="230" cy="378" rx="10" ry="4"/>
+          <ellipse cx="410" cy="366" rx="16" ry="7"/><ellipse cx="620" cy="380" rx="11" ry="5"/>
+          <ellipse cx="810" cy="368" rx="13" ry="6"/><ellipse cx="1010" cy="378" rx="15" ry="6"/>
+        </g>
+
+        <!-- Shallow sea, which is where the entire biosphere lives. -->
+        <rect x="0" y="392" width="1200" height="128" fill="url(#sea)"/>
+        <g stroke="#9fd8d0" stroke-opacity="0.18" stroke-width="1.4">
+          <line x1="0" y1="404" x2="1200" y2="404"/><line x1="0" y1="428" x2="1200" y2="428"/>
+          <line x1="0" y1="456" x2="1200" y2="456"/><line x1="0" y1="490" x2="1200" y2="490"/>
+        </g>
+
+        <!-- Trilobites on the bottom. -->
+        <g fill="#7fb8ac" opacity="0.8">
+          <g transform="translate(200 470)">
+            <ellipse cx="0" cy="0" rx="40" ry="20"/>
+            <path d="M-40 0 a40 20 0 0 1 80 0" fill="#5c9a90"/>
+            <g stroke="#153033" stroke-width="1.4"><path d="M-22 -14 L-22 14"/><path d="M-8 -18 L-8 18"/><path d="M8 -18 L8 18"/><path d="M22 -14 L22 14"/></g>
+            <circle cx="-30" cy="-7" r="2.6" fill="#153033"/><circle cx="-30" cy="7" r="2.6" fill="#153033"/>
+          </g>
+          <g transform="translate(700 496) scale(0.72)">
+            <ellipse cx="0" cy="0" rx="40" ry="20"/>
+            <path d="M-40 0 a40 20 0 0 1 80 0" fill="#5c9a90"/>
+            <g stroke="#153033" stroke-width="1.6"><path d="M-18 -15 L-18 15"/><path d="M0 -18 L0 18"/><path d="M18 -15 L18 15"/></g>
+          </g>
+          <g transform="translate(1080 462) scale(0.55)">
+            <ellipse cx="0" cy="0" rx="40" ry="20"/>
+            <path d="M-40 0 a40 20 0 0 1 80 0" fill="#5c9a90"/>
+          </g>
+        </g>
+
+        <!-- Anomalocaris: about a metre long, the largest animal alive, and the
+             first thing on Earth that hunts. -->
+        <g transform="translate(470 434)" fill="#e3c76b" opacity="0.9">
+          <path d="M-90 0 q40 -22 96 -14 q40 6 62 14 q-22 8 -62 14 q-56 8 -96 -14 z"/>
+          <g fill="#b89a44">
+            <path d="M-70 12 q14 16 30 18 q-16 2 -34 -10 z"/><path d="M-40 14 q14 16 30 18 q-16 2 -34 -10 z"/>
+            <path d="M-10 14 q14 16 30 18 q-16 2 -34 -10 z"/><path d="M20 12 q14 16 30 18 q-16 2 -34 -10 z"/>
+            <path d="M-70 -12 q14 -16 30 -18 q-16 -2 -34 10 z"/><path d="M-40 -14 q14 -16 30 -18 q-16 -2 -34 10 z"/>
+            <path d="M-10 -14 q14 -16 30 -18 q-16 -2 -34 10 z"/><path d="M20 -12 q14 -16 30 -18 q-16 -2 -34 10 z"/>
+          </g>
+          <circle cx="52" cy="-9" r="5" fill="#153033"/><circle cx="52" cy="9" r="5" fill="#153033"/>
+          <path d="M66 -6 q22 10 34 -4" stroke="#b89a44" stroke-width="3.5" fill="none"/>
+          <path d="M66 6 q22 12 36 0" stroke="#b89a44" stroke-width="3.5" fill="none"/>
+        </g>
+
+        <!-- Archaeocyathid reef mounds. -->
+        <g fill="#2d5654" opacity="0.85">
+          <path d="M860 512 q-4 -46 22 -46 q26 0 22 46 z"/>
+          <path d="M900 512 q-3 -34 16 -34 q19 0 16 34 z"/>
+          <path d="M934 512 q-4 -42 20 -42 q24 0 20 42 z"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Cambrian shoreline, ~510 Ma · nothing lives above the tideline</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~10–17%<small>contested</small></span>
+        <div class="meter" style="--pct:34; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. Borderline. At the low end you are permanently at 4,000 m; at the high end you are merely short of breath. Either way you can function.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Carbon dioxide</span>
+        <span class="vital__v">~4,000<small>ppm, est.</small></span>
+        <div class="meter" style="--pct:100; --now:11"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–4,000 ppm; today ~425. Ten times modern. Not acutely toxic, but combined with low O₂ it makes every exertion feel heavier than it is.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Mean global temp</span>
+        <span class="vital__v">~22 °C</span>
+        <div class="meter" style="--pct:16; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C. Warm, no polar ice, sea levels high. The climate is the least of your problems here.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Edible land plants</span>
+        <span class="vital__v">zero</span>
+        <div class="meter" style="--pct:0; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">There are no land plants of any kind. No wood, no fibre, no thatch, no fuel, no fruit, no roots. The single defining fact of Cambrian survival.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~21.5<small>hours</small></span>
+        <div class="meter" style="--pct:90; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Roughly 408 days per year. Sleep debt compounds slightly faster than you are built for.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Largest animal</span>
+        <span class="vital__v">~1 m<small>anomalocaris</small></span>
+        <div class="meter" style="--pct:3; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–30 m. The apex predator of the entire planet would fit in a bathtub, and it cannot leave the water.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">Hour 1</span>
+        <h3 class="beat__h">You breathe, and keep breathing</h3>
+        <p>Four billion years into this list, the air works. It feels like arriving at a mountain resort: winded on the slightest climb, a headache building, but functional and improving over days as you acclimatise.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Day 1</span>
+        <h3 class="beat__h">You realise there is no fire</h3>
+        <p>Not because of the oxygen. Because there is nothing to burn. No wood, no grass, no peat, no dung. You cannot boil water, cannot cook, cannot dry anything, cannot stay warm at night. Every downstream problem traces back to this.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Day 3</span>
+        <h3 class="beat__h">Exposure starts winning</h3>
+        <p>No shelter material exists either. Rock overhangs and hollows are the entire inventory. Wet and windy nights on bare stone with no fire cost you more energy than the shellfish are giving back.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 1</span>
+        <h3 class="beat__h">Raw shellfish is the whole menu</h3>
+        <p>Trilobites, brachiopods and worms, eaten raw. Calorically thin, close to zero fat and zero carbohydrate, and every meal must be caught fresh because there is no way to preserve anything.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">Week 3</span>
+        <h3 class="beat__h">Protein poisoning, or the cold</h3>
+        <p>A diet of nothing but lean protein fails at around 35% of calories: the liver cannot convert nitrogen fast enough, and the result is weakness, diarrhoea and death within weeks even while eating. Historically it killed explorers who had meat and nothing else. Here you have shellfish and nothing else.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">Longer than three weeks needs fat, and the Cambrian has almost none.</p>
+    <div class="kit">
+      <div class="kit__item"><h3>Air</h3><p>Thin but workable. Expect a week of altitude-style headaches, then adaptation.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Rain and streams, entirely free of anything that can infect a mammal. The cleanest drinking water in Earth's history.</p></div>
+      <div class="kit__item"><h3>Food</h3><p>Marine only, protein only. The tidal zone is crowded and easy to harvest; that is not the problem.</p></div>
+      <div class="kit__item kit__item--none"><h3>Fire</h3><p>No fuel exists on the planet. This is the constraint everything else follows from.</p></div>
+      <div class="kit__item kit__item--none"><h3>Shelter</h3><p>Rock only. No wood, no thatch, no hide worth the name.</p></div>
+      <div class="kit__item"><h3>Threats</h3><p>None on land. Nothing has legs yet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>Cambrian oxygen is one of the least settled numbers on this site.</strong> Estimates range from below 10% to near modern, and the argument matters beyond this page: a rise in oxygen is one of the leading explanations for why the Cambrian explosion happened when it did.
+    </div>
+    <div class="caveat">
+      <strong>The "explosion" is partly a preservation artefact.</strong> What appears suddenly is hard parts — shells, spines, carapaces — which fossilise far better than the soft bodies before them. Molecular clocks put the divergence of these lineages well back into the Ediacaran.
+    </div>
+    <div class="caveat">
+      <strong>Land may not be entirely sterile.</strong> Microbial and possibly early fungal crusts on damp surfaces are plausible and hard to detect. They would not change anything about survival: you cannot eat a biofilm or burn one.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 05 / 16 · Cambrian</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

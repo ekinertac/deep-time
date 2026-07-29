@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+  01-hadean.html — first of the sixteen era pages, and the template the other
+  fifteen follow. Structure contract (site.css depends on this order):
+
+    <body data-era="SLUG">
+      nav.rail            filled by nav.js
+      section.hero        eyebrow / name / dates / lede / verdict, then .scene
+      section#vitals      .vitals grid of .vital cards
+      section#clock       .clock of .beat entries, ordered by time-to-death
+      section#survive     .kit grid
+      section#doubt       .caveat blocks
+      nav.pager           filled by nav.js
+      footer.foot
+
+  The inline <svg> is per page and fills from var(--sky-1..3) so it re-themes
+  with eras.css. Keep it decorative: all information lives in the text.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hadean — how long would you survive? | Deep Time</title>
+<meta name="description" content="About one minute. The Hadean has no free oxygen, a crushing CO2 atmosphere and a Moon thirteen times wider than the one you know.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="hadean">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 01 / 16</span>
+      <span class="eyebrow">Precambrian</span>
+    </div>
+    <h1 class="hero__name">Hadean</h1>
+    <div class="hero__dates">4,540 – 4,031 million years ago &nbsp;·&nbsp; 509 Myr long &nbsp;·&nbsp; 11.2% of Earth's history</div>
+    <p class="hero__lede">
+      Named after Hades, and the name is doing honest work. There is no oxygen, no
+      ozone, no soil and for much of it no solid ground. The Moon hangs a third of
+      its current distance away and fills a chunk of the sky.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">~1 minute</span>
+      <p class="verdict__note">
+        Arriving before ~4.4 Ga, while the magma ocean is still open: a few seconds.
+        Arriving late, after liquid water condenses, buys you the full minute. Either
+        way the cause is the same and there is no version of this where you last an hour.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A molten Hadean landscape: an enormous close Moon over lava fissures and volcanic ridges under a red sulfur sky.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.55" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <radialGradient id="glow" cx="0.72" cy="0.62" r="0.6">
+            <stop offset="0" stop-color="var(--sky-3)" stop-opacity="0.55"/>
+            <stop offset="1" stop-color="var(--sky-3)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="moon" x1="0.15" y1="0" x2="0.9" y2="1">
+            <stop offset="0" stop-color="#4a3128"/>
+            <stop offset="0.5" stop-color="#2a1a15"/>
+            <stop offset="1" stop-color="#140b09"/>
+          </linearGradient>
+          <linearGradient id="lava" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffd489"/>
+            <stop offset="0.4" stop-color="#ff7a1f"/>
+            <stop offset="1" stop-color="#8f1d05"/>
+          </linearGradient>
+          <clipPath id="above"><rect x="0" y="0" width="1200" height="352"/></clipPath>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+        <rect width="1200" height="520" fill="url(#glow)"/>
+
+        <!-- The Moon at roughly 30,000 km: about thirteen lunar diameters wide. -->
+        <g clip-path="url(#above)">
+          <circle cx="880" cy="330" r="300" fill="url(#moon)"/>
+          <circle cx="880" cy="330" r="300" fill="none" stroke="var(--sky-3)" stroke-opacity="0.35" stroke-width="2"/>
+          <g fill="#000" fill-opacity="0.22">
+            <circle cx="775" cy="205" r="46"/><circle cx="930" cy="160" r="28"/>
+            <circle cx="1010" cy="255" r="62"/><circle cx="835" cy="300" r="34"/>
+            <circle cx="700" cy="290" r="22"/><circle cx="960" cy="318" r="41"/>
+          </g>
+          <g fill="var(--sky-3)" fill-opacity="0.10">
+            <circle cx="740" cy="145" r="30"/><circle cx="1055" cy="180" r="18"/>
+          </g>
+        </g>
+
+        <!-- Infalling debris; the Late Heavy Bombardment tail. -->
+        <g stroke="var(--accent-2)" stroke-width="1.4" stroke-linecap="round" opacity="0.8">
+          <line x1="120" y1="40" x2="182" y2="122"/>
+          <line x1="300" y1="18" x2="338" y2="70"/>
+          <line x1="520" y1="62" x2="566" y2="128"/>
+          <line x1="1120" y1="30" x2="1160" y2="86"/>
+        </g>
+
+        <!-- Volcanic ridge line. -->
+        <path d="M0 352 L90 300 L150 330 L235 258 L300 312 L360 286 L430 340 L500 296 L560 336 L640 268 L700 330 L780 302 L860 344 L950 292 L1030 336 L1110 300 L1200 348 L1200 520 L0 520 Z" fill="#150a07"/>
+        <path d="M0 372 L120 344 L210 366 L320 336 L420 372 L520 346 L620 378 L720 350 L820 380 L940 348 L1060 378 L1200 352 L1200 520 L0 520 Z" fill="#0c0503"/>
+
+        <!-- Fissures: molten crust showing through a thin, cracking skin. -->
+        <g stroke="url(#lava)" stroke-linecap="round" fill="none">
+          <path d="M40 470 Q180 440 320 486 T640 462 T980 500 T1200 470" stroke-width="7" opacity="0.95"/>
+          <path d="M0 424 Q160 448 300 418 T620 436 T900 412 T1200 434" stroke-width="3.5" opacity="0.7"/>
+          <path d="M150 512 Q380 486 560 516 T1000 494" stroke-width="10" opacity="0.85"/>
+          <path d="M60 396 Q200 384 340 400" stroke-width="2" opacity="0.5"/>
+          <path d="M760 392 Q900 378 1040 398" stroke-width="2" opacity="0.5"/>
+        </g>
+
+        <!-- Vents on the ridge line. -->
+        <g fill="var(--accent)">
+          <ellipse cx="235" cy="262" rx="9" ry="4" opacity="0.9"/>
+          <ellipse cx="640" cy="272" rx="7" ry="3.5" opacity="0.9"/>
+          <ellipse cx="950" cy="296" rx="8" ry="4" opacity="0.9"/>
+        </g>
+        <g fill="var(--accent)" opacity="0.16">
+          <path d="M235 262 L215 180 L255 180 Z"/>
+          <path d="M640 272 L624 200 L656 200 Z"/>
+          <path d="M950 296 L932 224 L968 224 Z"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Late Hadean, ~4.2 Ga · Moon at roughly 30,000 km</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~0%<small>trace only</small></span>
+        <div class="meter" style="--pct:0; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. You need roughly 16% to stay conscious. Free O₂ will not exist in quantity for another 1.6 billion years.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Carbon dioxide</span>
+        <span class="vital__v">up to 100 bar</span>
+        <div class="meter" style="--pct:100; --now:1"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Today: 0.0004 bar. Early on, most of Earth's carbon is in the air rather than in rock, and the pressure at the surface may exceed a deep-ocean dive.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Mean surface temp</span>
+        <span class="vital__v">200 °C +</span>
+        <div class="meter" style="--pct:92; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C. Early Hadean the surface is partly molten. Even after oceans form, a thick CO₂ blanket keeps water liquid only because the pressure is enormous.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~6<small>hours</small></span>
+        <div class="meter" style="--pct:25; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. Earth is spinning far faster; the Moon has not yet dragged it down. Sunrise to sunrise takes less time than one night's sleep.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Moon distance</span>
+        <span class="vital__v">~30,000<small>km, est.</small></span>
+        <div class="meter" style="--pct:8; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–400,000 km. It appears about thirteen times wider than today and raises tides hundreds of metres high.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Ozone layer</span>
+        <span class="vital__v">none</span>
+        <div class="meter" style="--pct:0; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Ozone is made from O₂, and there is no O₂. Solar UV-C reaches the ground unfiltered. Irrelevant to your survival here only because other things kill you first.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">00:00</span>
+        <h3 class="beat__h">You arrive and take a breath</h3>
+        <p>Reflex, not choice. What enters your lungs is mostly carbon dioxide and nitrogen with sulfur compounds. There is no oxygen in it at all.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:03</span>
+        <h3 class="beat__h">Panic, immediately</h3>
+        <p>Your urge to breathe is triggered by CO₂ in your blood, not by lack of oxygen. In an atmosphere this CO₂-rich the sensation arrives instantly and is overwhelming. This is why the Hadean feels worse than simple vacuum, which kills you calmly.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:12</span>
+        <h3 class="beat__h">Your lungs run backwards</h3>
+        <p>Gas moves along its partial-pressure gradient. With zero O₂ outside, oxygen diffuses out of your blood into the air you just inhaled. Breathing actively strips you faster than holding your breath would.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">00:20</span>
+        <h3 class="beat__h">Unconscious</h3>
+        <p>Roughly the timing seen in industrial nitrogen-asphyxiation accidents and in cabin decompression training. You do not get a warning you can act on.</p>
+      </div>
+
+      <div class="beat beat--fatal">
+        <span class="beat__t">01:00 – 02:00</span>
+        <h3 class="beat__h">Cardiac arrest</h3>
+        <p>Before ~4.4 Ga, skip everything above: the air is hot enough to cook your airway on the first breath, and this takes seconds instead.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">You do not. For completeness, here is what the planet offers anyway.</p>
+    <div class="kit">
+      <div class="kit__item kit__item--none"><h3>Air</h3><p>None you can use. A rebreather with its own O₂ supply is the only thing that changes this page.</p></div>
+      <div class="kit__item kit__item--none"><h3>Water</h3><p>After ~4.4 Ga, yes: a global ocean, acidic from dissolved CO₂ and near boiling in places.</p></div>
+      <div class="kit__item kit__item--none"><h3>Food</h3><p>Nothing is alive. The earliest contested traces of life appear right at the Hadean's end.</p></div>
+      <div class="kit__item kit__item--none"><h3>Fire</h3><p>Impossible. Fire needs oxygen, and there is none. The glow on the horizon is molten rock, not combustion.</p></div>
+      <div class="kit__item kit__item--none"><h3>Shelter</h3><p>Bare basalt. No wood, no fibre, no clay worth the name, and the ground is periodically resurfaced by impacts.</p></div>
+      <div class="kit__item kit__item--none"><h3>Company</h3><p>You are the only living cell on the planet, and there are about thirty trillion of you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>Almost everything here is inference.</strong> There is virtually no Hadean rock left; the record is mostly zircon crystals from Jack Hills in Australia, some dated to 4.4 Ga. Those zircons are the main evidence that liquid water and continental crust existed far earlier than the "hellish" name suggests. The era is named for its beginning, not its whole span.
+    </div>
+    <div class="caveat">
+      <strong>Surface pressure and CO₂ are model outputs, not measurements.</strong> Estimates range across two orders of magnitude depending on how quickly carbon was drawn into the mantle. The 100 bar figure is an upper bound for the early Hadean, not a steady value.
+    </div>
+    <div class="caveat">
+      <strong>Day length before 3 Ga is loosely constrained.</strong> The tidal-rhythmite and cyclostratigraphy records that pin later numbers do not extend this far back, so ~6 hours is extrapolated from Earth–Moon angular momentum, not read off a rock.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 01 / 16 · Hadean</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

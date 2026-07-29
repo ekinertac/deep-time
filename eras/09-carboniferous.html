@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--
+  09-carboniferous.html — follows the structure contract documented in
+  01-hadean.html. This is the first page in the sequence where the "clock"
+  section spans years rather than minutes, so its .beat entries are scaled
+  accordingly and only the genuinely fatal one carries .beat--fatal.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carboniferous — how long would you survive? | Deep Time</title>
+<meta name="description" content="Years. The best deep-past option: breathable air at 30% oxygen, abundant fuel and water. The catch is that everything burns, constantly.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/eras.css">
+</head>
+<body data-era="carboniferous">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Era 09 / 16</span>
+      <span class="eyebrow">Paleozoic</span>
+    </div>
+    <h1 class="hero__name">Carbon&shy;iferous</h1>
+    <div class="hero__dates">358.9 – 298.9 million years ago &nbsp;·&nbsp; 60 Myr long &nbsp;·&nbsp; 1.3% of Earth's history</div>
+    <p class="hero__lede">
+      The single best era to be dropped into before mammals exist. Oxygen is at its
+      all-time peak, the swamps are full of fuel and fresh water, and nothing on land
+      is big enough to hunt you. The trade is that the whole world is one dropped
+      spark from burning.
+    </p>
+
+    <div class="verdict">
+      <span class="verdict__label">You last</span>
+      <span class="verdict__value">Years</span>
+      <p class="verdict__note">
+        With basic bushcraft this is survivable indefinitely in principle. What ends
+        it in practice is an infected wound with no antibiotics, or a fire you did not
+        start moving faster than fire moves in air you have ever breathed.
+      </p>
+    </div>
+
+    <figure class="scene">
+      <svg viewBox="0 0 1200 520" role="img" aria-label="A Carboniferous coal swamp: Lepidodendron and Calamites trunks over black standing water, a giant dragonfly in flight, and a wildfire smoke column on the horizon.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--sky-1)"/>
+            <stop offset="0.5" stop-color="var(--sky-2)"/>
+            <stop offset="1" stop-color="var(--sky-3)"/>
+          </linearGradient>
+          <radialGradient id="fireglow" cx="0.18" cy="0.72" r="0.42">
+            <stop offset="0" stop-color="var(--accent-2)" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="var(--accent-2)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3b5c3a"/>
+            <stop offset="0.35" stop-color="#1d3822"/>
+            <stop offset="1" stop-color="#070f08"/>
+          </linearGradient>
+          <linearGradient id="trunk" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#20301f"/>
+            <stop offset="0.45" stop-color="#3a4d31"/>
+            <stop offset="1" stop-color="#131c11"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1200" height="520" fill="url(#sky)"/>
+        <rect width="1200" height="520" fill="url(#fireglow)"/>
+
+        <!-- Wildfire on the horizon. Charcoal appears in essentially every
+             Carboniferous coal seam; fire was not an event, it was weather. -->
+        <path d="M150 372 Q168 300 140 240 Q182 190 156 120 Q214 154 236 96 Q252 176 226 232 Q262 292 232 372 Z" fill="var(--accent-2)" opacity="0.13"/>
+        <path d="M176 372 Q188 322 172 282 Q198 250 184 214 Q216 244 224 292 Q234 334 218 372 Z" fill="var(--accent-2)" opacity="0.2"/>
+
+        <!-- Far treeline: soft, overlapping canopy rather than a ridge. A hard
+             zigzag here reads as mountains, which is the wrong biome entirely. -->
+        <g fill="#0c1a0f" opacity="0.92">
+          <path d="M0 396 Q40 358 88 372 Q130 340 182 366 Q228 344 276 372 Q322 348 372 370 Q420 342 472 368 Q518 346 570 372 Q618 344 668 368 Q716 348 766 372 Q812 344 864 366 Q912 342 962 370 Q1010 348 1060 370 Q1108 344 1156 368 Q1180 356 1200 372 L1200 400 L0 400 Z"/>
+        </g>
+
+        <!-- Standing water. Shallow, tannin-stained and almost perfectly still,
+             so the swamp is doubled in it. -->
+        <rect x="0" y="396" width="1200" height="124" fill="url(#water)"/>
+
+        <!-- Trunk reflections, mirroring the x positions of the trees above. -->
+        <g opacity="0.3">
+          <rect x="300" y="396" width="26" height="104" fill="#4a6340"/>
+          <rect x="880" y="396" width="22" height="88" fill="#4a6340"/>
+          <rect x="640" y="396" width="13" height="72" fill="#54704a"/>
+          <rect x="700" y="396" width="10" height="60" fill="#54704a"/>
+          <rect x="1058" y="396" width="12" height="76" fill="#54704a"/>
+        </g>
+        <!-- Ripple lines cut the reflections into bands, the way still water does. -->
+        <g stroke="#0a140b" stroke-opacity="0.55" stroke-width="4">
+          <line x1="0" y1="414" x2="1200" y2="414"/><line x1="0" y1="436" x2="1200" y2="436"/>
+          <line x1="0" y1="460" x2="1200" y2="460"/><line x1="0" y1="486" x2="1200" y2="486"/>
+        </g>
+        <g stroke="var(--accent)" stroke-opacity="0.14" stroke-width="1.2">
+          <line x1="0" y1="404" x2="1200" y2="404"/><line x1="0" y1="426" x2="1200" y2="426"/>
+          <line x1="0" y1="448" x2="1200" y2="448"/><line x1="0" y1="472" x2="1200" y2="472"/>
+          <line x1="0" y1="500" x2="1200" y2="500"/>
+        </g>
+
+        <!-- Lepidodendron: 30 m scale trees, straight trunk, crown only at the top. -->
+        <g>
+          <rect x="300" y="60" width="26" height="340" fill="url(#trunk)"/>
+          <g stroke="#0d150c" stroke-width="1" opacity="0.55">
+            <line x1="300" y1="110" x2="326" y2="118"/><line x1="300" y1="150" x2="326" y2="158"/>
+            <line x1="300" y1="190" x2="326" y2="198"/><line x1="300" y1="230" x2="326" y2="238"/>
+            <line x1="300" y1="270" x2="326" y2="278"/><line x1="300" y1="310" x2="326" y2="318"/>
+          </g>
+          <g stroke="#4d6b39" stroke-width="3" stroke-linecap="round" fill="none">
+            <path d="M313 62 Q268 34 240 8"/><path d="M313 62 Q358 34 388 10"/>
+            <path d="M313 62 Q286 26 276 0"/><path d="M313 62 Q344 28 356 2"/>
+          </g>
+
+          <rect x="880" y="96" width="22" height="304" fill="url(#trunk)"/>
+          <g stroke="#0d150c" stroke-width="1" opacity="0.5">
+            <line x1="880" y1="140" x2="902" y2="148"/><line x1="880" y1="180" x2="902" y2="188"/>
+            <line x1="880" y1="220" x2="902" y2="228"/><line x1="880" y1="260" x2="902" y2="268"/>
+          </g>
+          <g stroke="#4d6b39" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <path d="M891 98 Q852 70 828 44"/><path d="M891 98 Q930 70 954 46"/><path d="M891 98 Q898 60 902 34"/>
+          </g>
+        </g>
+
+        <!-- Calamites: segmented giant horsetails. -->
+        <g fill="#2c3f26">
+          <rect x="640" y="188" width="13" height="212"/>
+          <rect x="700" y="222" width="10" height="178"/>
+          <rect x="1058" y="204" width="12" height="196"/>
+        </g>
+        <g stroke="#0e170c" stroke-width="1.2" opacity="0.7">
+          <line x1="640" y1="222" x2="653" y2="222"/><line x1="640" y1="262" x2="653" y2="262"/>
+          <line x1="640" y1="302" x2="653" y2="302"/><line x1="640" y1="342" x2="653" y2="342"/>
+          <line x1="700" y1="256" x2="710" y2="256"/><line x1="700" y1="300" x2="710" y2="300"/>
+          <line x1="1058" y1="240" x2="1070" y2="240"/><line x1="1058" y1="288" x2="1070" y2="288"/>
+        </g>
+        <g stroke="#5c7d45" stroke-width="1.6" stroke-linecap="round">
+          <path d="M646 190 L620 166"/><path d="M646 190 L672 166"/><path d="M646 190 L646 160"/>
+          <path d="M705 224 L686 202"/><path d="M705 224 L724 202"/>
+          <path d="M1064 206 L1042 182"/><path d="M1064 206 L1086 182"/><path d="M1064 206 L1064 178"/>
+        </g>
+
+        <!-- Tree ferns, foreground left and right. -->
+        <g stroke="#3d5730" stroke-width="7" fill="none" stroke-linecap="round">
+          <path d="M60 400 L66 300"/><path d="M1160 400 L1152 316"/>
+        </g>
+        <g stroke="#6a8f4a" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.9">
+          <path d="M66 300 Q22 274 0 292"/><path d="M66 300 Q112 272 150 290"/>
+          <path d="M66 300 Q54 262 24 244"/><path d="M66 300 Q86 258 118 244"/>
+          <path d="M1152 316 Q1196 292 1200 306"/><path d="M1152 316 Q1108 292 1076 306"/>
+          <path d="M1152 316 Q1160 278 1186 260"/><path d="M1152 316 Q1132 280 1104 264"/>
+        </g>
+
+        <!-- Meganeura, ~71 cm wingspan. Hyperoxia is the usual explanation for
+             insect gigantism: passive tracheal diffusion goes further in denser O2. -->
+        <g transform="translate(480 168)" fill="var(--accent)" opacity="0.85">
+          <ellipse cx="0" cy="0" rx="34" ry="3"/>
+          <path d="M-4 -1 Q-46 -22 -78 -12 Q-44 -2 -4 -1 Z"/>
+          <path d="M-4 1 Q-44 20 -74 12 Q-42 3 -4 1 Z"/>
+          <path d="M4 -1 Q46 -22 78 -12 Q44 -2 4 -1 Z"/>
+          <path d="M4 1 Q44 20 74 12 Q42 3 4 1 Z"/>
+          <circle cx="34" cy="0" r="4.5"/>
+        </g>
+
+        <!-- Arthropleura wake in the shallows: 2.6 m, and entirely herbivorous. -->
+        <g stroke="var(--accent)" stroke-opacity="0.28" stroke-width="2" fill="none">
+          <path d="M760 458 q40 -10 80 0 t80 0"/>
+          <path d="M772 472 q40 -10 80 0 t80 0"/>
+        </g>
+      </svg>
+      <figcaption class="scene__cap">Late Carboniferous coal swamp, ~310 Ma · equatorial Euramerica</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="vitals">
+  <div class="wrap">
+    <h2 class="section-title">Conditions</h2>
+    <div class="vitals">
+
+      <div class="vital">
+        <span class="vital__k">Atmospheric oxygen</span>
+        <span class="vital__v">~30–35%<small>est., peak</small></span>
+        <div class="meter" style="--pct:81; --now:52"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–40%. The highest in Earth's history and the only era where the air is richer than yours. Expect noticeably better endurance at altitude.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Carbon dioxide</span>
+        <span class="vital__v">~350<small>ppm, late</small></span>
+        <div class="meter" style="--pct:18; --now:21"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–2,000 ppm; today ~425 ppm. Forests buried carbon faster than anything could rot it, and drew CO₂ down to near modern levels. That buried carbon is the coal.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Mean global temp</span>
+        <span class="vital__v">~14 °C<small>late</small></span>
+        <div class="meter" style="--pct:13; --now:12"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale −20 to 250 °C. Close to today, but the distribution is not: equatorial swamps stay hot and wet while Gondwana carries continental ice sheets.</p>
+      </div>
+
+      <div class="vital vital--danger">
+        <span class="vital__k">Fire risk</span>
+        <span class="vital__v">extreme</span>
+        <div class="meter" style="--pct:96; --now:24"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Above roughly 25% O₂ even damp vegetation sustains a flame. Charcoal (fusain) is found through the coal record, so fire was near-continuous somewhere.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Day length</span>
+        <span class="vital__v">~22.4<small>hours</small></span>
+        <div class="meter" style="--pct:93; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–24 h. About 385 days in a year. Short enough to notice if you were counting, not enough to matter.</p>
+      </div>
+
+      <div class="vital">
+        <span class="vital__k">Largest land animal</span>
+        <span class="vital__v">2.6 m<small>arthropleura</small></span>
+        <div class="meter" style="--pct:9; --now:100"><div class="meter__fill"></div><div class="meter__now"></div></div>
+        <p class="vital__note">Scale 0–30 m. A millipede longer than a car, and a herbivore. The only land animal here with any interest in hurting you is a 70 cm scorpion.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap">
+    <h2 class="section-title">What kills you</h2>
+    <div class="clock">
+
+      <div class="beat">
+        <span class="beat__t">Hour 1</span>
+        <h3 class="beat__h">The air is better than yours</h3>
+        <p>At 30%+ oxygen, moderate exertion costs less. The effect is real but modest, and it does not make you superhuman. Sustained partial pressures above about 0.5 bar damage lungs; this sits under that, at roughly 0.3.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Day 1</span>
+        <h3 class="beat__h">Your campfire escapes</h3>
+        <p>This is the era's actual signature threat. Ignition is easy, flame spread is fast, and material you would consider too wet to burn will carry fire. The habit you built in normal air, that a fire needs tending to stay alive, is exactly backwards here.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Week 1</span>
+        <h3 class="beat__h">You find out what you can digest</h3>
+        <p>The forest is enormous and almost entirely inedible: lycopsid bark, lignin, cellulose. Your calories come from fresh water instead. Fish, amphibians, freshwater arthropods, and seed ferns, which do produce real seeds.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Month 1–6</span>
+        <h3 class="beat__h">A cut goes bad</h3>
+        <p>No pathogen here has evolved to target a mammal, so you will not catch a disease. Environmental bacteria in a wound do not care. This is the most likely thing to actually kill you, in every era from here to the Pleistocene.</p>
+      </div>
+
+      <div class="beat">
+        <span class="beat__t">Year 1+</span>
+        <h3 class="beat__h">Or nothing does</h3>
+        <p>Water, fuel, shelter material, protein and a stable climate band all exist within walking distance of each other. Stay in the equatorial belt, away from the Gondwanan ice, and the Carboniferous will not be what ends you.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="survive">
+  <div class="wrap">
+    <h2 class="section-title">If you survive</h2>
+    <p class="narrow" style="margin-bottom:2.2rem">You probably do. Here is what the planet is offering.</p>
+    <div class="kit">
+      <div class="kit__item"><h3>Air</h3><p>Better than modern. The only atmosphere in the deep past you could run a marathon in.</p></div>
+      <div class="kit__item"><h3>Water</h3><p>Everywhere, and stagnant. Boil it. Not for pathogens, which are not adapted to you, but for the amoebae and the tannin load.</p></div>
+      <div class="kit__item"><h3>Food</h3><p>Freshwater fish, amphibians up to two metres, insects at unusual sizes, and seed-fern seeds. No fruit, no grain, no roots worth digging.</p></div>
+      <div class="kit__item"><h3>Fire</h3><p>Trivially easy and genuinely dangerous. Build it on open mud, small, downwind of nothing you own.</p></div>
+      <div class="kit__item"><h3>Shelter</h3><p>The first era with real timber. Lepidodendron bark comes off in workable sheets and the wood is soft enough to cut with stone.</p></div>
+      <div class="kit__item"><h3>Medicine</h3><p>None. Bring antibiotics or accept that a deep cut is a coin flip.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doubt">
+  <div class="wrap">
+    <h2 class="section-title">Where the numbers are soft</h2>
+    <div class="caveat">
+      <strong>The 35% oxygen figure is a model result, and it is contested.</strong> It comes from geochemical carbon–sulfur models, chiefly Berner's GEOCARBSULF. Other approaches put the peak nearer 25–30%. The direction is not in dispute — Carboniferous air was oxygen-rich — but the exact number should be read as a range, not a measurement.
+    </div>
+    <div class="caveat">
+      <strong>Insect gigantism probably has more than one cause.</strong> High O₂ is the standard explanation, since insects breathe by diffusion through tracheae rather than pumped blood. The absence of flying vertebrate predators for most of the period likely mattered as much.
+    </div>
+    <div class="caveat">
+      <strong>The fire argument runs the other way too.</strong> Some researchers argue oxygen could not have exceeded ~35% precisely because forests would have burned off faster than they grew. That constraint is one of the main reasons the upper estimates are treated with caution.
+    </div>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Adjacent eras"></nav>
+
+<footer class="foot">
+  <span>Deep Time · 09 / 16 · Carboniferous</span>
+  <span>← → to page between eras</span>
+  <span><a href="../index.html">All sixteen eras</a></span>
+</footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

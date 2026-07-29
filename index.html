@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--
+  index.html — the front page and the argument the whole site makes.
+
+  Two devices carry it:
+   1. The proportional column (#timeline). Row height is the era's real share of
+      4.54 Gyr, so the four eras that kill you in under a minute physically fill
+      88% of it. The reader scrolls past four billion years of asphyxiation
+      before reaching anything survivable. No copy needed.
+   2. The ranked table (#ranked), which reorders the same sixteen by survival
+      rather than by time, because the two orderings are almost unrelated.
+
+  Both render from ERAS in assets/data.js, so adding or re-dating an era updates
+  the page, the rail and the pagers together. Structure and styling live in
+  assets/index.css; the shared shell is assets/site.css.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Time — how long would you survive in each era of Earth?</title>
+<meta name="description" content="Sixteen eras of Earth's history, each rated by how long an unequipped modern human would last. Oxygen is the filter for four billion years; food is the filter after that.">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/eras.css">
+<link rel="stylesheet" href="assets/index.css">
+</head>
+<body data-era="index" id="top">
+
+<nav class="rail" aria-label="All eras"></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span class="hero__num">Deep Time</span>
+      <span class="eyebrow">4,540,000,000 years, rated</span>
+    </div>
+    <h1 class="hero__name">How long<br>would you last?</h1>
+    <div class="hero__dates">You arrive with the clothes you are wearing and a knife. Nothing else.</div>
+    <p class="hero__lede">
+      Earth has been habitable for humans for about 1.5% of its existence, and
+      comfortable for far less. Below: every era, what the air and the food and the
+      weather were actually doing, and how long that gives you.
+    </p>
+
+    <div class="stat">
+      <div class="stat__cell band-minutes">
+        <span class="stat__n">88%</span>
+        <span class="stat__k">of Earth's history kills you in under a minute — no breathable oxygen</span>
+      </div>
+      <div class="stat__cell band-weeks">
+        <span class="stat__n">11%</span>
+        <span class="stat__k">is breathable but has nothing on land you can eat</span>
+      </div>
+      <div class="stat__cell band-indefinite">
+        <span class="stat__n">1.5%</span>
+        <span class="stat__k">would let you live out a normal life</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <h2 class="section-title">To scale</h2>
+    <p class="narrow" style="margin-bottom:2rem">
+      Every row below is sized by its true share of the 4.54 billion years. This is
+      the part that never survives a textbook, where each period gets one tidy chapter
+      regardless of length. The Quaternary — ice ages, mammoths, all of human
+      existence — is the sliver at the bottom.
+    </p>
+
+    <div class="legend">
+      <span class="legend__i band-minutes">minutes</span>
+      <span class="legend__i band-weeks">weeks</span>
+      <span class="legend__i band-months">months</span>
+      <span class="legend__i band-years">years</span>
+      <span class="legend__i band-indefinite">indefinite</span>
+    </div>
+
+    <div class="tl" id="tl"></div>
+  </div>
+</section>
+
+<section id="ranked">
+  <div class="wrap">
+    <h2 class="section-title">Ranked by survival</h2>
+    <p class="narrow" style="margin-bottom:2rem">
+      The same sixteen, reordered. Chronology and survivability track each other
+      loosely at best: the Carboniferous beats the Jurassic by a wide margin, and
+      the Triassic is worse than the Silurian, 200 million years older.
+    </p>
+    <div class="rank__wrap">
+      <table class="rank">
+        <thead>
+          <tr><th>#</th><th>Era</th><th>You last</th><th>The limiting factor</th></tr>
+        </thead>
+        <tbody id="rank"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <h2 class="section-title">Three rules that decide everything</h2>
+    <div class="kit">
+      <div class="kit__item">
+        <h3>01 — Oxygen is the first filter</h3>
+        <p>You need roughly 16% atmospheric oxygen to stay conscious. Earth did not reliably have that until about 430 million years ago. Everything before that is a suffocation problem and nothing else matters.</p>
+      </div>
+      <div class="kit__item">
+        <h3>02 — Then food is the filter</h3>
+        <p>Breathable air arrives long before edible land. No grass until roughly 55 Ma, no fruit until the mid-Cretaceous. A diet of lean meat alone becomes fatal in weeks once protein passes about 35% of calories.</p>
+      </div>
+      <div class="kit__item">
+        <h3>03 — Disease is a non-issue</h3>
+        <p>Pathogens co-evolve with their hosts. Nothing in the Jurassic has any idea what to do with your immune system. What still kills you is an ordinary infected wound, in every era, with no antibiotics anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>Deep Time · sixteen eras</span>
+  <span>Dates follow the ICS 2023 chart</span>
+  <span>Figures are ranges where the science is; see each era's last section</span>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+<script>
+/*
+ * Renders the two data views. Kept inline because it is the only page that uses
+ * it and it is short; anything that grows past this belongs in assets/.
+ */
+(function () {
+  const TOTAL = ERAS[0].from;            // 4540 Myr — the full span
+  const COLUMN_PX = 2400;                // total height the column is allowed
+  const MIN_PX = 52;                     // floor so the thinnest era stays clickable
+
+  const href = (e) => 'eras/' + String(e.n).padStart(2, '0') + '-' + e.slug + '.html';
+  const myr = (v) => (v >= 1000 ? (v / 1000).toFixed(2) + ' Ga' : v + ' Ma');
+
+  document.getElementById('tl').innerHTML = ERAS.map((e) => {
+    const dur = e.from - e.to;
+    const h = Math.max(MIN_PX, Math.round((dur / TOTAL) * COLUMN_PX));
+    const tight = h < 92 ? '1' : '0';
+    return `<a class="tl__row band-${e.band}" href="${href(e)}" style="height:${h}px" data-tight="${tight}">
+      <span></span>
+      <span class="tl__n">${String(e.n).padStart(2, '0')}</span>
+      <span>
+        <span class="tl__name">${e.name}</span>
+        <span class="tl__span">${myr(e.from)} – ${e.to === 0 ? 'today' : myr(e.to)} · ${dur.toFixed(dur < 10 ? 2 : 0)} Myr · ${((dur / TOTAL) * 100).toFixed(1)}%</span>
+      </span>
+      <span class="tl__v">${e.verdict}</span>
+    </a>`;
+  }).join('');
+
+  // Why each era ends where it does. Ordered worst to best by survival, then by
+  // age within a band — the same ordering the table header promises.
+  const WHY = {
+    hadean:        'No free oxygen. Surface partly molten, CO₂ at up to 100 bar.',
+    archean:       'Still no free oxygen. Methane haze, iron-rich anoxic ocean.',
+    proterozoic:   'Oxygen exists but sits near 1% — far under the ~16% you need.',
+    ediacaran:     'Oxygen rising and still hypoxic. Severe altitude sickness at sea level.',
+    cambrian:      'Air marginally breathable. Land is bare rock: no food, no fuel, no shelter.',
+    ordovician:    'Same bare land, plus the Hirnantian glaciation at the end.',
+    triassic:      'Lowest oxygen of the last 540 Myr, in desert heat, on one supercontinent.',
+    silurian:      'First land plants and land arthropods. Fire becomes possible.',
+    jurassic:      'No digestible plants anywhere, and large theropods with no fear of you.',
+    permian:       'Continental extremes, real predators, and the worst extinction on record at the end.',
+    devonian:      'First forests: timber, fire and seeds. Still no fruit, still no carbohydrate.',
+    carboniferous: 'Oxygen peak, abundant fuel and water. Everything burns, easily.',
+    cretaceous:    'First fruit and edible plants. Heat is the constraint, not predators.',
+    paleogene:     'Modern air, mammals, fruit and nuts. Avoid the PETM heat spike at 56 Ma.',
+    neogene:       'Effectively modern conditions with the wrong animals in them.',
+    quaternary:    'Your own era. You are the species that evolved for it.',
+  };
+  const ORDER = ['hadean','archean','proterozoic','ediacaran','cambrian','ordovician','triassic','silurian','jurassic','permian','devonian','carboniferous','cretaceous','paleogene','neogene','quaternary'];
+  const by = Object.fromEntries(ERAS.map((e) => [e.slug, e]));
+
+  document.getElementById('rank').innerHTML = ORDER.map((slug, i) => {
+    const e = by[slug];
+    return `<tr class="band-${e.band}">
+      <td>${String(i + 1).padStart(2, '0')}</td>
+      <td><a href="${href(e)}">${e.name}</a></td>
+      <td class="rank__v">${e.verdict}</td>
+      <td class="rank__why">${WHY[slug]}</td>
+    </tr>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>
