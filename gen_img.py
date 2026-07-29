@@ -2,12 +2,20 @@
 """
 gen_img.py — generate era scene images, one or several at a time.
 
-    ./gen_img.py 09            one era
-    ./gen_img.py 1 5 9         several
-    ./gen_img.py 1-16          a range
-    ./gen_img.py all           everything
-    ./gen_img.py 09 --dry-run  print the prompt, generate nothing
-    ./gen_img.py 09 --flash    cheap model, for throwaway tests
+    ./gen_img.py 09                   the wide hero scene for era 09
+    ./gen_img.py 09 --set menu        what there is to eat there
+    ./gen_img.py 09 --set kills       the air that kills you there
+    ./gen_img.py 1 5 9 --set menu     several
+    ./gen_img.py 1-16 --set kills     a range
+    ./gen_img.py all --set menu       everything in that set
+    ./gen_img.py 09 --dry-run         print the prompt, generate nothing
+    ./gen_img.py 09 --flash           cheap model, for throwaway tests
+
+THREE SETS, three jobs, two aspect ratios. `scene` is the 21:9 hero: the place,
+wide and distant. `menu` and `kills` are both 3:2 and sit inside the page as
+supporting evidence rather than second heroes — one is everything there is to
+eat, the other is the air itself. Prompt data and the reasoning behind each set
+live in scene_prompts.py.
 
 Output goes to assets/scenes/NN-slug.png. Nothing is ever overwritten: a second
 run of the same era writes NN-slug-v2.png, then -v3, so alternates can be
@@ -45,6 +53,8 @@ import re
 import sys
 import urllib.error
 import urllib.request
+
+import scene_prompts as sp
 
 API = "https://openrouter.ai/api/v1/chat/completions"
 PRO = "google/gemini-3-pro-image"
@@ -367,10 +377,12 @@ def sniff_ext(blob: bytes) -> str:
     return "bin"
 
 
-def next_path(era: dict, ext: str) -> pathlib.Path:
+def next_path(era: dict, ext: str, kind: str) -> pathlib.Path:
     """Never overwrite. Second run of an era becomes -v2, then -v3, counting
-    across every extension so versions stay in one sequence."""
-    base = f"{era['n']:02d}-{era['slug']}"
+    across every extension so versions stay in one sequence. The set name is in
+    the filename so scene/menu/kills for the same era cannot collide."""
+    stem = f"{era['n']:02d}-{era['slug']}"
+    base = stem if kind == "scene" else f"{stem}-{kind}"
     if not list(OUT.glob(f"{base}.*")):
         return OUT / f"{base}.{ext}"
     v = 2
@@ -379,12 +391,21 @@ def next_path(era: dict, ext: str) -> pathlib.Path:
     return OUT / f"{base}-v{v}.{ext}"
 
 
-def generate(era: dict, model: str) -> tuple[pathlib.Path, float]:
+# The hero establishes; the two detail sets sit inside the page. Two ratios
+# reads as a system, three reads as an accident.
+RATIO = {"scene": "21:9", "menu": "3:2", "kills": "3:2"}
+
+
+def prompt_for(era: dict, kind: str) -> str:
+    return build_prompt(era) if kind == "scene" else sp.build(kind, era["slug"])
+
+
+def generate(era: dict, model: str, kind: str) -> tuple[pathlib.Path, float]:
     body = {
         "model": model,
-        "messages": [{"role": "user", "content": build_prompt(era)}],
+        "messages": [{"role": "user", "content": prompt_for(era, kind)}],
         "modalities": ["image", "text"],
-        "image_config": {"aspect_ratio": "21:9"},
+        "image_config": {"aspect_ratio": RATIO[kind]},
     }
     req = urllib.request.Request(
         API, data=json.dumps(body).encode(),
@@ -403,7 +424,7 @@ def generate(era: dict, model: str) -> tuple[pathlib.Path, float]:
     if not images:
         raise RuntimeError(f"no image returned — {json.dumps(msg)[:300]}")
     blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
-    path = next_path(era, sniff_ext(blob))
+    path = next_path(era, sniff_ext(blob), kind)
     path.write_bytes(blob)
     return path, float(data.get("usage", {}).get("cost") or 0.0)
 
@@ -414,6 +435,8 @@ def main() -> int:
         epilog="examples:  ./gen_img.py 09   |   ./gen_img.py 1 5 9   |   ./gen_img.py 1-16   |   ./gen_img.py all",
     )
     ap.add_argument("eras", nargs="*", help="era numbers 1-16, ranges like 1-6, slugs, or 'all'")
+    ap.add_argument("--set", dest="kind", default="scene", choices=("scene", "menu", "kills"),
+                    help="which image set (default: scene)")
     ap.add_argument("--dry-run", action="store_true", help="print the prompt, generate nothing")
     ap.add_argument("--flash", action="store_true", help="use the cheap model (worse anatomy)")
     ap.add_argument("--list", action="store_true", help="list the eras and exit")
@@ -433,7 +456,11 @@ def main() -> int:
 
     if args.dry_run:
         for n in picks:
-            print(f"\n{'=' * 72}\n{n:02d} {BY_N[n]['slug']}\n{'=' * 72}\n{build_prompt(BY_N[n])}")
+            era = BY_N[n]
+            print(f"\n{'=' * 72}\n{args.kind}  {n:02d} {era['slug']}  ({RATIO[args.kind]})\n{'=' * 72}")
+            print(prompt_for(era, args.kind))
+            if args.kind != "scene":
+                print(f"\n[page caption] {sp.caption(args.kind, era['slug'])}")
         return 0
 
     if "OPENROUTER_API_KEY" not in os.environ:
@@ -443,7 +470,7 @@ def main() -> int:
     for n in picks:
         era = BY_N[n]
         try:
-            path, cost = generate(era, model)
+            path, cost = generate(era, model, args.kind)
             total += cost
             print(f"  {n:02d} {era['slug']:14s} ${cost:.4f}  {path.stat().st_size // 1024:5d} KB  {path.name}")
         except urllib.error.HTTPError as e:
@@ -451,7 +478,7 @@ def main() -> int:
         except Exception as e:  # keep going through a batch
             print(f"  {n:02d} {era['slug']:14s} FAILED: {e}", file=sys.stderr)
 
-    print(f"\n  {len(picks)} requested · ${total:.4f} total · {OUT}")
+    print(f"\n  {args.kind}: {len(picks)} requested · ${total:.4f} total · {OUT}")
     return 0
 
 
