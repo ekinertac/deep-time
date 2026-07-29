@@ -51,6 +51,96 @@
   display: block;
 }
 
+/* ---- randomiser ---- */
+.roll {
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+@media (max-width: 760px) { .roll { grid-template-columns: 1fr; } }
+
+.roll__side { background: var(--bg); padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.roll__btn {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--bg);
+  background: var(--ink);
+  border: 0;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 160ms, color 160ms, transform 90ms;
+}
+.roll__btn:hover { background: var(--accent-2); color: var(--bg); }
+.roll__btn:active { transform: translateY(1px); }
+.roll__hint { font-family: var(--mono); font-size: 0.86rem; line-height: 1.7; color: var(--ink-faint); }
+
+.roll__panel { background: var(--bg); padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 0.55rem; }
+.roll__age {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  /* Reserve the line so the panel does not jump on first roll. */
+  min-height: 1.2em;
+}
+.roll__era {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--band, var(--ink-faint));
+  min-height: 0.9em;
+}
+.roll__verdict {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--band, var(--ink-faint));
+  min-height: 1.2em;
+}
+.roll__why { font-size: 0.96rem; color: var(--ink-dim); max-width: 54ch; min-height: 3em; }
+/* The result is dimmed while spinning and only resolves on settle, so the
+   intermediate frames read as motion rather than as sixteen wrong answers. */
+.roll__panel:not(.is-settled) .roll__era,
+.roll__panel:not(.is-settled) .roll__verdict { opacity: 0.4; }
+.roll__link {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  align-self: flex-start;
+  margin-top: 0.3rem;
+  min-height: 1.2em;
+}
+.roll__link:hover { border-color: var(--band, var(--ink)); }
+
+.roll__tally { grid-column: 1 / -1; background: var(--bg); padding: 1.2rem 1.6rem; }
+.roll__ticks { display: flex; flex-wrap: wrap; gap: 3px; min-height: 16px; }
+.roll__ticks i { width: 10px; height: 16px; background: var(--band); display: block; }
+.roll__count {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 0.8rem;
+  display: block;
+}
+
 /* ---- legend ---- */
 .legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-bottom: 1.8rem; }
 .legend__i {

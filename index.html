@@ -59,6 +59,37 @@
   </div>
 </section>
 
+<section id="roll">
+  <div class="wrap">
+    <h2 class="section-title">Drop me somewhere</h2>
+    <p class="narrow" style="margin-bottom:2rem">
+      Pick a moment at random from the whole 4.54 billion years, with no weighting
+      of any kind. Because the four lethal eras are also the four longest, the odds
+      are not close. Roll it ten times and watch the tally.
+    </p>
+
+    <div class="roll">
+      <div class="roll__side">
+        <button class="roll__btn" id="roll-btn" type="button">Drop me<br>somewhere</button>
+        <span class="roll__hint">Uniform random over 4,540 Myr. Every millisecond of Earth's history is equally likely.</span>
+      </div>
+
+      <div class="roll__panel" id="roll-panel">
+        <span class="roll__age" id="roll-age">— press the button —</span>
+        <span class="roll__era" id="roll-era">Nowhere yet</span>
+        <span class="roll__verdict" id="roll-verdict"></span>
+        <p class="roll__why" id="roll-why"></p>
+        <a class="roll__link" id="roll-link" href="#"></a>
+      </div>
+
+      <div class="roll__tally">
+        <div class="roll__ticks" id="roll-ticks"></div>
+        <span class="roll__count" id="roll-count">No drops yet</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="timeline">
   <div class="wrap">
     <h2 class="section-title">To scale</h2>
@@ -128,6 +159,7 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/nav.js"></script>
+<script src="assets/roll.js"></script>
 <script>
 /*
  * Renders the two data views. Kept inline because it is the only page that uses
@@ -138,52 +170,31 @@
   const COLUMN_PX = 2400;                // total height the column is allowed
   const MIN_PX = 52;                     // floor so the thinnest era stays clickable
 
-  const href = (e) => 'eras/' + String(e.n).padStart(2, '0') + '-' + e.slug + '.html';
-  const myr = (v) => (v >= 1000 ? (v / 1000).toFixed(2) + ' Ga' : v + ' Ma');
-
   document.getElementById('tl').innerHTML = ERAS.map((e) => {
     const dur = e.from - e.to;
     const h = Math.max(MIN_PX, Math.round((dur / TOTAL) * COLUMN_PX));
     const tight = h < 92 ? '1' : '0';
-    return `<a class="tl__row band-${e.band}" href="${href(e)}" style="height:${h}px" data-tight="${tight}">
+    return `<a class="tl__row band-${e.band}" href="${eraFile(e)}" style="height:${h}px" data-tight="${tight}">
       <span></span>
       <span class="tl__n">${String(e.n).padStart(2, '0')}</span>
       <span>
         <span class="tl__name">${e.name}</span>
-        <span class="tl__span">${myr(e.from)} – ${e.to === 0 ? 'today' : myr(e.to)} · ${dur.toFixed(dur < 10 ? 2 : 0)} Myr · ${((dur / TOTAL) * 100).toFixed(1)}%</span>
+        <span class="tl__span">${formatAge(e.from)} – ${formatAge(e.to)} · ${dur.toFixed(dur < 10 ? 2 : 0)} Myr · ${((dur / TOTAL) * 100).toFixed(1)}%</span>
       </span>
       <span class="tl__v">${e.verdict}</span>
     </a>`;
   }).join('');
 
-  // Why each era ends where it does. Ordered worst to best by survival, then by
-  // age within a band — the same ordering the table header promises.
-  const WHY = {
-    hadean:        'No free oxygen. Surface partly molten, CO₂ at up to 100 bar.',
-    archean:       'Still no free oxygen. Methane haze, iron-rich anoxic ocean.',
-    proterozoic:   'Oxygen exists but sits near 1% — far under the ~16% you need.',
-    ediacaran:     'Oxygen rising and still hypoxic. Severe altitude sickness at sea level.',
-    cambrian:      'Air marginally breathable. Land is bare rock: no food, no fuel, no shelter.',
-    ordovician:    'Same bare land, plus the Hirnantian glaciation at the end.',
-    triassic:      'Lowest oxygen of the last 540 Myr, in desert heat, on one supercontinent.',
-    silurian:      'First land plants and land arthropods. Fire becomes possible.',
-    jurassic:      'No digestible plants anywhere, and large theropods with no fear of you.',
-    permian:       'Continental extremes, real predators, and the worst extinction on record at the end.',
-    devonian:      'First forests: timber, fire and seeds. Still no fruit, still no carbohydrate.',
-    carboniferous: 'Oxygen peak, abundant fuel and water. Everything burns, easily.',
-    cretaceous:    'First fruit and edible plants. Heat is the constraint, not predators.',
-    paleogene:     'Modern air, mammals, fruit and nuts. Avoid the PETM heat spike at 56 Ma.',
-    neogene:       'Effectively modern conditions with the wrong animals in them.',
-    quaternary:    'Your own era. You are the species that evolved for it.',
-  };
-  const ORDER = ['hadean','archean','proterozoic','ediacaran','cambrian','ordovician','triassic','silurian','jurassic','permian','devonian','carboniferous','cretaceous','paleogene','neogene','quaternary'];
+  // Worst to best by survival, then by age within a band — the ordering the
+  // table header promises. WHY lives in data.js; the randomiser reads it too.
+  const ORDER =['hadean','archean','proterozoic','ediacaran','cambrian','ordovician','triassic','silurian','jurassic','permian','devonian','carboniferous','cretaceous','paleogene','neogene','quaternary'];
   const by = Object.fromEntries(ERAS.map((e) => [e.slug, e]));
 
   document.getElementById('rank').innerHTML = ORDER.map((slug, i) => {
     const e = by[slug];
     return `<tr class="band-${e.band}">
       <td>${String(i + 1).padStart(2, '0')}</td>
-      <td><a href="${href(e)}">${e.name}</a></td>
+      <td><a href="${eraFile(e)}">${e.name}</a></td>
       <td class="rank__v">${e.verdict}</td>
       <td class="rank__why">${WHY[slug]}</td>
     </tr>`;

@@ -251,7 +251,7 @@ section + section { border-top: 1px solid var(--rule); }
   grid-column: 1 / -1;
   margin-top: 1.1rem;
   font-family: var(--mono);
-  font-size: 0.76rem;
+  font-size: 0.96rem;
   line-height: 1.7;
   color: var(--ink-dim);
   max-width: 54ch;
@@ -319,7 +319,7 @@ section + section { border-top: 1px solid var(--rule); }
   margin-left: 0.45rem;
   text-transform: uppercase;
 }
-.vital__note { font-family: var(--mono); font-size: 0.68rem; line-height: 1.55; color: var(--ink-faint); }
+.vital__note { font-family: var(--mono); font-size: 0.88rem; line-height: 1.55; color: var(--ink-faint); }
 
 /* Comparison meter: the filled bar is this era, the tick is today's value.
    --pct (0-100) is the era value, --now (0-100) is where modern Earth sits. */

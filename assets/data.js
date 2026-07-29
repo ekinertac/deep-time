@@ -38,3 +38,44 @@ const ERAS = [
   { slug: 'neogene',       n: 15, name: 'Neogene',       from: 23,     to: 2.58,  verdict: 'indefinite',  band: 'indefinite' },
   { slug: 'quaternary',    n: 16, name: 'Quaternary',    from: 2.58,   to: 0,     verdict: 'indefinite',  band: 'indefinite' },
 ];
+
+/*
+ * One line per era on why it ends where it does. Lives here rather than in
+ * index.html because two views need it: the ranked table and the randomiser's
+ * result readout. Ordering is not implied — these are keyed, not sequenced.
+ */
+const WHY = {
+  hadean:        'No free oxygen. Surface partly molten, CO₂ at up to 100 bar.',
+  archean:       'Still no free oxygen. Methane haze, iron-rich anoxic ocean.',
+  proterozoic:   'Oxygen exists but sits near 1% — far under the ~16% you need.',
+  ediacaran:     'Oxygen rising and still hypoxic. Severe altitude sickness at sea level.',
+  cambrian:      'Air marginally breathable. Land is bare rock: no food, no fuel, no shelter.',
+  ordovician:    'Same bare land, plus the Hirnantian glaciation at the end.',
+  silurian:      'First land plants and land arthropods. Fire becomes possible.',
+  devonian:      'First forests: timber, fire and seeds. Still no fruit, still no carbohydrate.',
+  carboniferous: 'Oxygen peak, abundant fuel and water. Everything burns, easily.',
+  permian:       'Continental extremes, real predators, and the worst extinction on record at the end.',
+  triassic:      'Lowest oxygen of the last 540 Myr, in desert heat, on one supercontinent.',
+  jurassic:      'No digestible plants anywhere, and large theropods with no fear of you.',
+  cretaceous:    'First fruit and edible plants. Heat is the constraint, not predators.',
+  paleogene:     'Modern air, mammals, fruit and nuts. Avoid the PETM heat spike at 56 Ma.',
+  neogene:       'Effectively modern conditions with the wrong animals in them.',
+  quaternary:    'Your own era. You are the species that evolved for it.',
+};
+
+/*
+ * Ages are quoted in Ma below 1,000 and Ga above, which is how the literature
+ * does it. Shared by the timeline, the randomiser and the chart so the three
+ * never disagree about how to write the same number.
+ */
+function formatAge(ma) {
+  if (ma >= 1000) return (ma / 1000).toFixed(2) + ' Ga';
+  if (ma >= 10) return Math.round(ma) + ' Ma';
+  if (ma > 0) return ma.toFixed(2) + ' Ma';
+  return 'today';
+}
+
+/* File path for an era page, relative to the site root. */
+function eraFile(e) {
+  return 'eras/' + String(e.n).padStart(2, '0') + '-' + e.slug + '.html';
+}
