@@ -227,7 +227,8 @@ sun-baked. Airborne dust turns the sun into a hard pale disc with no glare.
 GLOSSOPTERIS: sparse low scrub clinging to the dry wash, bearing distinctive \
 tongue-shaped leaves with a strong central midrib, growing in loose tufts on \
 short woody stems. Nothing else grows.""",
-         never="no grass, no flowers, no cactus, no succulents, no palm trees, no conifers, "
+         never="no grass, no flowers, no cactus, no succulents, no agaves, no aloes, "
+               "no rosettes of thick waxy pointed leaves, no palm trees, no conifers, "
                "no dinosaurs, no mammals, no birds, no camels, no people, no oasis"),
 
     dict(n=11, slug="triassic", pal="#171110 #45302c #b98d7c #a596bb", scene="""
