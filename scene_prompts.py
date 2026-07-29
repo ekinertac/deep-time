@@ -112,16 +112,27 @@ edges. Not one organic object anywhere in frame.""",
           "no fruit, no moss, no algae, no insects, no wood, no food of any kind"),
 
 "archean": dict(
-    cap="Bacterial mat, scraped from a stromatolite. Technically organic. Not food.",
+    cap="Bacterial mat, peeled off a stromatolite. Technically organic. Not food.",
     scene="""
-THE ONLY ORGANIC MATTER ON THE PLANET, AND IT IS NOT FOOD. A broken slab of \
-stromatolite lying on wet dark rock: a dense stack of fine mineral laminations \
-in cross-section, like the rings of a felled tree turned on its side. Across its \
-upper surface, a thin slimy film of blackish-green bacterial mat, glistening, \
-peeling at one edge like wet paper. A smear of the same film on the rock beside \
-it.""",
-    never="no plants, no leaves, no seaweed, no shells, no fish, no meat, no bones, no seeds, "
-          "no fruit, no insects, no wood, no fungi, no mushrooms"),
+THE SUBJECT IS A FLAT WIDE SHEET OF SLIMY BACTERIAL MAT, filling the whole frame \
+edge to edge like a skin stretched over shallow water. Blackish-green shading to \
+olive and rust, glistening wet, the surface finely wrinkled and creased all over \
+like the skin on cooling milk. It lies FLAT. There is no single lump, no central \
+mass, no lifted or folded-over flap, and nothing in it should resemble an animal \
+or a body.
+
+THE GAS IS THE DETAIL THAT MATTERS. The mat is being inflated from below by gas \
+the bacteria are producing. Across the sheet: some bubbles still trapped and \
+domed, stretching the film taut and shiny; others already burst, leaving ragged \
+open craters with the torn film curled back around the rim; and at two or three \
+of them, gas actively escaping — a fine stream of small bubbles breaking the \
+water surface, with faint ripples spreading out from the vent.
+
+Ragged torn edges to the sheet. It should look organic, dense, faintly repellent \
+and completely inedible.""",
+    never="no plants, no leaves, no seaweed, no kelp, no shells, no fish, no meat, no bones, "
+          "no seeds, no fruit, no insects, no wood, no fungi, no mushrooms, no lichen, "
+          "no bare dry rock filling the frame"),
 
 "proterozoic": dict(
     cap="Ice, meltwater and stone. The plate stays empty for another 1.9 billion years.",
@@ -134,19 +145,33 @@ colour, no organic matter, nothing living or dead.""",
           "no seeds, no seaweed, no penguins, no food of any kind"),
 
 "ediacaran": dict(
-    cap="A Dickinsonia and a torn frond. Soft, boneless, and of entirely unknown food value.",
+    cap="Two Dickinsonia. Soft, boneless, and of entirely unknown food value.",
     scene="""
-THE FIRST LARGE ORGANISMS, AND NOBODY KNOWS IF THEY ARE EDIBLE. Lying on wet \
-grey-green sediment: one flat oval DICKINSONIA body, soft and boneless, thinner \
-than a coin, divided into many dozens of fine parallel raised ridges running at a \
-slight angle off a central line, the ridges on one side offset against the other \
-— like a quilted air mattress or a giant fingerprint. Beside it, a torn fragment \
-of CHARNIA frond: repeated identical branch units along a central axis, each \
-subdivided into smaller identical branchlets, a feather made of feathers, with no \
-midrib and no veins. Both are limp, wet and translucent at the edges.""",
-    never="no shells, no scallops, no clams, no hinges, no radiating fan ribs, no leaf veins, "
-          "no midribs, no fish, no crabs, no prawns, no bones, no eyes, no legs, no mouths, "
-          "no seaweed, no plants"),
+THE FIRST LARGE ORGANISMS, AND NOBODY KNOWS IF THEY ARE EDIBLE. Two DICKINSONIA \
+bodies of different sizes lying flat on wet grey-green sediment, one about twice \
+the length of the other.
+
+CRITICAL SHAPE — GET THIS RIGHT: each body is a LONG NARROW OVAL, two to three \
+times longer than it is wide, rounded at both ends with one end slightly \
+narrower, like the outline of a shoe sole or a flattened leech. Running the FULL \
+LENGTH of the body, from one end to the other, is a single straight central \
+groove. Off that long groove, many dozens of fine soft ribs run sideways to the \
+outer margin, and because the groove is a long line rather than a point, these \
+ribs sit NEARLY PARALLEL to one another along the whole middle section of the \
+body, like the rungs of a ladder or the segments of a woodlouse. The ribs on one \
+side are offset half a step against those on the other.
+
+IT IS NOT A FAN AND NOT A SHELL. The ribs must NOT radiate outward from one \
+central point. There is no hinge, no valve, no hard rim, no scallop or cockle \
+outline, and nothing rigid anywhere.
+
+Both bodies are limp, soft, boneless, thinner than a coin, wet, and translucent \
+at the edges where they meet the sediment. The sediment around them is a \
+wrinkled elephant-skin microbial mat with faint drag traces.""",
+    never="no shells, no scallops, no cockles, no clams, no oysters, no hinges, no valves, "
+          "no fan shape, no ribs radiating from a central point, no ferns, no fern fronds, "
+          "no leaves, no leaf veins, no plants, no seaweed, no fish, no crabs, no prawns, "
+          "no bones, no eyes, no legs, no mouths, no jellyfish"),
 
 "cambrian": dict(
     cap="Trilobites and brachiopods. Raw, because there is nothing on Earth to burn.",
