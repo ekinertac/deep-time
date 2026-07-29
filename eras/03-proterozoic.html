@@ -41,61 +41,7 @@
     </div>
 
     <figure class="scene">
-      <svg viewBox="0 0 1200 520" role="img" aria-label="A Snowball Earth scene: an ice sheet stretching to the horizon, cracked by a black open-water lead, under a pale low sun.">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="var(--sky-1)"/>
-            <stop offset="0.6" stop-color="var(--sky-2)"/>
-            <stop offset="1" stop-color="var(--sky-3)"/>
-          </linearGradient>
-          <linearGradient id="ice" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#b9d6e6"/>
-            <stop offset="0.35" stop-color="#7ea6bd"/>
-            <stop offset="1" stop-color="#2e4d61"/>
-          </linearGradient>
-          <linearGradient id="lead" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#0a161d"/>
-            <stop offset="1" stop-color="#020608"/>
-          </linearGradient>
-        </defs>
-
-        <rect width="1200" height="520" fill="url(#sky)"/>
-
-        <!-- Low sun with a halo. Ice crystals in a dry, frigid atmosphere make
-             parhelia; the sky here is optically busy and thermally useless. -->
-        <circle cx="300" cy="238" r="24" fill="#eaf6ff" opacity="0.85"/>
-        <circle cx="300" cy="238" r="72" fill="none" stroke="#eaf6ff" stroke-opacity="0.16" stroke-width="2"/>
-        <circle cx="300" cy="238" r="124" fill="none" stroke="#eaf6ff" stroke-opacity="0.08" stroke-width="2"/>
-        <g fill="#eaf6ff" opacity="0.3">
-          <circle cx="228" cy="238" r="6"/><circle cx="372" cy="238" r="6"/>
-        </g>
-
-        <!-- Ice horizon: flat, because there is nothing left to make relief. -->
-        <path d="M0 288 L1200 288 L1200 520 L0 520 Z" fill="url(#ice)"/>
-        <path d="M0 288 L180 282 L340 290 L520 280 L700 291 L880 283 L1060 291 L1200 285 L1200 300 L0 300 Z" fill="#cfe6f2" opacity="0.55"/>
-
-        <!-- Pressure ridges. -->
-        <g fill="#dbeef8" opacity="0.35">
-          <path d="M80 344 L140 322 L200 346 Z"/><path d="M420 330 L470 312 L520 332 Z"/>
-          <path d="M760 350 L830 326 L900 352 Z"/><path d="M1020 336 L1070 318 L1120 338 Z"/>
-        </g>
-
-        <!-- Open-water lead. Even at maximum glaciation some equatorial water
-             probably stayed open; life survived somewhere. -->
-        <path d="M0 400 Q200 384 400 404 T820 396 T1200 412 L1200 452 Q900 434 620 448 T180 436 T0 444 Z" fill="url(#lead)"/>
-        <g stroke="#9fd0e8" stroke-opacity="0.25" stroke-width="1.4">
-          <path d="M120 418 q60 -6 120 2"/><path d="M520 424 q70 -6 140 3"/><path d="M900 428 q60 -5 120 3"/>
-        </g>
-
-        <!-- Foreground ice with crevasses. -->
-        <g stroke="#20394a" stroke-width="3" stroke-linecap="round" opacity="0.75">
-          <path d="M60 520 Q100 486 84 458"/><path d="M300 520 Q346 480 322 452"/>
-          <path d="M620 520 Q660 484 640 460"/><path d="M940 520 Q986 478 962 454"/>
-        </g>
-        <g fill="#eaf6ff" opacity="0.12">
-          <path d="M0 470 L200 462 L400 474 L600 464 L800 476 L1000 466 L1200 476 L1200 490 L0 492 Z"/>
-        </g>
-      </svg>
+      <img src="../assets/scenes/03-proterozoic.jpg" alt="A Snowball Earth scene: an ice sheet stretching to the horizon, cracked by a black open-water lead, under a pale low sun." loading="lazy">
       <figcaption class="scene__cap">Marinoan glaciation, ~650 Ma · sea ice at the equator</figcaption>
     </figure>
   </div>

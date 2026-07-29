@@ -257,7 +257,7 @@ section + section { border-top: 1px solid var(--rule); }
   max-width: 54ch;
 }
 
-/* ---- era scene (inline SVG per page) ---- */
+/* ---- era scene (generated image per page) ---- */
 .scene {
   position: relative;
   margin-top: clamp(2.5rem, 6vw, 4.5rem);
@@ -265,7 +265,7 @@ section + section { border-top: 1px solid var(--rule); }
   background: var(--sky-1);
   overflow: hidden;
 }
-.scene svg { width: 100%; height: auto; }
+.scene svg, .scene img { width: 100%; height: auto; display: block; }
 .scene__cap {
   position: absolute;
   left: 0; bottom: 0;
