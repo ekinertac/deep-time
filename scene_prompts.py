@@ -191,16 +191,30 @@ plant matter of any kind is present because none exists on land yet.""",
 "ordovician": dict(
     cap="Nautiloid, opened. The first meal on this list with real fat in it.",
     scene="""
-THE FIRST FAT IN EARTH'S HISTORY. On wet dark rock: a section of the long \
-straight conical shell of a CAMEROCERAS nautiloid, cracked open lengthwise to \
-show the chambered interior divided by curved cross-walls, with a mass of pale \
-soft cephalopod flesh and short thick tentacles spilling from the wide end. The \
-flesh is dense and marbled, unlike anything else available.
+THE FIRST FAT IN EARTH'S HISTORY, AND IT CAME OFF SOMETHING ENORMOUS.
 
-Beside it, several small ribbed shellfish and a thin flat crust of dark green \
-liverwort peeled off a rock — the only plant matter that exists, and inedible.""",
-    never="no squid rings, no calamari, no cooked food, no fire, no herbs, no vegetables, "
-          "no lemon, no trees, no leaves, no grass, no seeds, no fruit, no modern seafood platter"),
+SCALE IS THE MOST IMPORTANT THING IN THIS IMAGE. The animal is a CAMEROCERAS, a \
+nautiloid six metres long and as thick as a tree trunk. You are looking at a \
+BUTCHERED SECTION of it, not a whole small animal. The piece of shell in frame is \
+a length of the giant straight cone, wider than a human torso, running right \
+across the picture and CUT OFF BY BOTH EDGES OF THE FRAME so its full length is \
+far outside the shot. The shell wall is thick and heavy like fired clay, cracked \
+open lengthwise to show the chambered interior divided by curved cross-walls, \
+each chamber big enough to put your head into.
+
+Slumped out of the open end, a huge slab of pale dense marbled cephalopod muscle \
+the size of a butchered animal's haunch, wet and heavy.
+
+FOR SCALE: three or four small ribbed shellfish sit beside it and must look TINY \
+against it, like coins next to a fallen log. A thin crust of dark green liverwort \
+on the wet rock — the only plant matter that exists, and inedible.
+
+DO NOT render this as a small animal you could pick up. It should read like \
+butchery, not like a seafood plate.""",
+    never="no whole small squid, no squid rings, no calamari, no octopus, no cuttlefish, "
+          "no small cephalopod, no coiled or spiral shell, no ammonite, no nautilus spiral, "
+          "no cooked food, no fire, no herbs, no vegetables, no lemon, no trees, no leaves, "
+          "no grass, no seeds, no fruit, no seafood platter"),
 
 "silurian": dict(
     cap="Arthropods to eat, and dried stems to burn. The fuel matters more than the food.",
@@ -208,28 +222,43 @@ liverwort peeled off a rock — the only plant matter that exists, and inedible.
 THE TURNING POINT: FOR THE FIRST TIME THERE IS SOMETHING TO BURN. On damp mud, \
 two small bundles side by side.
 
-FOOD: several small dark segmented millipede-like arthropods and a few shellfish, \
-raw and unappetising.
-FUEL: a loose handful of dried COOKSONIA stems — leafless, thinner than a pencil, \
-each forking into two and then two again, tipped with tiny round spore capsules. \
-Bleached pale and brittle from drying. Beside them a scatter of dark ash and one \
-charred stem end.""",
-    never="no trees, no logs, no branches, no leaves, no grass, no ferns, no flowers, no fruit, "
-          "no seeds, no matches, no lighter, no fire pit, no cooked meat"),
+FOOD: several small dark segmented millipede-like arthropods, and a few small \
+SMOOTH FLAT DOUBLE-VALVED SHELLS shaped like a fingernail or a lens. Those shells \
+are absolutely NOT spiral and NOT coiled — nothing in this picture may be a \
+snail, an ammonite or a coiled ram's-horn shape.
+
+FUEL: a small tangled bundle of dried COOKSONIA stems. Each stem is only a few \
+centimetres long, no longer than a thumb, thinner than a matchstick, leafless, \
+forking into two and then two again, tipped with tiny round spore capsules the \
+size of a pinhead. They are short, wiry, tangled and brittle, bleached pale — NOT \
+long straight straw, NOT bamboo, NOT reeds, NOT skewers. Beside them a scatter of \
+dark ash and one charred stem end.""",
+    never="no spiral shells, no coiled shells, no ammonites, no snails, no nautilus, "
+          "no trees, no logs, no branches, no long straw, no bamboo, no reeds, no leaves, "
+          "no grass, no ferns, no flowers, no fruit, no seeds, no matches, no lighter, "
+          "no fire pit, no cooked meat"),
 
 "devonian": dict(
     cap="Fish, and the first seeds. The first food on Earth that keeps.",
     scene="""
 THE FIRST FOOD THAT CAN BE STORED. On a slab of rough bark: a whole lobe-finned \
-fish, thick-scaled and heavy-bodied with fleshy muscular fin bases, and beside it \
-a small pile of EARLY SEEDS — hard, dry, teardrop-shaped kernels each partly \
-enclosed in a ragged cupule of woody tissue, no bigger than a fingernail.
+fish, thick-scaled and heavy-bodied with fleshy muscular fin bases.
 
-A few fern-like Archaeopteris fronds beneath as bedding. The seeds are the point: \
-dry, dense and portable, they keep for months, and nothing before this era could \
-be saved for later.""",
-    never="no grass, no wheat, no grain ears, no flowers, no fruit, no nuts in shells, no "
-          "conifer cones, no acorns, no modern fish, no cooked food, no bowl"),
+Beside it a small scattered pile of the EARLIEST SEEDS. THESE ARE NOT NUTS. Each \
+one is TINY — only three or four millimetres, the size of a grain of rice or a \
+peppercorn, so the whole pile is smaller than the fish's eye. Each seed is a \
+slender pointed kernel held in a delicate cupule of narrow finger-like woody \
+lobes that splay open around it like a tiny ragged crown or a shredded husk. \
+Wiry, spindly and irregular.
+
+DO NOT render hazelnuts, acorns, almonds or any smooth rounded nut sitting in a \
+neat cup. Nothing here should look like something you would buy.
+
+Under everything, fronds of ARCHAEOPTERIS as bedding: flat fern-like sprays of \
+small wedge-shaped leaflets arranged along a woody central stem.""",
+    never="no hazelnuts, no acorns, no almonds, no walnuts, no chestnuts, no nuts of any kind, "
+          "no smooth rounded kernels, no conifer cones, no grass, no wheat, no grain ears, "
+          "no flowers, no fruit, no modern fish, no cooked food, no bowl"),
 
 "carboniferous": dict(
     cap="Freshwater fish, large insects, seed-fern seeds. The forest itself is inedible.",
