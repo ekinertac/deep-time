@@ -20,12 +20,21 @@ live in scene_prompts.py.
 Output goes to assets/scenes/<set>/NN-slug.<ext>, one folder per set. Nothing is
 ever overwritten: a second run of the same era writes NN-slug-v2, then -v3.
 
-KEEP EVERY VARIANT. Do not delete the ones you did not choose. There is no seed
-recorded, so a discarded image cannot be reproduced — the same prompt returns a
-different draw. A variant that was rejected today is the one you want back
-tomorrow. The chosen image takes the plain NN-slug name and the rest keep a
-descriptive suffix (NN-slug-alt-gas.webp), so the pick is obvious from the
-filename and nothing is lost.
+KEEP EVERY VARIANT. Do not delete the ones you did not choose. A variant that was
+rejected today is the one you want back tomorrow. The chosen image takes the
+plain NN-slug name and the rest keep a descriptive suffix
+(NN-slug-alt-gas.webp), so the pick is obvious from the filename and nothing is
+lost.
+
+REPRODUCIBILITY. Every run now sends an explicit seed and appends a record to
+assets/scenes/generated.jsonl: the file it wrote, the set, the model, the seed
+and the full prompt. A seed on its own is not enough — it only reproduces
+against the identical prompt, and these prompts get edited between runs, so both
+are stored together. To draw an image again:
+
+    ./gen_img.py 2 --set menu --seed 704216
+
+Images made before this existed have no seed and cannot be reproduced.
 
 WHY THE PROMPTS LOOK LIKE THIS
 Three models were tried on the same scene. The failure mode that mattered was
@@ -52,9 +61,11 @@ Needs OPENROUTER_API_KEY in the environment.
 
 import argparse
 import base64
+import datetime as _dt
 import json
 import os
 import pathlib
+import random
 import re
 import sys
 import urllib.error
@@ -411,12 +422,37 @@ def prompt_for(era: dict, kind: str) -> str:
     return build_prompt(era) if kind == "scene" else sp.build(kind, era["slug"])
 
 
-def generate(era: dict, model: str, kind: str) -> tuple[pathlib.Path, float]:
+LOG = OUT / "generated.jsonl"
+
+
+def record(path: pathlib.Path, era: dict, kind: str, model: str, seed: int,
+           prompt: str, cost: float) -> None:
+    """Append-only provenance. Seed plus prompt, because a seed reproduces
+    nothing on its own once the prompt has been edited."""
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open("a") as fh:
+        fh.write(json.dumps({
+            "at": _dt.datetime.now().isoformat(timespec="seconds"),
+            "file": str(path.relative_to(OUT)),
+            "set": kind,
+            "era": era["slug"],
+            "model": model,
+            "seed": seed,
+            "aspect": RATIO[kind],
+            "cost": round(cost, 5),
+            "prompt": prompt,
+        }, ensure_ascii=False) + "\n")
+
+
+def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple[pathlib.Path, float, int]:
+    seed = random.randrange(1, 2**31 - 1) if seed is None else seed
+    prompt = prompt_for(era, kind)
     body = {
         "model": model,
-        "messages": [{"role": "user", "content": prompt_for(era, kind)}],
+        "messages": [{"role": "user", "content": prompt}],
         "modalities": ["image", "text"],
         "image_config": {"aspect_ratio": RATIO[kind]},
+        "seed": seed,
     }
     req = urllib.request.Request(
         API, data=json.dumps(body).encode(),
@@ -437,7 +473,9 @@ def generate(era: dict, model: str, kind: str) -> tuple[pathlib.Path, float]:
     blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
     path = next_path(era, sniff_ext(blob), kind)
     path.write_bytes(blob)
-    return path, float(data.get("usage", {}).get("cost") or 0.0)
+    cost = float(data.get("usage", {}).get("cost") or 0.0)
+    record(path, era, kind, model, seed, prompt, cost)
+    return path, cost, seed
 
 
 def main() -> int:
@@ -450,6 +488,8 @@ def main() -> int:
                     help="which image set (default: scene)")
     ap.add_argument("--dry-run", action="store_true", help="print the prompt, generate nothing")
     ap.add_argument("--flash", action="store_true", help="use the cheap model (worse anatomy)")
+    ap.add_argument("--seed", type=int, default=None,
+                    help="reproduce a previous draw (see assets/scenes/generated.jsonl)")
     ap.add_argument("--list", action="store_true", help="list the eras and exit")
     args = ap.parse_args()
 
@@ -481,9 +521,10 @@ def main() -> int:
     for n in picks:
         era = BY_N[n]
         try:
-            path, cost = generate(era, model, args.kind)
+            path, cost, seed = generate(era, model, args.kind, args.seed)
             total += cost
-            print(f"  {n:02d} {era['slug']:14s} ${cost:.4f}  {path.stat().st_size // 1024:5d} KB  {path.name}")
+            print(f"  {n:02d} {era['slug']:14s} ${cost:.4f}  {path.stat().st_size // 1024:5d} KB  "
+                  f"seed {seed:<11d} {path.name}")
         except urllib.error.HTTPError as e:
             print(f"  {n:02d} {era['slug']:14s} HTTP {e.code}: {e.read()[:160].decode()}", file=sys.stderr)
         except Exception as e:  # keep going through a batch
