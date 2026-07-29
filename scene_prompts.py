@@ -114,22 +114,19 @@ edges. Not one organic object anywhere in frame.""",
 "archean": dict(
     cap="Bacterial mat, peeled off a stromatolite. Technically organic. Not food.",
     scene="""
-THE SUBJECT IS A FLAT WIDE SHEET OF SLIMY BACTERIAL MAT, filling the whole frame \
-edge to edge like a skin stretched over shallow water. Blackish-green shading to \
-olive and rust, glistening wet, the surface finely wrinkled and creased all over \
-like the skin on cooling milk. It lies FLAT. There is no single lump, no central \
-mass, no lifted or folded-over flap, and nothing in it should resemble an animal \
-or a body.
+THE SUBJECT OF THIS PICTURE IS A THICK SLIMY BACTERIAL MAT, and it fills most of \
+the frame. A heavy sheet of living microbial slime, blackish-green shading to \
+olive and rust, glistening wet, its surface wrinkled and creased into folds like \
+skin on cooling milk. One large flap has been peeled back and lifted, hanging \
+over on itself to show a paler slick underside, with clear mucus stringing \
+between the flap and the surface beneath it. Bubbles of trapped gas sit under the \
+film, some domed and taut, a few burst into ragged craters with the film curled \
+back, and at one or two a fine stream of gas escaping into the water. Ragged torn \
+edges where it has come away.
 
-THE GAS IS THE DETAIL THAT MATTERS. The mat is being inflated from below by gas \
-the bacteria are producing. Across the sheet: some bubbles still trapped and \
-domed, stretching the film taut and shiny; others already burst, leaving ragged \
-open craters with the torn film curled back around the rim; and at two or three \
-of them, gas actively escaping — a fine stream of small bubbles breaking the \
-water surface, with faint ripples spreading out from the vent.
-
-Ragged torn edges to the sheet. It should look organic, dense, faintly repellent \
-and completely inedible.""",
+Only at the very edge of the frame, a corner of the laminated stromatolite it was \
+growing on. The rock is not the subject: the slime is. It should look organic, \
+dense, faintly repellent and completely inedible.""",
     never="no plants, no leaves, no seaweed, no kelp, no shells, no fish, no meat, no bones, "
           "no seeds, no fruit, no insects, no wood, no fungi, no mushrooms, no lichen, "
           "no bare dry rock filling the frame"),

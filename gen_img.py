@@ -18,10 +18,14 @@ eat, the other is the air itself. Prompt data and the reasoning behind each set
 live in scene_prompts.py.
 
 Output goes to assets/scenes/<set>/NN-slug.<ext>, one folder per set. Nothing is
-ever overwritten: a second run of the same era writes NN-slug-v2, then -v3, so
-alternates sit beside each other for comparison and the loser is deleted by hand.
-Once a winner is chosen, drop its version suffix so the filename stays
-predictable.
+ever overwritten: a second run of the same era writes NN-slug-v2, then -v3.
+
+KEEP EVERY VARIANT. Do not delete the ones you did not choose. There is no seed
+recorded, so a discarded image cannot be reproduced — the same prompt returns a
+different draw. A variant that was rejected today is the one you want back
+tomorrow. The chosen image takes the plain NN-slug name and the rest keep a
+descriptive suffix (NN-slug-alt-gas.webp), so the pick is obvious from the
+filename and nothing is lost.
 
 WHY THE PROMPTS LOOK LIKE THIS
 Three models were tried on the same scene. The failure mode that mattered was
