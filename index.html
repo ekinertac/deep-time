@@ -42,10 +42,6 @@
       weather were actually doing, and how long that gives you.
     </p>
 
-    <p class="hero__dates" style="border:0;padding-top:0.4rem">
-      <a href="chart.html" style="color:var(--accent-2);text-decoration:none;border-bottom:1px solid var(--rule)">See all three curves on one axis →</a>
-    </p>
-
     <div class="stat">
       <div class="stat__cell band-minutes">
         <span class="stat__n">88%</span>
@@ -60,6 +56,28 @@
         <span class="stat__k">would let you live out a normal life</span>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="curves-promo">
+  <div class="wrap">
+    <a class="promo" href="chart.html">
+      <div class="promo__body">
+        <span class="eyebrow">The data behind all sixteen verdicts</span>
+        <h2 class="promo__title">The curves</h2>
+        <p class="promo__lede">
+          Oxygen, carbon dioxide and temperature across the whole 4.54 billion years,
+          on one shared axis. Oxygen crosses the line a human can breathe at roughly
+          430 million years ago — the exact point where the survival times on this
+          site stop being measured in minutes.
+        </p>
+        <span class="promo__cta">Open the chart</span>
+      </div>
+      <figure class="promo__spark">
+        <svg id="promo-spark" viewBox="0 0 320 110" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <figcaption>Atmospheric oxygen, 4.54 Ga → now. The rule is 16%.</figcaption>
+      </figure>
+    </a>
   </div>
 </section>
 
@@ -162,6 +180,7 @@
 </footer>
 
 <script src="assets/data.js"></script>
+<script src="assets/curves.js"></script>
 <script src="assets/nav.js"></script>
 <script src="assets/roll.js"></script>
 <script>
@@ -193,6 +212,26 @@
   // table header promises. WHY lives in data.js; the randomiser reads it too.
   const ORDER =['hadean','archean','proterozoic','ediacaran','cambrian','ordovician','triassic','silurian','jurassic','permian','devonian','carboniferous','cretaceous','paleogene','neogene','quaternary'];
   const by = Object.fromEntries(ERAS.map((e) => [e.slug, e]));
+
+  /*
+   * Sparkline on the chart promo. Deliberately a plain LINEAR time axis, unlike
+   * the chart page's broken one: at this size the shape IS the argument — flat on
+   * the floor for 88% of the width, then a late spike. The chart page breaks the
+   * axis because it has to show detail; this one benefits from the distortion.
+   */
+  (function () {
+    const svg = document.getElementById('promo-spark');
+    if (!svg || typeof O2 === 'undefined') return;
+    const W = 320, H = 110, MAX = 40;
+    const px = (age) => ((4540 - age) / 4540) * W;
+    const py = (v) => H - (v / MAX) * H;
+    const d = O2.map(([a, v], i) => (i ? 'L' : 'M') + px(a).toFixed(1) + ' ' + py(v).toFixed(1)).join(' ');
+    const ruleY = py(16).toFixed(1);
+    svg.innerHTML =
+      `<path d="${d} L${W} ${H} L0 ${H} Z" fill="#3987e5" opacity="0.12"/>` +
+      `<line x1="0" y1="${ruleY}" x2="${W}" y2="${ruleY}" stroke="#565d68" stroke-width="1" vector-effect="non-scaling-stroke"/>` +
+      `<path d="${d}" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+  })();
 
   document.getElementById('rank').innerHTML = ORDER.map((slug, i) => {
     const e = by[slug];
