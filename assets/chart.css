@@ -1,0 +1,200 @@
+/*
+ * chart.css — styling for the three-panel deep-time chart.
+ *
+ * Loaded only by chart.html. Follows the data-viz mark specs: 2px lines, ≥8px
+ * markers, 10% area washes, solid hairline grid one step off the surface, and
+ * text that never wears the series colour — identity comes from a small coloured
+ * swatch beside the label, never from colouring the text itself.
+ *
+ * KEY LAYOUT DECISION: each panel is an SVG (geometry only, stretched with
+ * preserveAspectRatio="none") plus an absolutely positioned HTML label layer on
+ * top. Stretching the SVG distorts glyphs, so no text lives inside it — labels
+ * are HTML placed by percentage off the same scales. See assets/chart.js.
+ *
+ * The series hues are slots 1–3 of the reference categorical palette (dark
+ * steps), validated against this surface under the all-pairs check before any of
+ * this was written.
+ *
+ * Read alongside: assets/chart.js (emits the markup), assets/site.css (shell).
+ */
+
+.viz-root {
+  --surface-1: #07080a;
+  --series-o2: #3987e5;
+  --series-co2: #d95926;
+  --series-temp: #199e70;
+  --grid: #23272e;
+  --rule-ink: #565d68;
+  --plot-h: 168px;
+}
+
+/* ---- stack ---- */
+.c-stack { position: relative; margin-top: 2rem; outline: none; }
+.c-stack:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 8px; }
+
+.c-panel + .c-panel { margin-top: 1.6rem; }
+.c-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.55rem; }
+.c-title {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+/* The swatch carries identity, so the label text stays in an ink token. */
+.c-title i { width: 12px; height: 12px; border-radius: 2px; display: block; flex: none; }
+.c-unit { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); }
+
+/* ---- plot: stretched geometry + undistorted HTML labels ---- */
+.c-plot { position: relative; height: var(--plot-h); }
+.c-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.c-labels { position: absolute; inset: 0; pointer-events: none; }
+
+.c-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.c-area { opacity: 0.1; stroke: none; }
+.c-grid { stroke: var(--grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.c-rule { stroke: var(--rule-ink); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.c-cross { stroke: var(--ink-dim); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+/* ≥8px marker with a 2px surface ring so it stays legible over the line. */
+.c-dot {
+  position: absolute;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--bg);
+  transform: translate(-50%, -50%);
+}
+
+.c-ytick, .c-rulelabel, .c-xtick {
+  position: absolute;
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+.c-ytick {
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  transform: translateY(-50%);
+  width: 42px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.c-rulelabel {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rule-ink);
+  transform: translateY(-130%);
+}
+
+/* ---- shared axis ---- */
+.c-axis { position: relative; margin-top: 0.5rem; }
+.c-xticks { position: relative; height: 20px; }
+.c-xtick {
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  transform: translateX(-50%);
+  top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.c-strip { position: relative; height: 20px; margin-top: 2px; }
+.c-era {
+  position: absolute;
+  top: 0;
+  height: 20px;
+  background: #12151a;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+  transition: background 160ms;
+}
+.c-era:hover { background: #212833; }
+.c-era span {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+.c-era:hover span { color: var(--ink); }
+
+/* ---- the scale break, spanning the whole stack ---- */
+.c-break {
+  position: absolute;
+  top: 0; bottom: 30px;
+  background: var(--bg);
+  border-left: 1px dashed var(--grid);
+  border-right: 1px dashed var(--grid);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ---- readout ---- */
+.c-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.6rem;
+  margin-top: 1.6rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  background: var(--bg-raise);
+  font-family: var(--mono);
+  font-size: 0.84rem;
+}
+.c-readout[hidden] { display: none; }
+.c-r-age { color: var(--ink); font-weight: 600; letter-spacing: 0.08em; }
+.c-r-era { color: var(--accent-2); text-decoration: none; border-bottom: 1px solid var(--rule); letter-spacing: 0.06em; }
+.c-r-vals { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-left: auto; color: var(--ink-dim); }
+.c-r-vals span { display: flex; align-items: center; gap: 0.45rem; }
+.c-r-vals i { width: 10px; height: 10px; border-radius: 2px; display: block; flex: none; }
+
+.c-hint { font-family: var(--mono); font-size: 0.82rem; line-height: 1.7; color: var(--ink-faint); margin-top: 1.1rem; max-width: 74ch; }
+
+/* ---- table view ---- */
+.c-tablewrap { margin-top: 2.5rem; border-top: 1px solid var(--rule); padding-top: 1.6rem; }
+.c-tablewrap summary {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+.c-tablewrap summary:hover { color: var(--ink); }
+.c-tablescroll { overflow-x: auto; margin-top: 1.2rem; }
+table.c-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.82rem; }
+table.c-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 0 1rem 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+table.c-table td {
+  padding: 0.6rem 1rem 0.6rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 55%, transparent);
+  color: var(--ink-dim);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+table.c-table td:first-child { color: var(--ink); }
+table.c-table a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+table.c-table a:hover { border-color: var(--accent-2); }
+
+@media (max-width: 760px) {
+  .viz-root { --plot-h: 132px; }
+  .c-r-vals { margin-left: 0; width: 100%; }
+  .c-era span { font-size: 0.5rem; }
+}

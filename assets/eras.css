@@ -146,8 +146,9 @@
   --sky-1: #0a1116; --sky-2: #21384a; --sky-3: #9db9cc;
 }
 
-/* Index page: neutral, so the sixteen swatches on it read as data, not decoration */
-[data-era='index'] {
+/* Index and chart: neutral, so the data on them reads as data, not decoration */
+[data-era='index'],
+[data-era='chart'] {
   --bg: #07080a; --bg-raise: #0e1013; --rule: #1e2228;
   --ink: #e9e6de; --ink-dim: #878b92; --ink-faint: #4e535a;
   --accent: #e8e4da; --accent-2: #d8552f;

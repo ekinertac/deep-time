@@ -19,11 +19,13 @@
 
 (function () {
   const slug = document.body.dataset.era;
-  const onIndex = slug === 'index';
+  // Anything that is not one of the sixteen era slugs is a root-level page
+  // (index, chart), which changes how sibling links resolve.
+  const onIndex = !ERAS.some((e) => e.slug === slug);
   // Files are named NN-slug.html so they sort correctly in a directory listing;
   // the slug alone is the identity used everywhere else.
   const eraHref = (e) => (onIndex ? 'eras/' : './') + String(e.n).padStart(2, '0') + '-' + e.slug + '.html';
-  const homeHref = onIndex ? '#top' : '../index.html';
+  const homeHref = slug === 'index' ? '#top' : onIndex ? 'index.html' : '../index.html';
   const here = ERAS.findIndex((e) => e.slug === slug);
 
   /* ---- left rail: all 16, current one highlighted ---- */
