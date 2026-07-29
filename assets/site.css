@@ -13,12 +13,12 @@
  * Read alongside: assets/eras.css (the themes), assets/nav.js (injects the rail
  * and pager markup this file styles), eras/*.html (the markup contract).
  *
- * Constraint: no build step and no framework. Fonts come from Google Fonts over
- * the network; everything else works from file:// offline, degrading to the
- * fallback stacks below.
+ * Constraint: no build step and no framework. Fonts are self-hosted under
+ * assets/fonts/, so the site makes no third-party request and renders identically
+ * offline.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,300&display=swap');
+@import url('fonts.css');
 
 /* ---- reset ---- */
 *, *::before, *::after { box-sizing: border-box; }

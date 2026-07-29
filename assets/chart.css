@@ -33,7 +33,17 @@
 .c-stack:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 8px; }
 
 .c-panel + .c-panel { margin-top: 1.6rem; }
-.c-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.55rem; }
+/* flex-wrap plus min-width:0 on the title: without both, the title refuses to
+   shrink below its content and runs straight through the unit label on narrow
+   screens. */
+.c-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  margin-bottom: 0.55rem;
+}
 .c-title {
   font-family: var(--mono);
   font-size: 0.84rem;
@@ -44,10 +54,24 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  min-width: 0;
 }
 /* The swatch carries identity, so the label text stays in an ink token. */
 .c-title i { width: 12px; height: 12px; border-radius: 2px; display: block; flex: none; }
-.c-unit { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); }
+.c-unit { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); flex: none; }
+
+/* The threshold caption. In the plot on wide screens; promoted to the panel head
+   on narrow ones, where the plot is too small to hold a line of text without
+   covering the curve and the y-ticks. */
+.c-rulenote {
+  display: none;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rule-ink);
+}
 
 /* ---- plot: stretched geometry + undistorted HTML labels ---- */
 .c-plot { position: relative; height: var(--plot-h); }
@@ -125,10 +149,12 @@
 }
 .c-era:hover span { color: var(--ink); }
 
-/* ---- the scale break, spanning the whole stack ---- */
+/* ---- the scale break ----
+   One per plot and one over the axis, each filling only its own box. A single
+   overlay across the stack would also sit on top of the panel headings. */
 .c-break {
   position: absolute;
-  top: 0; bottom: 30px;
+  top: 0; bottom: 0;
   background: var(--bg);
   border-left: 1px dashed var(--grid);
   border-right: 1px dashed var(--grid);
@@ -209,4 +235,9 @@ table.c-table a:hover { border-color: var(--accent-2); }
   .viz-root { --plot-h: 132px; }
   .c-r-vals { margin-left: 0; width: 100%; }
   .c-era span { font-size: 0.5rem; }
+  /* Swap the threshold caption from inside the plot to the panel head. */
+  .c-rulelabel { display: none; }
+  .c-rulenote { display: block; }
+  /* Drop the in-between ticks; the full set collides either side of the break. */
+  .c-xtick[data-opt] { display: none; }
 }

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!--
+    favicon.svg — the site's argument at 16 pixels.
+
+    The oxygen curve: flat on the floor for most of the width, then a late spike,
+    with the 16% survivability threshold as the horizontal rule it finally
+    crosses. Same shape as the sparkline on the index and the top panel of
+    chart.html, so the three read as one mark.
+
+    Colours are the chart's surface and series-1 blue (#3987e5).
+  -->
+  <rect width="64" height="64" fill="#07080a"/>
+  <line x1="6" y1="34" x2="58" y2="34" stroke="#565d68" stroke-width="2"/>
+  <path d="M6 54 L20 53.5 L30 53 L36 51 L40 46 L43 30 L46 14 L49 20 L52 33 L55 27 L58 26"
+        fill="none" stroke="#3987e5" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -82,6 +82,12 @@
 
   const eraAt = (age) => ERAS.find((e) => age <= e.from && age > e.to) || ERAS[ERAS.length - 1];
 
+  /* The scale-break marker. Rendered once per plot and once over the axis rather
+     than as a single overlay across the whole stack — a stack-wide overlay also
+     covers the panel headings and paints out whichever letter falls under it. */
+  const breakMark = () =>
+    `<div class="c-break" style="left:${(((A_X + A_W) / W) * 100).toFixed(3)}%;width:${((GAP / W) * 100).toFixed(3)}%"></div>`;
+
   /* ---- one panel ---- */
   function panel(p) {
     const y = yScale(p);
@@ -114,8 +120,10 @@
         <div class="c-head">
           <h3 class="c-title"><i style="background:${p.color}"></i>${p.title}</h3>
           <span class="c-unit">${p.unit}</span>
+          <span class="c-rulenote">${p.rule.label}</span>
         </div>
         <div class="c-plot">
+          ${breakMark()}
           <svg class="c-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img"
                aria-label="${p.title} across 4.54 billion years, in ${p.unit}. The same values are in the table below.">
             ${gridLines}
@@ -136,11 +144,14 @@
 
   /* ---- shared x-axis: ticks and the era strip, both plain HTML ---- */
   function axis() {
+    // `opt` marks the ticks that are dropped on narrow screens, where the full
+    // set collides — particularly either side of the scale break. They are
+    // rendered and hidden by CSS rather than re-rendered on resize.
     const ticks = [
-      [4500, '4.5 Ga'], [4000, '4.0'], [3000, '3.0'], [2000, '2.0'], [1000, '1.0'],
-      [500, '500 Ma'], [400, '400'], [300, '300'], [200, '200'], [100, '100'], [0, 'now'],
+      [4500, '4.5 Ga', 0], [4000, '4.0', 1], [3000, '3.0', 0], [2000, '2.0', 1], [1000, '1.0', 0],
+      [500, '500 Ma', 0], [400, '400', 1], [300, '300', 0], [200, '200', 1], [100, '100', 0], [0, 'now', 0],
     ]
-      .map(([a, l]) => `<span class="c-xtick" style="left:${xPct(a).toFixed(2)}%">${l}</span>`)
+      .map(([a, l, opt]) => `<span class="c-xtick"${opt ? ' data-opt' : ''} style="left:${xPct(a).toFixed(2)}%">${l}</span>`)
       .join('');
 
     // Era identity is carried by text, never by colour. The label text itself is
@@ -152,13 +163,12 @@
                  style="left:${l.toFixed(2)}%;width:${Math.max(w - 0.12, 0.3).toFixed(2)}%"><span></span></a>`;
     }).join('');
 
-    return `<div class="c-axis"><div class="c-xticks">${ticks}</div><div class="c-strip">${strip}</div></div>`;
+    return `<div class="c-axis">${breakMark()}<div class="c-xticks">${ticks}</div><div class="c-strip">${strip}</div></div>`;
   }
 
   /* ---- render ---- */
   root.innerHTML =
     `<div class="c-stack">
-       <div class="c-break" style="left:${((A_X + A_W) / W) * 100}%;width:${(GAP / W) * 100}%"></div>
        ${PANELS.map(panel).join('')}
        ${axis()}
      </div>

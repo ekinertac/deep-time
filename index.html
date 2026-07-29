@@ -20,6 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deep Time — how long would you survive in each era of Earth?</title>
 <meta name="description" content="Sixteen eras of Earth's history, each rated by how long an unequipped modern human would last. Oxygen is the filter for four billion years; food is the filter after that.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/eras.css">
 <link rel="stylesheet" href="assets/index.css">
@@ -190,7 +191,10 @@
  */
 (function () {
   const TOTAL = ERAS[0].from;            // 4540 Myr — the full span
-  const COLUMN_PX = 2400;                // total height the column is allowed
+  // Total height for the column, scaled to the viewport. A fixed 2400px reads as
+  // deliberate emptiness on a desktop and as several screens of dead scrolling on
+  // a phone, where the Archean alone would outrun the display twice over.
+  const COLUMN_PX = Math.round(Math.max(1250, Math.min(2400, innerWidth * 2.1)));
   const MIN_PX = 52;                     // floor so the thinnest era stays clickable
 
   document.getElementById('tl').innerHTML = ERAS.map((e) => {
