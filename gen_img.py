@@ -17,9 +17,11 @@ supporting evidence rather than second heroes — one is everything there is to
 eat, the other is the air itself. Prompt data and the reasoning behind each set
 live in scene_prompts.py.
 
-Output goes to assets/scenes/NN-slug.png. Nothing is ever overwritten: a second
-run of the same era writes NN-slug-v2.png, then -v3, so alternates can be
-compared side by side and the loser deleted by hand.
+Output goes to assets/scenes/<set>/NN-slug.<ext>, one folder per set. Nothing is
+ever overwritten: a second run of the same era writes NN-slug-v2, then -v3, so
+alternates sit beside each other for comparison and the loser is deleted by hand.
+Once a winner is chosen, drop its version suffix so the filename stays
+predictable.
 
 WHY THE PROMPTS LOOK LIKE THIS
 Three models were tried on the same scene. The failure mode that mattered was
@@ -377,18 +379,23 @@ def sniff_ext(blob: bytes) -> str:
     return "bin"
 
 
+# One directory per set. "hero" rather than "scene" so the path does not read
+# scenes/scene, and so the wide establishing image is named for its job.
+FOLDER = {"scene": "hero", "menu": "menu", "kills": "kills"}
+
+
 def next_path(era: dict, ext: str, kind: str) -> pathlib.Path:
     """Never overwrite. Second run of an era becomes -v2, then -v3, counting
-    across every extension so versions stay in one sequence. The set name is in
-    the filename so scene/menu/kills for the same era cannot collide."""
-    stem = f"{era['n']:02d}-{era['slug']}"
-    base = stem if kind == "scene" else f"{stem}-{kind}"
-    if not list(OUT.glob(f"{base}.*")):
-        return OUT / f"{base}.{ext}"
+    across every extension so versions stay in one sequence."""
+    d = OUT / FOLDER[kind]
+    d.mkdir(parents=True, exist_ok=True)
+    base = f"{era['n']:02d}-{era['slug']}"
+    if not list(d.glob(f"{base}.*")):
+        return d / f"{base}.{ext}"
     v = 2
-    while list(OUT.glob(f"{base}-v{v}.*")):
+    while list(d.glob(f"{base}-v{v}.*")):
         v += 1
-    return OUT / f"{base}-v{v}.{ext}"
+    return d / f"{base}-v{v}.{ext}"
 
 
 # The hero establishes; the two detail sets sit inside the page. Two ratios
@@ -478,7 +485,7 @@ def main() -> int:
         except Exception as e:  # keep going through a batch
             print(f"  {n:02d} {era['slug']:14s} FAILED: {e}", file=sys.stderr)
 
-    print(f"\n  {args.kind}: {len(picks)} requested · ${total:.4f} total · {OUT}")
+    print(f"\n  {args.kind}: {len(picks)} requested · ${total:.4f} total · {OUT / FOLDER[args.kind]}")
     return 0
 
 

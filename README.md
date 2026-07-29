@@ -14,7 +14,7 @@ history would let you live out a normal life.
   randomiser that samples a uniform moment from deep time, which reproduces that
   88% by brute force in about twenty clicks.
 - `eras/01..16-*.html`, one page per era: a verdict, a generated scene image
-  (prompts and regeneration live in `gen_img.py`, files in `assets/scenes/`), six
+  (prompts and regeneration live in `gen_img.py`, files in `assets/scenes/hero,menu,kills/`), six
   vital statistics with meters against today's values, a cause-of-death timeline
   scaled to that era, a survival kit, and a section on what the science actually
   disagrees about.
