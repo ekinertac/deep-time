@@ -80,10 +80,16 @@ A molten early Earth, 4.2 billion years ago. Black basalt plains fractured by a 
 network of glowing orange lava fissures, the crust visibly thin over the melt. \
 Low shield volcanoes venting. No liquid water anywhere.
 
-THE MOON DOMINATES THE SKY. It sits only 30,000 km away, roughly thirteen times \
-wider than the Moon appears today, filling a large part of the frame. It is dark \
-grey-brown, heavily cratered, lit along one edge. Meteor streaks entering the \
-atmosphere. The sky is a thick sulfurous red-black, lit from below by the lava.""",
+THE MOON IS ENORMOUS AND IS THE SUBJECT OF THIS PICTURE. It sits only 30,000 km \
+away, twelve times closer than today. Its disc spans ROUGHLY HALF THE FULL WIDTH \
+OF THE IMAGE and is so large that the top of it is cut off by the upper edge of \
+the frame. Its lower limb hangs close to the horizon. A vast wall of dark \
+grey-brown cratered rock dominating the whole upper half of the composition, lit \
+along one limb. Do not render a small moon in the distance: it should feel \
+oppressively close, as if it could be fallen into.
+
+Meteor streaks entering the atmosphere. The sky is a thick sulfurous red-black, \
+lit from below by the lava.""",
          never="no water, no ocean, no lakes, no plants, no trees, no grass, no animals, "
                "no life of any kind, no blue sky, no white clouds, no snow, no soil"),
 
@@ -114,16 +120,26 @@ bitterly dry and clear. Absolutely nothing lives here.""",
 A dim shallow sea floor, 560 million years ago, viewed from underwater. Weak \
 shafts of light from the surface, suspended particles drifting.
 
-CHARNIA: tall soft frond-shaped organisms standing upright, each anchored to the \
-sediment by a round holdfast disc. The frond is built of many small branches \
-arranged in a repeating fractal quilted pattern along a central stalk. It has no \
-mouth, no eyes, no stem leaves.
-DICKINSONIA: flat oval bodies lying directly on the sediment, ribbed into many \
-fine parallel quilted segments either side of a midline, like a segmented rubber \
-mat.
-The sea floor is carpeted in a wrinkled microbial mat, not sand.""",
-         never="no fish, no shells, no crabs, no lobsters, no coral, no seaweed, no kelp, "
-               "no jellyfish with trailing tentacles, no eyes, no legs, no mouths, no bones"),
+CHARNIA: tall soft fronds standing upright, each anchored by a round holdfast \
+disc. THE FROND IS NOT A LEAF. It has no midrib, no central vein and no veins of \
+any kind. It is built from a row of repeated identical branch units arranged \
+alternately along a central axis, and each branch unit is itself subdivided into \
+smaller identical branchlets — a self-similar fractal quilted texture, closer to \
+a feather made of feathers than to any leaf.
+
+DICKINSONIA: flat soft-bodied oval mats lying directly on the sediment, like a \
+quilted air mattress or a giant fingerprint. Divided into many dozens of fine \
+parallel raised ridges running at a slight angle off a central line, the ridges \
+on one side offset against the other. Boneless and thinner than a coin, no \
+harder than a jellyfish.
+THEY ARE ABSOLUTELY NOT SHELLS. No hinge, no valve, no hard rim, no scallop or \
+clam outline, and no ribs radiating out from a single point.
+
+The sea floor is carpeted in a wrinkled elephant-skin microbial mat, not sand.""",
+         never="no shells, no scallops, no clams, no bivalves, no oysters, no hinges, no "
+               "radiating fan ribs, no leaf veins, no midribs, no fish, no crabs, no lobsters, "
+               "no coral, no seaweed, no kelp, no jellyfish with trailing tentacles, no eyes, "
+               "no legs, no mouths, no bones, no shrimp"),
 
     dict(n=5, slug="cambrian", pal="#08141a #15343f #5c9aa3 #3fbfb2", scene="""
 A bare rocky coastline 510 million years ago under a pale hazy high-CO2 sky. \
@@ -338,16 +354,28 @@ def parse_selection(tokens: list[str]) -> list[int]:
     return list(dict.fromkeys(out))
 
 
-def next_path(era: dict) -> pathlib.Path:
-    """Never overwrite. Second run of an era becomes -v2, then -v3."""
+def sniff_ext(blob: bytes) -> str:
+    """The API returns JPEG or PNG depending on the call, so name the file for
+    what it actually is rather than assuming."""
+    if blob.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "png"
+    if blob.startswith(b"\xff\xd8\xff"):
+        return "jpg"
+    if blob[:4] == b"RIFF" and blob[8:12] == b"WEBP":
+        return "webp"
+    return "bin"
+
+
+def next_path(era: dict, ext: str) -> pathlib.Path:
+    """Never overwrite. Second run of an era becomes -v2, then -v3, counting
+    across every extension so versions stay in one sequence."""
     base = f"{era['n']:02d}-{era['slug']}"
-    p = OUT / f"{base}.png"
-    if not p.exists():
-        return p
+    if not list(OUT.glob(f"{base}.*")):
+        return OUT / f"{base}.{ext}"
     v = 2
-    while (OUT / f"{base}-v{v}.png").exists():
+    while list(OUT.glob(f"{base}-v{v}.*")):
         v += 1
-    return OUT / f"{base}-v{v}.png"
+    return OUT / f"{base}-v{v}.{ext}"
 
 
 def generate(era: dict, model: str) -> tuple[pathlib.Path, float]:
@@ -373,9 +401,9 @@ def generate(era: dict, model: str) -> tuple[pathlib.Path, float]:
     images = msg.get("images") or []
     if not images:
         raise RuntimeError(f"no image returned — {json.dumps(msg)[:300]}")
-    png = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
-    path = next_path(era)
-    path.write_bytes(png)
+    blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
+    path = next_path(era, sniff_ext(blob))
+    path.write_bytes(blob)
     return path, float(data.get("usage", {}).get("cost") or 0.0)
 
 
