@@ -62,6 +62,9 @@
     document.addEventListener('keydown', (ev) => {
       if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
       if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+      // The lightbox uses the same keys to move between images on the page, and
+      // paging to another era from inside it would be surprising.
+      if (document.querySelector('dialog[open]')) return;
       if (ev.key === 'ArrowLeft' && prev) location.href = eraHref(prev);
       if (ev.key === 'ArrowRight' && next) location.href = eraHref(next);
     });
