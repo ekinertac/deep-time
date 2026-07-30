@@ -10,17 +10,17 @@ history would let you live out a normal life.
 ## What's here
 
 - `index.html` sizes every era by its true share of 4.54 Gyr, so the four eras
-  that kill you inside a minute physically occupy 88% of the page. It also has a
-  randomiser that samples a uniform moment from deep time, which reproduces that
-  88% by brute force in about twenty clicks.
+ that kill you inside a minute physically occupy 88% of the page. It also has a
+ randomiser that samples a uniform moment from deep time, which reproduces that
+ 88% by brute force in about twenty clicks.
 - `eras/01..16-*.html`, one page per era: a verdict, a generated scene image
-  (prompts and regeneration live in `gen_img.py`, files in `assets/scenes/hero,menu,kills/`), six
-  vital statistics with meters against today's values, a cause-of-death timeline
-  scaled to that era, a survival kit, and a section on what the science actually
-  disagrees about.
+ (prompts and regeneration live in `gen_img.py`, files in `assets/scenes/hero,menu,kills/`), six
+ vital statistics with meters against today's values, a cause-of-death timeline
+ scaled to that era, a survival kit, and a section on what the science actually
+ disagrees about.
 - `chart.html` puts oxygen, CO2 and mean temperature on one shared time axis.
-  Three panels, never a dual axis. The axis breaks at 539 Ma because a linear
-  scale squeezes the entire Phanerozoic into the last 12% of the width.
+ Three panels, never a dual axis. The axis breaks at 539 Ma because a linear
+ scale squeezes the entire Phanerozoic into the last 12% of the width.
 
 ## Running it
 

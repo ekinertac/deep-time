@@ -1,32 +1,32 @@
 """
-scene_prompts.py — the prompt data for all three image sets. No logic here.
+scene_prompts.py: the prompt data for all three image sets. No logic here.
 
 Split out of gen_img.py because this is data and that is a CLI, and because
 three sets of sixteen made one file too long to hold in your head.
 
 THE THREE SETS, and why each looks the way it does:
 
-  scene  21:9, full width, opens each era page. The place: wide, calm, distant,
-         empty. Carries the era's own palette from assets/eras.css.
+ scene 21:9, full width, opens each era page. The place: wide, calm, distant,
+     empty. Carries the era's own palette from assets/eras.css.
 
-  menu   3:2, sits in "If you survive". Everything there is to eat, lying on
-         that era's own ground. Deliberately the opposite register: close,
-         static, overhead, forensic. NEUTRAL daylight rather than the era
-         palette — tinting rock orange to match a theme would misrepresent what
-         you would actually see, and a specimen plate should look like evidence.
-         The first four eras have nothing edible at all; those frames carry an
-         inedible subject instead (a bacterial smear, a soft frond) so the
-         emptiness has something to be measured against. The page caption names
-         the contents, which is what makes an empty plate legible.
+ menu  3:2, sits in "If you survive". Everything there is to eat, lying on
+     that era's own ground. Deliberately the opposite register: close,
+     static, overhead, forensic. NEUTRAL daylight rather than the era
+     palette: tinting rock orange to match a theme would misrepresent what
+     you would actually see, and a specimen plate should look like evidence.
+     The first four eras have nothing edible at all; those frames carry an
+     inedible subject instead (a bacterial smear, a soft frond), so the
+     emptiness has something to be measured against. The page caption names
+     the contents, which is what makes an empty plate legible.
 
-  kills  3:2, sits in "What kills you". THE AIR IS THE SUBJECT. Six of the
-         sixteen are killed by something with no appearance — gas, hypoxia,
-         a missing vitamin — so rather than solving that era by era, every
-         frame in this set shows the medium you have to survive inside and
-         whatever it is carrying: vapour, haze, frost, spores, embers, dust,
-         ejecta, snow. For the anoxic eras the air genuinely is the murderer,
-         which is also the site's central claim. These DO take the era palette,
-         because here the colour of the air is the information.
+ kills 3:2, sits in "What kills you". THE AIR IS THE SUBJECT. Six of the
+     sixteen are killed by something with no appearance (gas, hypoxia,
+     a missing vitamin), so rather than solving that era by era, every
+     frame in this set shows the medium you have to survive inside and
+     whatever it is carrying: vapour, haze, frost, spores, embers, dust,
+     ejecta, snow. For the anoxic eras the air genuinely is the murderer,
+     which is also the site's central claim. These DO take the era palette,
+     because here the colour of the air is the information.
 
 Prompt structure is the same in all three sets and was arrived at empirically:
 named subject -> explicit morphology -> DO NOT list. Positive morphology is what
@@ -35,7 +35,7 @@ See the header of gen_img.py for the model bake-off that established this.
 """
 
 # ---------------------------------------------------------------------------
-# Shared style contracts. Byte-identical within a set — this is what makes
+# Shared style contracts. Byte-identical within a set: this is what makes
 # sixteen separate generations read as one series.
 # ---------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ ABSOLUTELY NO man-made objects: no plate, no bowl, no dish, no board, no basket,
 no cloth, no cutlery, no jar, no rope, no tools, no knife. No hands, no people."""
 
 KILLS_STYLE = """Photorealistic close detail, 3:2 format, shot on 65mm at ground \
-level. THE AIR ITSELF IS THE SUBJECT OF THIS PICTURE — what the atmosphere is \
+level. THE AIR ITSELF IS THE SUBJECT OF THIS PICTURE: what the atmosphere is \
 made of and what it is carrying. Volumetric light raking through the medium so \
 that vapour, particles and motion are visible. Close, dense, oppressive and \
 claustrophobic, the opposite of a wide open vista. Shallow depth, the far \
@@ -66,54 +66,54 @@ No human figures, no hands, no bodies, no skulls, no skeletons, no corpses."""
 
 # Failures of the medium rather than of the period. Appended to every prompt.
 NEVER = ("no text, no letters, no numbers, no watermark, no signature, no border or frame, "
-         "no lens flare, no modern objects, no fences, no paths, no buildings")
+     "no lens flare, no modern objects, no fences, no paths, no buildings")
 
 # Order and slugs must match ERAS in assets/data.js.
 SLUGS = [
-    "hadean", "archean", "proterozoic", "ediacaran", "cambrian", "ordovician",
-    "silurian", "devonian", "carboniferous", "permian", "triassic", "jurassic",
-    "cretaceous", "paleogene", "neogene", "quaternary",
+  "hadean", "archean", "proterozoic", "ediacaran", "cambrian", "ordovician",
+  "silurian", "devonian", "carboniferous", "permian", "triassic", "jurassic",
+  "cretaceous", "paleogene", "neogene", "quaternary",
 ]
 
 # Mirrors each era's block in assets/eras.css.
 PALETTES = {
-    "hadean": "#1c0a05 #4a1607 #ff6a24 #ffc247",
-    "archean": "#241705 #6b3a0c #d8912f #c3cc42",
-    "proterozoic": "#071019 #123043 #79b8d6 #d5ecf7",
-    "ediacaran": "#0a1018 #1c2b45 #4a6f8c #4fd3c4",
-    "cambrian": "#08141a #15343f #5c9aa3 #3fbfb2",
-    "ordovician": "#0b141a #223642 #8aa8b6 #d5743f",
-    "silurian": "#0c1410 #24382a #82a276 #86b84f",
-    "devonian": "#101408 #33401a #b08b3c #74a447",
-    "carboniferous": "#08120a #1c3a22 #6aa05a #ff7d2e",
-    "permian": "#1a0e07 #4c2411 #c9793a #dfa844",
-    "triassic": "#171110 #45302c #b98d7c #a596bb",
-    "jurassic": "#081314 #1d3c3c #6fa198 #45a897",
-    "cretaceous": "#091223 #1d4a7a #74b3dd #ef8a72",
-    "paleogene": "#101307 #3b4218 #c4a34a #84b563",
-    "neogene": "#131207 #4a4018 #c9ab5e #93ac6c",
-    "quaternary": "#0a1116 #21384a #9db9cc #e6e2da",
+  "hadean": "#1c0a05 #4a1607 #ff6a24 #ffc247",
+  "archean": "#241705 #6b3a0c #d8912f #c3cc42",
+  "proterozoic": "#071019 #123043 #79b8d6 #d5ecf7",
+  "ediacaran": "#0a1018 #1c2b45 #4a6f8c #4fd3c4",
+  "cambrian": "#08141a #15343f #5c9aa3 #3fbfb2",
+  "ordovician": "#0b141a #223642 #8aa8b6 #d5743f",
+  "silurian": "#0c1410 #24382a #82a276 #86b84f",
+  "devonian": "#101408 #33401a #b08b3c #74a447",
+  "carboniferous": "#08120a #1c3a22 #6aa05a #ff7d2e",
+  "permian": "#1a0e07 #4c2411 #c9793a #dfa844",
+  "triassic": "#171110 #45302c #b98d7c #a596bb",
+  "jurassic": "#081314 #1d3c3c #6fa198 #45a897",
+  "cretaceous": "#091223 #1d4a7a #74b3dd #ef8a72",
+  "paleogene": "#101307 #3b4218 #c4a34a #84b563",
+  "neogene": "#131207 #4a4018 #c9ab5e #93ac6c",
+  "quaternary": "#0a1116 #21384a #9db9cc #e6e2da",
 }
 
 
 # ---------------------------------------------------------------------------
-# MENU — everything there is to eat, and the page caption that names it.
+# MENU: everything there is to eat, and the page caption that names it.
 # `cap` is rendered as HTML under the figure, never drawn into the image.
 # ---------------------------------------------------------------------------
 MENU = {
 "hadean": dict(
-    cap="Nothing. Bare basalt and a little condensed water.",
-    scene="""
+  cap="Nothing. Bare basalt and a little condensed water.",
+  scene="""
 THERE IS NOTHING TO EAT AND THE EMPTINESS IS THE SUBJECT OF THE PICTURE. Only \
 bare black basalt, freshly cooled, glassy and cracked, with a shallow depression \
 holding a little cloudy condensed water. Faint yellow sulfur staining at the rock \
 edges. Not one organic object anywhere in frame.""",
-    never="no plants, no leaves, no seeds, no shells, no bones, no meat, no fish, no eggs, "
-          "no fruit, no moss, no algae, no insects, no wood, no food of any kind"),
+  never="no plants, no leaves, no seeds, no shells, no bones, no meat, no fish, no eggs, "
+     "no fruit, no moss, no algae, no insects, no wood, no food of any kind"),
 
 "archean": dict(
-    cap="Bacterial mat, peeled off a stromatolite. Technically organic. Not food.",
-    scene="""
+  cap="Bacterial mat, peeled off a stromatolite. Technically organic. Not food.",
+  scene="""
 THE SUBJECT OF THIS PICTURE IS A THICK SLIMY BACTERIAL MAT, and it fills most of \
 the frame. A heavy sheet of living microbial slime, blackish-green shading to \
 olive and rust, glistening wet, its surface wrinkled and creased into folds like \
@@ -127,28 +127,28 @@ edges where it has come away.
 Only at the very edge of the frame, a corner of the laminated stromatolite it was \
 growing on. The rock is not the subject: the slime is. It should look organic, \
 dense, faintly repellent and completely inedible.""",
-    never="no plants, no leaves, no seaweed, no kelp, no shells, no fish, no meat, no bones, "
-          "no seeds, no fruit, no insects, no wood, no fungi, no mushrooms, no lichen, "
-          "no bare dry rock filling the frame"),
+  never="no plants, no leaves, no seaweed, no kelp, no shells, no fish, no meat, no bones, "
+     "no seeds, no fruit, no insects, no wood, no fungi, no mushrooms, no lichen, "
+     "no bare dry rock filling the frame"),
 
 "proterozoic": dict(
-    cap="Ice, meltwater and stone. What life exists floats in the sea and offers nothing you can use.",
-    scene="""
+  cap="Ice, meltwater and stone. What life exists floats in the sea and offers nothing you can use.",
+  scene="""
 THERE IS NOTHING TO EAT. A slab of blue-white glacial ice resting on dark wet \
 stone, its surface pocked and melting, a thin film of meltwater running off into \
 a shallow pool. Frost crystals along the shaded edges. Utterly sterile: no \
 colour, no organic matter, nothing living or dead.""",
-    never="no plants, no algae, no moss, no lichen, no fish, no shells, no meat, no bones, "
-          "no seeds, no seaweed, no penguins, no food of any kind"),
+  never="no plants, no algae, no moss, no lichen, no fish, no shells, no meat, no bones, "
+     "no seeds, no seaweed, no penguins, no food of any kind"),
 
 "ediacaran": dict(
-    cap="Two Dickinsonia. Soft, boneless, and of entirely unknown food value.",
-    scene="""
+  cap="Two Dickinsonia. Soft, boneless, and of entirely unknown food value.",
+  scene="""
 THE FIRST LARGE ORGANISMS, AND NOBODY KNOWS IF THEY ARE EDIBLE. Two DICKINSONIA \
 bodies of different sizes lying flat on wet grey-green sediment, one about twice \
 the length of the other.
 
-CRITICAL SHAPE — GET THIS RIGHT: each body is a LONG NARROW OVAL, two to three \
+CRITICAL SHAPE: GET THIS RIGHT: each body is a LONG NARROW OVAL, two to three \
 times longer than it is wide, rounded at both ends with one end slightly \
 narrower, like the outline of a shoe sole or a flattened leech. Running the FULL \
 LENGTH of the body, from one end to the other, is a single straight central \
@@ -165,14 +165,14 @@ outline, and nothing rigid anywhere.
 Both bodies are limp, soft, boneless, thinner than a coin, wet, and translucent \
 at the edges where they meet the sediment. The sediment around them is a \
 wrinkled elephant-skin microbial mat with faint drag traces.""",
-    never="no shells, no scallops, no cockles, no clams, no oysters, no hinges, no valves, "
-          "no fan shape, no ribs radiating from a central point, no ferns, no fern fronds, "
-          "no leaves, no leaf veins, no plants, no seaweed, no fish, no crabs, no prawns, "
-          "no bones, no eyes, no legs, no mouths, no jellyfish"),
+  never="no shells, no scallops, no cockles, no clams, no oysters, no hinges, no valves, "
+     "no fan shape, no ribs radiating from a central point, no ferns, no fern fronds, "
+     "no leaves, no leaf veins, no plants, no seaweed, no fish, no crabs, no prawns, "
+     "no bones, no eyes, no legs, no mouths, no jellyfish"),
 
 "cambrian": dict(
-    cap="Trilobites and brachiopods. Raw, because there is nothing on Earth to burn.",
-    scene="""
+  cap="Trilobites and brachiopods. Raw, because there is nothing on Earth to burn.",
+  scene="""
 THE ENTIRE FOOD SUPPLY OF THIS ERA: raw marine arthropods and shellfish gathered \
 from the tideline, lying on wet grey fractured bedrock.
 
@@ -184,13 +184,13 @@ legs beneath the rim. Dull grey-brown chitin, wet.
 Beside them a scatter of small smooth double-valved brachiopod shells. Everything \
 is raw, cold and dripping. There is no fire and no way to cook any of it, and no \
 plant matter of any kind is present because none exists on land yet.""",
-    never="no fire, no cooked or grilled food, no plants, no herbs, no leaves, no vegetables, "
-          "no lemon, no bread, no crab, no lobster, no shrimp, no prawns, no modern fish, "
-          "no seaweed"),
+  never="no fire, no cooked or grilled food, no plants, no herbs, no leaves, no vegetables, "
+     "no lemon, no bread, no crab, no lobster, no shrimp, no prawns, no modern fish, "
+     "no seaweed"),
 
 "ordovician": dict(
-    cap="Nautiloid, opened. The first meal on this list with real fat in it.",
-    scene="""
+  cap="Nautiloid, opened. The first meal on this list with real fat in it.",
+  scene="""
 THE FIRST FAT IN EARTH'S HISTORY, AND IT CAME OFF SOMETHING ENORMOUS.
 
 SCALE IS THE MOST IMPORTANT THING IN THIS IMAGE. The animal is a CAMEROCERAS, a \
@@ -207,45 +207,45 @@ the size of a butchered animal's haunch, wet and heavy.
 
 FOR SCALE: three or four small ribbed shellfish sit beside it and must look TINY \
 against it, like coins next to a fallen log. A thin crust of dark green liverwort \
-on the wet rock — the only plant matter that exists, and inedible.
+on the wet rock: the only plant matter that exists, and inedible.
 
 DO NOT render this as a small animal you could pick up. It should read like \
 butchery, not like a seafood plate.""",
-    never="no whole small squid, no squid rings, no calamari, no octopus, no cuttlefish, "
-          "no small cephalopod, no coiled or spiral shell, no ammonite, no nautilus spiral, "
-          "no cooked food, no fire, no herbs, no vegetables, no lemon, no trees, no leaves, "
-          "no grass, no seeds, no fruit, no seafood platter"),
+  never="no whole small squid, no squid rings, no calamari, no octopus, no cuttlefish, "
+     "no small cephalopod, no coiled or spiral shell, no ammonite, no nautilus spiral, "
+     "no cooked food, no fire, no herbs, no vegetables, no lemon, no trees, no leaves, "
+     "no grass, no seeds, no fruit, no seafood platter"),
 
 "silurian": dict(
-    cap="Arthropods to eat, and dried stems to burn. The fuel matters more than the food.",
-    scene="""
+  cap="Arthropods to eat, and dried stems to burn. The fuel matters more than the food.",
+  scene="""
 THE TURNING POINT: FOR THE FIRST TIME THERE IS SOMETHING TO BURN. On damp mud, \
 two small bundles side by side.
 
 FOOD: several small dark segmented millipede-like arthropods, and a few small \
 SMOOTH FLAT DOUBLE-VALVED SHELLS shaped like a fingernail or a lens. Those shells \
-are absolutely NOT spiral and NOT coiled — nothing in this picture may be a \
+are absolutely NOT spiral and NOT coiled: nothing in this picture may be a \
 snail, an ammonite or a coiled ram's-horn shape.
 
 FUEL: a small tangled bundle of dried COOKSONIA stems. Each stem is only a few \
 centimetres long, no longer than a thumb, thinner than a matchstick, leafless, \
 forking into two and then two again, tipped with tiny round spore capsules the \
-size of a pinhead. They are short, wiry, tangled and brittle, bleached pale — NOT \
+size of a pinhead. They are short, wiry, tangled and brittle, bleached pale: NOT \
 long straight straw, NOT bamboo, NOT reeds, NOT skewers. Beside them a scatter of \
 dark ash and one charred stem end.""",
-    never="no spiral shells, no coiled shells, no ammonites, no snails, no nautilus, "
-          "no trees, no logs, no branches, no long straw, no bamboo, no reeds, no leaves, "
-          "no grass, no ferns, no flowers, no fruit, no seeds, no matches, no lighter, "
-          "no fire pit, no cooked meat"),
+  never="no spiral shells, no coiled shells, no ammonites, no snails, no nautilus, "
+     "no trees, no logs, no branches, no long straw, no bamboo, no reeds, no leaves, "
+     "no grass, no ferns, no flowers, no fruit, no seeds, no matches, no lighter, "
+     "no fire pit, no cooked meat"),
 
 "devonian": dict(
-    cap="Fish, and the first seeds. The first food on Earth that keeps.",
-    scene="""
+  cap="Fish, and the first seeds. The first food on Earth that keeps.",
+  scene="""
 THE FIRST FOOD THAT CAN BE STORED. On a slab of rough bark: a whole lobe-finned \
 fish, thick-scaled and heavy-bodied with fleshy muscular fin bases.
 
 Beside it a small scattered pile of the EARLIEST SEEDS. THESE ARE NOT NUTS. Each \
-one is TINY — only three or four millimetres, the size of a grain of rice or a \
+one is TINY: only three or four millimetres, the size of a grain of rice or a \
 peppercorn, so the whole pile is smaller than the fish's eye. Each seed is a \
 slender pointed kernel held in a delicate cupule of narrow finger-like woody \
 lobes that splay open around it like a tiny ragged crown or a shredded husk. \
@@ -256,13 +256,13 @@ neat cup. Nothing here should look like something you would buy.
 
 Under everything, fronds of ARCHAEOPTERIS as bedding: flat fern-like sprays of \
 small wedge-shaped leaflets arranged along a woody central stem.""",
-    never="no hazelnuts, no acorns, no almonds, no walnuts, no chestnuts, no nuts of any kind, "
-          "no smooth rounded kernels, no conifer cones, no grass, no wheat, no grain ears, "
-          "no flowers, no fruit, no modern fish, no cooked food, no bowl"),
+  never="no hazelnuts, no acorns, no almonds, no walnuts, no chestnuts, no nuts of any kind, "
+     "no smooth rounded kernels, no conifer cones, no grass, no wheat, no grain ears, "
+     "no flowers, no fruit, no modern fish, no cooked food, no bowl"),
 
 "carboniferous": dict(
-    cap="Freshwater fish, large insects, seed-fern seeds. The forest itself is inedible.",
-    scene="""
+  cap="Freshwater fish, large insects, seed-fern seeds. The forest itself is inedible.",
+  scene="""
 THE MENU IS ENTIRELY ANIMAL PLUS A FEW SEEDS. On a sheet of scaly Lepidodendron \
 bark showing its diamond-lattice leaf-scar pattern:
 
@@ -272,26 +272,26 @@ brown. A short length of jointed Calamites stem, hollow and bamboo-like, which i
 fuel rather than food.
 
 Nothing green is edible: the surrounding forest is lignin and cellulose.""",
-    never="no grass, no flowers, no fruit, no berries, no nuts, no vegetables, no bread, "
-          "no cooked food, no crab, no lobster, no shrimp, no conifer cones, no broadleaf leaves"),
+  never="no grass, no flowers, no fruit, no berries, no nuts, no vegetables, no bread, "
+     "no cooked food, no crab, no lobster, no shrimp, no conifer cones, no broadleaf leaves"),
 
 "permian": dict(
-    cap="Dried fish and tongue-shaped leaves you cannot digest. Thin, and getting thinner.",
-    scene="""
+  cap="Dried fish and tongue-shaped leaves you cannot digest. Thin, and getting thinner.",
+  scene="""
 A THIN AND FAILING LARDER. On cracked red desert clay: three strips of \
 sun-dried, leathery, darkened fish, curled at the edges. A few small hard seeds. \
-Several GLOSSOPTERIS leaves — distinctly tongue-shaped, broad at the tip and \
+Several GLOSSOPTERIS leaves: distinctly tongue-shaped, broad at the tip and \
 tapering to the stalk, with a strong central midrib and a fine net of secondary \
-veins — which are fibrous and indigestible, present only to show that the plants \
+veins, which are fibrous and indigestible, present only to show that the plants \
 here do not help.
 
 Everything is dry, dusty and sparse. Grit has blown across the arrangement.""",
-    never="no grass, no flowers, no fruit, no vegetables, no bread, no cactus, no succulents, "
-          "no modern dried fish fillets, no salt, no bowl, no cooked food"),
+  never="no grass, no flowers, no fruit, no vegetables, no bread, no cactus, no succulents, "
+     "no modern dried fish fillets, no salt, no bowl, no cooked food"),
 
 "triassic": dict(
-    cap="Cycad seeds. Bright, abundant, and they will destroy your liver.",
-    scene="""
+  cap="Cycad seeds. Bright, abundant, and they will destroy your liver.",
+  scene="""
 THE MOST DANGEROUS PLATE ON THIS LIST. On cracked pale mud: a cluster of large \
 CYCAD SEEDS, each the size of a plum, with a smooth fleshy outer coat in warm \
 orange-red over a hard stony inner shell, several split open to show the pale \
@@ -302,12 +302,12 @@ seed-fern fronds, each frond forked into a distinctive Y shape.
 
 The seeds are the subject. They are hepatotoxic and neurotoxic raw, and require \
 days of soaking that nobody has worked out yet.""",
-    never="no grass, no flowers, no fruit, no apples, no plums, no peaches, no berries, "
-          "no nuts, no bread, no cooked food, no warning label, no skull symbol"),
+  never="no grass, no flowers, no fruit, no apples, no plums, no peaches, no berries, "
+     "no nuts, no bread, no cooked food, no warning label, no skull symbol"),
 
 "jurassic": dict(
-    cap="Fish, lizards, eggs, insects. The plants are decoration — every one is indigestible or toxic.",
-    scene="""
+  cap="Fish, lizards, eggs, insects. The plants are decoration, every one is indigestible or toxic.",
+  scene="""
 YOU EAT ANIMALS HERE AND NOTHING ELSE. The animal food is the SUBJECT and fills \
 the centre of the frame; the plants are shoved out to the margins where they \
 belong, because not one of them can be eaten.
@@ -315,7 +315,7 @@ belong, because not one of them can be eaten.
 CENTRE, the actual meal, on damp forest litter:
 
 A SMALL FEATHERED THEROPOD DINOSAUR, dead and laid on its side, and it is the \
-centrepiece. About the size of a chicken or a crow — small enough to carry in one \
+centrepiece. About the size of a chicken or a crow: small enough to carry in one \
 hand. Body covered in coarse dark filamentous proto-feathers, shaggy rather than \
 sleek, with longer stiff feathers along the forearms and a long straight bony \
 tail. Slender neck, narrow tapering snout with small sharp teeth, NOT a beak. \
@@ -333,16 +333,16 @@ split into two lobes with a couple of split discoloured rancid seeds, and tight 
 coiled fern fiddleheads. Resinous, hard, bitter, unappetising. Not a harvest.
 
 THERE IS NO CONE ANYWHERE IN THIS PICTURE.""",
-    never="no cones, no pine cones, no fir cones, no cycad cones, no cone-shaped object, "
-          "no pine nuts, no edible-looking nuts, no hazelnuts, no almonds, no acorns, "
-          "no plump seeds in a pile, no autumn harvest arrangement, no large dinosaur, "
-          "no tyrannosaurus, no raptor with a huge sickle claw, no scaly lizard-skinned "
-          "dinosaur, no flowers, no fruit, no berries, no grass, no wheat, no vegetables, "
-          "no bread, no mushrooms, no cooked food, no palm fronds"),
+  never="no cones, no pine cones, no fir cones, no cycad cones, no cone-shaped object, "
+     "no pine nuts, no edible-looking nuts, no hazelnuts, no almonds, no acorns, "
+     "no plump seeds in a pile, no autumn harvest arrangement, no large dinosaur, "
+     "no tyrannosaurus, no raptor with a huge sickle claw, no scaly lizard-skinned "
+     "dinosaur, no flowers, no fruit, no berries, no grass, no wheat, no vegetables, "
+     "no bread, no mushrooms, no cooked food, no palm fronds"),
 
 "cretaceous": dict(
-    cap="The first fruit on Earth. Small, fibrous, mostly seed, and nobody bred it for you.",
-    scene="""
+  cap="The first fruit on Earth. Small, fibrous, mostly seed, and nobody bred it for you.",
+  scene="""
 THE FIRST FRUIT IN EARTH'S HISTORY, lying on a bed of large glossy magnolia \
 leaves on damp floodplain mud.
 
@@ -350,16 +350,16 @@ Small primitive figs, a cluster of fibrous palm drupes still on a short woody \
 stalk, and a MAGNOLIA SEED CONE: a knobbly elongated aggregate structure studded \
 with small bright red seeds emerging from splitting pods.
 
-Everything is small, tough, fibrous and mostly seed rather than flesh — none of \
+Everything is small, tough, fibrous and mostly seed rather than flesh: none of \
 it has been bred by anyone for sweetness or size. A few freshwater mussel shells \
 to one side.""",
-    never="no apples, no oranges, no bananas, no grapes, no strawberries, no raspberries, "
-          "no cherries, no melon, no tomato, no modern cultivated or orchard fruit, no grass, "
-          "no wheat, no bread"),
+  never="no apples, no oranges, no bananas, no grapes, no strawberries, no raspberries, "
+     "no cherries, no melon, no tomato, no modern cultivated or orchard fruit, no grass, "
+     "no wheat, no bread"),
 
 "paleogene": dict(
-    cap="Nuts, fruit, tubers, palm dates. The first complete diet available to a human.",
-    scene="""
+  cap="Nuts, fruit, tubers, palm dates. The first complete diet available to a human.",
+  scene="""
 THE FIRST COMPLETE DIET ON THIS LIST. On a bed of large broadleaf litter and dark \
 rich soil: a generous spread of hard-shelled nuts, several small dark fleshy \
 fruits, a cluster of date-like palm drupes on a stalk, two knobbly earth-covered \
@@ -368,16 +368,16 @@ seeds.
 
 Abundant, varied and calorie-dense. For the first time the land alone can feed \
 you.""",
-    never="no grass, no wheat, no maize, no rice, no potatoes, no carrots, no modern orchard "
-          "apples or oranges, no bananas, no bread, no cooked food, no basket, no bowl"),
+  never="no grass, no wheat, no maize, no rice, no potatoes, no carrots, no modern orchard "
+     "apples or oranges, no bananas, no bread, no cooked food, no basket, no bowl"),
 
 "neogene": dict(
-    cap="Grass seed, roots and game. Enormous work for very few calories.",
-    scene="""
+  cap="Grass seed, roots and game. Enormous work for very few calories.",
+  scene="""
 GRASS EXISTS NOW AND IT IS BARELY WORTH EATING. THIS IS WILD GRASS, NOT A CROP.
 
 THE SEED HEADS ARE NOT WHEAT AND NOT BARLEY. They are thin, wispy, open and \
-sparse — a few dozen tiny scattered seeds spaced along fine wiry side-branches, \
+sparse: a few dozen tiny scattered seeds spaced along fine wiry side-branches, \
 with long hair-like bristles sticking out in all directions, so the head looks \
 more like a feathery weed than a grain ear. Half of them have already shattered \
 and dropped their seed. There is no dense packed spike, no neat rows, no fat \
@@ -385,18 +385,18 @@ plump kernels.
 
 Beside them, the whole reward for stripping every head in the picture: a pitiful \
 small scatter of loose seed, each grain a slim dark sliver smaller than a grain \
-of rice and mostly husk. It should look like almost nothing — a thimbleful for an \
+of rice and mostly husk. It should look like almost nothing: a thimbleful for an \
 hour of work.
 
 With them, two fibrous earth-covered roots and a portion of dark lean game meat, \
 which are what you will actually live on.""",
-    never="no wheat, no wheat ears, no barley, no oats, no rye, no cultivated cereal, "
-          "no dense grain spike, no plump kernels, no bread, no flour, no maize, no rice, "
-          "no fruit, no vegetables, no cooked food, no sickle, no basket, no sheaf"),
+  never="no wheat, no wheat ears, no barley, no oats, no rye, no cultivated cereal, "
+     "no dense grain spike, no plump kernels, no bread, no flour, no maize, no rice, "
+     "no fruit, no vegetables, no cooked food, no sickle, no basket, no sheaf"),
 
 "quaternary": dict(
-    cap="Meat, marrow, berries, roots, nuts, fish. Everything at once, and all of it wild.",
-    scene="""
+  cap="Meat, marrow, berries, roots, nuts, fish. Everything at once, and all of it wild.",
+  scene="""
 THE DIET YOUR SPECIES WAS SHAPED BY. On a flat cold stone: cuts of dark red lean \
 game meat, a cracked long bone with exposed marrow, a heap of small dark berries, \
 several fibrous roots and tubers with soil still on them, a few hard nuts, and a \
@@ -404,18 +404,18 @@ whole freshwater fish.
 
 Varied, fatty, seasonal and hard-won. Everything here is wild, and everything \
 here is something a human body knows exactly what to do with.""",
-    never="no bread, no cereal, no rice, no pasta, no cultivated vegetables, no modern cuts of "
-          "butchered meat, no plate, no bowl, no knife, no cooking pot, no salt, no herbs"),
+  never="no bread, no cereal, no rice, no pasta, no cultivated vegetables, no modern cuts of "
+     "butchered meat, no plate, no bowl, no knife, no cooking pot, no salt, no herbs"),
 }
 
 
 # ---------------------------------------------------------------------------
-# KILLS — the air made visible, and what it is carrying.
+# KILLS: the air made visible, and what it is carrying.
 # ---------------------------------------------------------------------------
 KILLS = {
 "hadean": dict(
-    cap="Sulfurous vapour off molten rock. One breath is enough.",
-    scene="""
+  cap="Sulfurous vapour off molten rock. One breath is enough.",
+  scene="""
 THE AIR IS VENTING OUT OF THE GROUND, AND THE FISSURE IS THE SUBJECT.
 
 A single narrow crack runs through cooled black basalt in the near foreground, \
@@ -423,7 +423,7 @@ sharply in focus, close enough to touch. Inside it, molten rock glows hot orange
 and yellow-white, the light spilling up the crack walls. The lips of the fissure \
 are crusted with pale yellow sulfur deposits.
 
-Rising straight out of that crack, a distinct twisting ROPE OF SULFUROUS VAPOUR — \
+Rising straight out of that crack, a distinct twisting ROPE OF SULFUROUS VAPOUR: \
 a clearly defined pale yellow-green plume with visible curling structure, caught \
 against the darker rock behind it, thinning as it climbs. Not a diffuse fog: a \
 legible column of gas with an edge to it, coming out of one identifiable place. \
@@ -433,8 +433,8 @@ The ropy folded surface of cooled pahoehoe lava fills the rest of the frame, \
 falling off into haze at the edges. Nothing else competes with the fissure."""),
 
 "archean": dict(
-    cap="Methane haze. It looks like a warm evening and there is no oxygen in it.",
-    scene="""
+  cap="Methane haze. It looks like a warm evening and there is no oxygen in it.",
+  scene="""
 THE AIR IS A THICK ORANGE PHOTOCHEMICAL HAZE, and it looks beautiful. Layered \
 banks of dense orange organic smog drifting low over still shallow water, the sun \
 reduced to a small dim featureless disc barely penetrating it. No blue anywhere. \
@@ -442,17 +442,17 @@ Everything more than a short distance away dissolves completely into the murk. \
 Warm, calm, and completely unbreathable."""),
 
 "proterozoic": dict(
-    cap="Ice fog and diamond dust. The cold is the part you can see.",
-    scene="""
+  cap="Ice fog and diamond dust. The cold is the part you can see.",
+  scene="""
 THE AIR IS FULL OF SUSPENDED ICE. Dead-still frigid air over a white surface, \
 filled with drifting ice fog and countless tiny suspended frost crystals catching \
-the low sun as glittering points — diamond dust. Frost feathers growing on the \
+the low sun as glittering points: diamond dust. Frost feathers growing on the \
 ice in the foreground. Visibility closing to nothing within metres. Utterly \
 silent and lethally dry."""),
 
 "ediacaran": dict(
-    cap="The medium is water. There is no version of this you can breathe.",
-    scene="""
+  cap="The medium is water. There is no version of this you can breathe.",
+  scene="""
 THE MEDIUM IS WATER AND YOU CANNOT BREATHE IT. Looking up through a dim \
 green-blue water column: suspended organic particles and marine snow drifting \
 through weak light shafts that attenuate and die within a few metres. The surface \
@@ -462,29 +462,29 @@ TO ANCHOR THE FRAME, one tall CHARNIA frond stands in the near foreground as a \
 dark silhouette against the faint light from above, rising from the bottom of the \
 frame. It is a slender upright frond built from a row of repeated identical \
 branch units along a central axis, each subdivided into smaller identical \
-branchlets — no midrib, no veins, not a fern and not a leaf. It is a black \
+branchlets: no midrib, no veins, not a fern and not a leaf. It is a black \
 cut-out shape, not lit or detailed, present only to give the murk a scale and an \
 edge. Heavy, cold, pressing."""),
 
 "cambrian": dict(
-    cap="Dry wind over bare stone. Nothing organic in the air, and nothing to burn.",
-    scene="""
+  cap="Dry wind over bare stone. Nothing organic in the air, and nothing to burn.",
+  scene="""
 THE AIR CARRIES NOTHING BUT ROCK DUST. A dry cold wind driving fine grey mineral \
 dust and sand low across bare fractured bedrock, streaming in visible ribbons \
 over the stone. Not one seed, spore, leaf fragment, insect or scrap of organic \
 matter in the air, because none exists. Sterile, abrasive, and empty."""),
 
 "ordovician": dict(
-    cap="Cold spray and sleet on bare rock, with no fire anywhere on Earth.",
-    scene="""
+  cap="Cold spray and sleet on bare rock, with no fire anywhere on Earth.",
+  scene="""
 THE AIR IS FULL OF FREEZING WATER. Cold sea spray and driving sleet blowing \
 horizontally across dark wet bare rock, the droplets caught mid-flight and \
 streaking. A thin flat crust of dark liverwort on the stone, soaked. Grey, \
 bitter, soaking, with nothing dry anywhere in the frame."""),
 
 "silurian": dict(
-    cap="The first smoke in Earth's history. Everything changes here.",
-    scene="""
+  cap="The first smoke in Earth's history. Everything changes here.",
+  scene="""
 THE FIRST SMOKE THAT EVER ROSE FROM THIS PLANET. A single thin thread of pale \
 grey-blue smoke rising from a small smouldering bundle of dried leafless \
 Cooksonia stems on wet mud, the ember glowing faintly orange at its base. The \
@@ -492,8 +492,8 @@ smoke catches low sunlight as it curls upward. Small, quiet, and the most \
 important thing in this entire sequence of images."""),
 
 "devonian": dict(
-    cap="Air thick with spores. Breathable at last, and still nothing to eat.",
-    scene="""
+  cap="Air thick with spores. Breathable at last, and still nothing to eat.",
+  scene="""
 THE AIR IS THICK WITH DRIFTING SPORES AND THE SPORES ARE THE ONLY THING IN FOCUS.
 
 Humid still air packed with countless pale spores and fine organic dust hanging \
@@ -502,14 +502,14 @@ frame. Sharp on the particles, so they read as individual specks and clumps \
 drifting at different depths.
 
 BEHIND THEM, THROWN COMPLETELY OUT OF FOCUS: bare dark tree trunks as plain soft \
-vertical silhouettes and nothing else. The trunks are smooth and clean — no moss, \
+vertical silhouettes and nothing else. The trunks are smooth and clean: no moss, \
 no lichen, no hanging drapery, no beard lichen, no epiphytes, no undergrowth, no \
 ferns, no green. This is not a temperate rainforest. Reduce the background to \
 flat dark verticals and haze so that only the airborne particles have detail."""),
 
 "carboniferous": dict(
-    cap="Embers riding 30% oxygen. Fire moves faster here than in air you have breathed.",
-    scene="""
+  cap="Embers riding 30% oxygen. Fire moves faster here than in air you have breathed.",
+  scene="""
 THE AIR IS CARRYING FIRE. Close ground-level detail of burning leaf litter and \
 peat on a swamp margin: orange embers and glowing flakes of ash lifting off the \
 ground and streaming upward through dense grey smoke. The flame front is low, \
@@ -517,16 +517,16 @@ fast and spreading across visibly damp material. Oxygen-rich air makes it burn \
 hotter and travel faster than it should."""),
 
 "permian": dict(
-    cap="A dust storm crossing a continent with no coast to stop it.",
-    scene="""
+  cap="A dust storm crossing a continent with no coast to stop it.",
+  scene="""
 THE AIR HAS BECOME THE GROUND. The advancing wall of a dust storm, a dense \
 rolling front of rust-orange dust filling most of the frame and blotting out \
 everything behind it, streaming grit and sand across cracked red desert clay in \
 the immediate foreground. The sun a hard pale disc barely visible through it."""),
 
 "triassic": dict(
-    cap="Thin hot air over cracked mud. Sea level here feels like 4,500 metres.",
-    scene="""
+  cap="Thin hot air over cracked mud. Sea level here feels like 4,500 metres.",
+  scene="""
 THE AIR IS THIN AND HOT AND VISIBLY MOVING, AND THE GROUND IS BARE.
 
 Heavy heat shimmer rising off a floor of cracked pale mud in curtains, distorting \
@@ -534,7 +534,7 @@ everything above it into a wavering blur. A small spiralling dust devil lifting 
 fine pale dust in the middle distance, with a clear twisting column. The light is \
 flat, washed out and dusty.
 
-THE GROUND IS COMPLETELY BARE — cracked mud plates, grit and scattered stones, \
+THE GROUND IS COMPLETELY BARE: cracked mud plates, grit and scattered stones, \
 and nothing growing anywhere in the frame. No bushes, no shrubs, no twigs, no \
 scrub, no dry brush, no branching woody plants of any kind. Any vegetation would \
 be wrong here: flowering plants do not exist yet and a twiggy shrub is an \
@@ -542,8 +542,8 @@ angiosperm shape. Empty ground, moving air, nothing else. Dead, dry and short of
 breath."""),
 
 "jurassic": dict(
-    cap="Fog between the trunks. The forest is full and none of it is edible.",
-    scene="""
+  cap="Fog between the trunks. The forest is full and none of it is edible.",
+  scene="""
 THE AIR IS DENSE WHITE FOG AND THE FOG IS THE ONLY SUBJECT.
 
 Thick humid fog packed between trees, so heavy that everything beyond a few \
@@ -553,18 +553,18 @@ light.
 
 THE TREES ARE FLAT DARK SILHOUETTES AND NOTHING MORE. Reduce them to plain \
 vertical shapes with no visible bark texture, no needled branchlets, no drooping \
-sprays, no recognisable foliage. THESE ARE NOT SPRUCE, FIR OR PINE — no drooping \
+sprays, no recognisable foliage. THESE ARE NOT SPRUCE, FIR OR PINE: no drooping \
 needled twigs, no Christmas-tree shape, no plantation forest. Where any foliage \
 edge shows at all it is a stiff blunt scale-leaved araucaria bough held out \
 straight, never a soft drooping needle spray.
 
-No fern understory, no undergrowth, no visible ground plants — the fog has \
+No fern understory, no undergrowth, no visible ground plants: the fog has \
 swallowed the floor. Close, muffled, disorienting, and something could be \
 standing in it."""),
 
 "cretaceous": dict(
-    cap="Chicxulub. Ejecta re-entering, and the sky becomes a broiler.",
-    scene="""
+  cap="Chicxulub. Ejecta re-entering, and the sky becomes a broiler.",
+  scene="""
 THE AIR IS ON FIRE. The sky filled edge to edge with hundreds of incandescent \
 streaks of re-entering ejecta, glowing white-orange, raking down through smoke \
 and dust. The whole atmosphere is lit from above with a hard infrared glow. \
@@ -572,57 +572,57 @@ Silhouetted magnolia leaves and palm fronds in the immediate foreground beginnin
 to scorch and curl. Apocalyptic, and it lasted about an hour."""),
 
 "paleogene": dict(
-    cap="PETM steam. Air too wet to shed your own heat into.",
-    scene="""
+  cap="PETM steam. Air too wet to shed your own heat into.",
+  scene="""
 THE AIR IS SATURATED AND WILL NOT TAKE YOUR HEAT. Dense white steam and vapour \
 rising off warm standing water and wet dark leaf litter in a hot swamp forest, \
 hanging motionless between the trunks in thick humid layers. Condensation running \
 off broad leaves. Heavy, oppressive, airless and utterly still."""),
 
 "neogene": dict(
-    cap="Dry-season smoke and dust. Grass burns, and it burns every year.",
-    scene="""
+  cap="Dry-season smoke and dust. Grass burns, and it burns every year.",
+  scene="""
 THE AIR IS FULL OF SMOKE AND DRY DUST. Low golden light raking through drifting \
 brown grass-fire smoke and suspended dust across open savanna, the individual \
 particles catching the sun. Charred black stubble and ash in the near foreground, \
 with tall dry bunch-grass beyond. Hot, gritty, and thick in the throat."""),
 
 "quaternary": dict(
-    cap="Whiteout. The cold is the only thing here that is actively trying to kill you.",
-    scene="""
+  cap="Whiteout. The cold is the only thing here that is actively trying to kill you.",
+  scene="""
 THE AIR HAS ERASED THE WORLD. A ground-level whiteout: wind-driven snow streaming \
 horizontally in dense sheets, the horizon completely gone, visibility down to a \
 few metres of frozen tussock grass in the immediate foreground. Spindrift curling \
 off the drifts. Grey-white, featureless, and violently cold."""),
 }
 
-# The kills set shares one negative list — the failure mode there is a figure
+# The kills set shares one negative list: the failure mode there is a figure
 # appearing in frame, not the wrong organism.
 KILLS_NEVER = ("no people, no animals, no creatures, no faces, no skulls, no bones, no corpses, "
-               "no vehicles, no machines, no campfire ring, no tents, "
-               "no beard lichen, no hanging epiphyte curtains, no modern temperate rainforest")
+        "no vehicles, no machines, no campfire ring, no tents, "
+        "no beard lichen, no hanging epiphyte curtains, no modern temperate rainforest")
 
 
 def build(kind: str, slug: str) -> str:
-    """Assemble the full prompt for one image. `kind` is scene, menu or kills."""
-    if kind == "menu":
-        e = MENU[slug]
-        return (f"{MENU_STYLE}\n{e['scene'].strip()}\n\n"
-                f"DO NOT INCLUDE, these did not exist yet or are anachronistic: "
-                f"{e['never']}.\nAlso: {NEVER}.")
-    if kind == "kills":
-        e = KILLS[slug]
-        return (f"{KILLS_STYLE}\n\nPALETTE — hold the image within these colours and shades "
-                f"between them: {PALETTES[slug]}\n{e['scene'].strip()}\n\n"
-                f"DO NOT INCLUDE: {KILLS_NEVER}.\nAlso: {NEVER}.")
-    raise ValueError(f"unknown set: {kind}")
+  """Assemble the full prompt for one image. `kind` is scene, menu or kills."""
+  if kind == "menu":
+    e = MENU[slug]
+    return (f"{MENU_STYLE}\n{e['scene'].strip()}\n\n"
+        f"DO NOT INCLUDE, these did not exist yet or are anachronistic: "
+        f"{e['never']}.\nAlso: {NEVER}.")
+  if kind == "kills":
+    e = KILLS[slug]
+    return (f"{KILLS_STYLE}\n\nPALETTE: hold the image within these colours and shades "
+        f"between them: {PALETTES[slug]}\n{e['scene'].strip()}\n\n"
+        f"DO NOT INCLUDE: {KILLS_NEVER}.\nAlso: {NEVER}.")
+  raise ValueError(f"unknown set: {kind}")
 
 
 def caption(kind: str, slug: str) -> str:
-    """The page caption, rendered as HTML under the figure — never drawn into
-    the image. The model renders lettering badly, and baked-in text cannot be
-    selected, translated or read aloud."""
-    return {"menu": MENU, "kills": KILLS}[kind][slug]["cap"]
+  """The page caption, rendered as HTML under the figure: never drawn into
+  the image. The model renders lettering badly, and baked-in text cannot be
+  selected, translated or read aloud."""
+  return {"menu": MENU, "kills": KILLS}[kind][slug]["cap"]
 
 
 # ---------------------------------------------------------------------------
@@ -672,5 +672,5 @@ KILLS_ALT = {
 
 
 def alt(kind: str, slug: str) -> str:
-    """Alt text for a finished image. See the note above MENU_ALT."""
-    return {"menu": MENU_ALT, "kills": KILLS_ALT}[kind][slug]
+  """Alt text for a finished image. See the note above MENU_ALT."""
+  return {"menu": MENU_ALT, "kills": KILLS_ALT}[kind][slug]
