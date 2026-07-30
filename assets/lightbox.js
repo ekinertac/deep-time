@@ -1,5 +1,5 @@
 /*
- * lightbox.js — click any scene image to view it large.
+ * lightbox.js: click any scene image to view it large.
  *
  * The three images on an era page are displayed at roughly a third of their
  * native size, and they carry detail worth looking at: the diamond leaf-scar
@@ -8,7 +8,7 @@
  *
  * Built on the native <dialog> element rather than a hand-rolled overlay, which
  * hands us the focus trap, the inert background, the backdrop and Esc-to-close
- * for free — all of which are easy to get wrong by hand.
+ * for free, all of which are easy to get wrong by hand.
  *
  * The image is shown fit-to-viewport, which is a 2–3x jump from the inline size.
  * Clicking anywhere closes, the picture included: an actual-pixel zoom toggle

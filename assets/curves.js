@@ -1,5 +1,5 @@
 /*
- * curves.js — the three time series the chart page plots.
+ * curves.js: the three time series the chart page plots.
  *
  * WHAT THESE ARE: a hand-built synthesis of published reconstructions, resampled
  * onto a common age grid so three quantities on wildly different scales can be
@@ -33,7 +33,7 @@ const O2 = [
   [50, 23], [40, 22], [34, 22], [23, 21], [10, 21], [0, 20.9],
 ];
 
-/* Carbon dioxide, ppm. Plotted on a log axis — the range spans three orders of
+/* Carbon dioxide, ppm. Plotted on a log axis: the range spans three orders of
    magnitude. Starts at 4,000 Ma: Hadean CO₂ may have reached ~100 bar, which is
    off the top of any scale that can also show 425 ppm. */
 const CO2 = [
@@ -68,7 +68,7 @@ const TEMP = [
 ];
 
 /*
- * Panel definitions. Each panel is its own chart with exactly ONE series — three
+ * Panel definitions. Each panel is its own chart with exactly ONE series: three
  * quantities this different can never share a y-axis, and a second scale on one
  * plot would invent correlations that are not in the data.
  *

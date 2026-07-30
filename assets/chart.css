@@ -1,14 +1,14 @@
 /*
- * chart.css — styling for the three-panel deep-time chart.
+ * chart.css: styling for the three-panel deep-time chart.
  *
  * Loaded only by chart.html. Follows the data-viz mark specs: 2px lines, ≥8px
  * markers, 10% area washes, solid hairline grid one step off the surface, and
- * text that never wears the series colour — identity comes from a small coloured
+ * text that never wears the series colour: identity comes from a small coloured
  * swatch beside the label, never from colouring the text itself.
  *
  * KEY LAYOUT DECISION: each panel is an SVG (geometry only, stretched with
  * preserveAspectRatio="none") plus an absolutely positioned HTML label layer on
- * top. Stretching the SVG distorts glyphs, so no text lives inside it — labels
+ * top. Stretching the SVG distorts glyphs, so no text lives inside it: labels
  * are HTML placed by percentage off the same scales. See assets/chart.js.
  *
  * The series hues are slots 1–3 of the reference categorical palette (dark

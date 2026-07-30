@@ -1,5 +1,5 @@
 /*
- * site.css — the shared shell for every page in Deep Time.
+ * site.css: the shared shell for every page in Deep Time.
  *
  * Responsibility: layout, typography, and all structural components that repeat
  * across the 16 era pages and the index (deep-time rail, hero, scene frame,
@@ -66,7 +66,7 @@ body {
 @media (max-width: 860px) { body { padding-left: 0; padding-bottom: 64px; } }
 
 /* Film grain. Sits above everything, ignores pointer events. Kept very low
-   opacity — it should register as texture, never as noise. */
+   opacity, it should register as texture, never as noise. */
 body::after {
   content: '';
   position: fixed;
@@ -457,7 +457,7 @@ section + section { border-top: 1px solid var(--rule); }
 /* ---- section figures: menu and kills ----
    The hero is 21:9 and full width; these two are 3:2 and sit beside their
    section's text so they read as evidence rather than as second heroes. The
-   figure is sticky because the death timeline is much taller than the image —
+   figure is sticky because the death timeline is much taller than the image -
    without it you scroll past the picture in the first beat and read the
    remaining five with nothing on screen. */
 .split {
@@ -498,7 +498,7 @@ section + section { border-top: 1px solid var(--rule); }
 
 .lb {
   /* Override the UA's dialog box, which is position:absolute, margin:auto and
-     width:fit-content — so 100vw/100vh alone sizes it without anchoring it, and
+     width:fit-content, so 100vw/100vh alone sizes it without anchoring it, and
      it lands wherever the containing block puts it. Fixed + inset is what
      actually pins it to the viewport. */
   position: fixed;

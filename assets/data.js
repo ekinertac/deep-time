@@ -1,5 +1,5 @@
 /*
- * data.js — the single source of truth for the 16 era entries.
+ * data.js: the single source of truth for the 16 era entries.
  *
  * Role in the system: every page in this site is static HTML, but the *navigation*
  * (prev/next links, the deep-time rail, the index timeline) is generated from this
@@ -42,12 +42,12 @@ const ERAS = [
 /*
  * One line per era on why it ends where it does. Lives here rather than in
  * index.html because two views need it: the ranked table and the randomiser's
- * result readout. Ordering is not implied — these are keyed, not sequenced.
+ * result readout. Ordering is not implied: these are keyed, not sequenced.
  */
 const WHY = {
   hadean:        'No free oxygen. Surface partly molten, CO₂ at up to 100 bar.',
   archean:       'Still no free oxygen. Methane haze, iron-rich anoxic ocean.',
-  proterozoic:   'Oxygen exists but sits near 1% — far under the ~16% you need.',
+  proterozoic:   'Oxygen exists but sits near 1%, far under the ~16% you need.',
   ediacaran:     'Oxygen rising and still hypoxic. Severe altitude sickness at sea level.',
   cambrian:      'Air marginally breathable. Land is bare rock: no food, no fuel, no shelter.',
   ordovician:    'Same bare land, plus the Hirnantian glaciation at the end.',

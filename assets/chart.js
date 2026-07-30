@@ -1,26 +1,26 @@
 /*
- * chart.js — renders the three-panel deep-time chart and its shared interactions.
+ * chart.js: renders the three-panel deep-time chart and its shared interactions.
  *
  * Structure: three stacked single-series panels (oxygen, CO₂, temperature) over
- * ONE shared x-axis. They are separate plots on purpose — three quantities of
+ * ONE shared x-axis. They are separate plots on purpose: three quantities of
  * this range cannot share a y-axis, and a second y-scale on one plot would
  * manufacture a correlation the data does not contain.
  *
  * The x-axis carries an explicit scale break at 539 Ma. A linear 4.54 Gyr axis
- * compresses the entire Phanerozoic — every era with a survival time longer than
- * a minute — into the last 12% of the width. The break gives the Precambrian 42%
+ * compresses the entire Phanerozoic, every era with a survival time longer than
+ * a minute: into the last 12% of the width. The break gives the Precambrian 42%
  * and the Phanerozoic 58%, and is drawn and labelled so the reader can see the
  * compression is deliberate. Every series is split into two paths at the break so
  * no line is ever drawn across it.
  *
  * GEOMETRY vs TEXT: the SVG is stretched to the container with
  * preserveAspectRatio="none", which scales x and y by different factors. That is
- * fine for paths (strokes are held true with vector-effect) but it visibly
+ * fine for paths (strokes are held true with vector-effect), but it visibly
  * distorts glyphs. So the SVG carries ONLY geometry, and every label is an
  * absolutely positioned HTML element in a sibling layer, placed with percentages
  * off the same scales. Text then stays undistorted, selectable and in rem units.
  *
- * Depends on assets/curves.js (PANELS) and assets/data.js (ERAS, formatAge,
+ * Depends on assets/curves.js (PANELS), and assets/data.js (ERAS, formatAge,
  * eraFile). Styling in assets/chart.css; markup contract in chart.html.
  */
 
@@ -28,7 +28,7 @@
   const root = document.getElementById('chart');
   if (!root) return;
 
-  const BREAK = 539;          // Ma — Precambrian / Phanerozoic, where the axis splits
+  const BREAK = 539;          // Ma: Precambrian / Phanerozoic, where the axis splits
   const SPAN = 4540;
   const W = 1000;             // viewBox units
   const PAD_L = 54, PAD_R = 14;
@@ -83,7 +83,7 @@
   const eraAt = (age) => ERAS.find((e) => age <= e.from && age > e.to) || ERAS[ERAS.length - 1];
 
   /* The scale-break marker. Rendered once per plot and once over the axis rather
-     than as a single overlay across the whole stack — a stack-wide overlay also
+     than as a single overlay across the whole stack: a stack-wide overlay also
      covers the panel headings and paints out whichever letter falls under it. */
   const breakMark = () =>
     `<div class="c-break" style="left:${(((A_X + A_W) / W) * 100).toFixed(3)}%;width:${((GAP / W) * 100).toFixed(3)}%"></div>`;
@@ -112,7 +112,7 @@
       .join('');
 
     // The threshold label sits at the LEFT edge of the plot, above its rule, so it
-    // never collides with the curve — which runs high on the right in every panel.
+    // never collides with the curve, which runs high on the right in every panel.
     const ruleLabel = `<span class="c-rulelabel" style="top:${yPct(p.rule.at, y).toFixed(2)}%;left:${((PAD_L + 6) / W) * 100}%">${p.rule.label}</span>`;
 
     return `
@@ -145,7 +145,7 @@
   /* ---- shared x-axis: ticks and the era strip, both plain HTML ---- */
   function axis() {
     // `opt` marks the ticks that are dropped on narrow screens, where the full
-    // set collides — particularly either side of the scale break. They are
+    // set collides: particularly either side of the scale break. They are
     // rendered and hidden by CSS rather than re-rendered on resize.
     const ticks = [
       [4500, '4.5 Ga', 0], [4000, '4.0', 1], [3000, '3.0', 0], [2000, '2.0', 1], [1000, '1.0', 0],
@@ -155,11 +155,11 @@
       .join('');
 
     // Era identity is carried by text, never by colour. The label text itself is
-    // chosen after layout by fitStripLabels() — guessing from the percentage
+    // chosen after layout by fitStripLabels(): guessing from the percentage
     // width clips long names, and a half-rendered word is worse than none.
     const strip = ERAS.map((e) => {
       const l = xPct(e.from), w = xPct(e.to) - l;
-      return `<a class="c-era" href="${eraFile(e)}" title="${e.name} — ${e.verdict}" data-name="${e.name}"
+      return `<a class="c-era" href="${eraFile(e)}" title="${e.name}: ${e.verdict}" data-name="${e.name}"
                  style="left:${l.toFixed(2)}%;width:${Math.max(w - 0.12, 0.3).toFixed(2)}%"><span></span></a>`;
     }).join('');
 
@@ -179,7 +179,7 @@
      </div>`;
 
   /* Choose each era label AFTER layout, from the box it actually got. A name is
-     shown whole or not at all — a clipped word reads as a typo, and the full name
+     shown whole or not at all: a clipped word reads as a typo, and the full name
      is always available from the title attribute and the table below. */
   function fitStripLabels() {
     root.querySelectorAll('.c-era').forEach((a) => {
@@ -204,8 +204,8 @@
         <td><a href="${eraFile(e)}">${e.name}</a></td>
         <td>${formatAge(a)}</td>
         <td>${PANELS[0].fmt(valueAt(O2, a))}</td>
-        <td>${a > 4000 ? '—' : PANELS[1].fmt(valueAt(CO2, a))}</td>
-        <td>${a > 4000 ? '—' : PANELS[2].fmt(valueAt(TEMP, a))}</td>
+        <td>${a > 4000 ? '-' : PANELS[1].fmt(valueAt(CO2, a))}</td>
+        <td>${a > 4000 ? '-' : PANELS[2].fmt(valueAt(TEMP, a))}</td>
         <td>${e.verdict}</td>
       </tr>`;
     }).join('');

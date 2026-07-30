@@ -1,12 +1,12 @@
 /*
- * nav.js — generates every cross-page link in the site.
+ * nav.js: generates every cross-page link in the site.
  *
  * Why this exists: with 17 hand-written HTML files, hard-coding a 16-item rail
  * and a prev/next pager into each one guarantees they drift apart. Instead each
  * page ships an empty <nav class="rail"> / <nav class="pager"> and this script
  * fills them from the ERAS array in data.js.
  *
- * Depends on: assets/data.js (must load first — plain script, no modules).
+ * Depends on: assets/data.js (must load first: plain script, no modules).
  * Styles for the markup it emits live in assets/site.css (.rail, .pager).
  *
  * Path handling: era pages sit in eras/ and the index sits at the root, so link
@@ -37,7 +37,7 @@
         (e) =>
           `<a class="rail__item" href="${eraHref(e)}"${
             e.slug === slug ? ' aria-current="page"' : ''
-          } title="${e.name} — ${e.verdict}">${String(e.n).padStart(2, '0')}<span>${e.name}</span></a>`
+          } title="${e.name}: ${e.verdict}">${String(e.n).padStart(2, '0')}<span>${e.name}</span></a>`
       ).join('') +
       `</div>`;
   }

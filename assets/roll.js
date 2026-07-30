@@ -1,17 +1,17 @@
 /*
- * roll.js — the "drop me somewhere" randomiser on the front page.
+ * roll.js: the "drop me somewhere" randomiser on the front page.
  *
  * The point is not novelty. Sampling a uniform random moment from Earth's 4.54
  * billion years reproduces the site's central claim by brute force: because the
  * four lethal eras occupy 88% of the timeline, roughly nine drops in ten land
- * somewhere you die within a minute. The running tally is the argument — the
+ * somewhere you die within a minute. The running tally is the argument: the
  * copy on the index says 88%, this lets the reader watch it happen.
  *
  * Depends on assets/data.js for ERAS, WHY, formatAge and eraFile. Markup it
  * fills is declared in index.html (#roll-*); styling lives in assets/index.css.
  *
  * State is deliberately in-memory only. A tally that survives reload would need
- * storage, consent thinking and a reset affordance for no gain — the interesting
+ * storage, consent thinking and a reset affordance for no gain: the interesting
  * number appears within about ten clicks in one sitting.
  */
 
@@ -65,7 +65,7 @@
   }
 
   // A single live interval handle. Clicking mid-spin abandons that spin and
-  // starts a new one rather than being ignored — the copy tells the reader to
+  // starts a new one rather than being ignored: the copy tells the reader to
   // roll ten times, so impatient clicking has to be the supported case, and a
   // disabled button would drop exactly those clicks.
   let spin = null;

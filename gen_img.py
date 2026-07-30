@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-gen_img.py — generate era scene images, one or several at a time.
+gen_img.py: generate era scene images, one or several at a time.
 
     ./gen_img.py 09                   the wide hero scene for era 09
     ./gen_img.py 09 --set menu        what there is to eat there
@@ -13,7 +13,7 @@ gen_img.py — generate era scene images, one or several at a time.
 
 THREE SETS, three jobs, two aspect ratios. `scene` is the 21:9 hero: the place,
 wide and distant. `menu` and `kills` are both 3:2 and sit inside the page as
-supporting evidence rather than second heroes — one is everything there is to
+supporting evidence rather than second heroes, one is everything there is to
 eat, the other is the air itself. Prompt data and the reasoning behind each set
 live in scene_prompts.py.
 
@@ -28,7 +28,7 @@ lost.
 
 REPRODUCIBILITY. Every run now sends an explicit seed and appends a record to
 assets/scenes/generated.jsonl: the file it wrote, the set, the model, the seed
-and the full prompt. A seed on its own is not enough — it only reproduces
+and the full prompt. A seed on its own is not enough, it only reproduces
 against the identical prompt, and these prompts get edited between runs, so both
 are stored together. To draw an image again:
 
@@ -40,9 +40,9 @@ WHY THE PROMPTS LOOK LIKE THIS
 Three models were tried on the same scene. The failure mode that mattered was
 not banned objects sneaking in, it was correct-sounding but wrong anatomy:
 lycopsid trees rendered as palms or baobabs. Negative prompts do not fix that.
-They suppress; they cannot teach. What fixed it was POSITIVE morphology — naming
+They suppress; they cannot teach. What fixed it was POSITIVE morphology: naming
 the organism, then describing trunk geometry, bark pattern and where branching
-occurs — which needs a model that comprehends the sentence. Hence
+occurs, which needs a model that comprehends the sentence. Hence
 google/gemini-3-pro-image rather than a diffusion model, and hence every prompt
 below is structured:
 
@@ -79,7 +79,7 @@ FLASH = "google/gemini-2.5-flash-image"
 OUT = pathlib.Path(__file__).resolve().parent / "assets" / "scenes"
 
 # ---------------------------------------------------------------------------
-# Shared style contract. Byte-identical in every prompt — this is what makes
+# Shared style contract. Byte-identical in every prompt, this is what makes
 # sixteen separate generations read as one series. Muted and desaturated is not
 # a taste call: these sit on a near-black page and a saturated image would fight
 # the design.
@@ -151,7 +151,7 @@ CHARNIA: tall soft fronds standing upright, each anchored by a round holdfast \
 disc. THE FROND IS NOT A LEAF. It has no midrib, no central vein and no veins of \
 any kind. It is built from a row of repeated identical branch units arranged \
 alternately along a central axis, and each branch unit is itself subdivided into \
-smaller identical branchlets — a self-similar fractal quilted texture, closer to \
+smaller identical branchlets: a self-similar fractal quilted texture, closer to \
 a feather made of feathers than to any leaf.
 
 DICKINSONIA: flat soft-bodied oval mats lying directly on the sediment, like a \
@@ -280,7 +280,7 @@ shafts through a closed canopy.
 ARAUCARIA conifers: very tall, straight, branches in regular whorls, covered in \
 stiff overlapping scale-like leaves.
 CYCADS: squat barrel-shaped trunks of rough diamond-patterned armour, each \
-topped with a stiff rosette of long, hard, palm-like fronds — but they are NOT \
+topped with a stiff rosette of long, hard, palm-like fronds, but they are NOT \
 palms and have no smooth ringed trunk.
 GINKGO: trees carrying distinctive fan-shaped leaves, split into two lobes.
 TREE FERNS and horsetails filling the understory.
@@ -295,7 +295,7 @@ A warm floodplain 70 million years ago, a wide slow silt-laden river under a hot
 blue sky with towering cumulus. Ice-free world, deep humid atmospheric distance.
 
 MAGNOLIA: early flowering trees on the near bank, with large simple glossy \
-leaves and big pale cup-shaped blooms of thick waxy petals — primitive, \
+leaves and big pale cup-shaped blooms of thick waxy petals: primitive, \
 beetle-pollinated flowers, not delicate modern ones.
 FAN PALMS with pleated leaves in the middle distance, and tall conifers on the \
 far bank.
@@ -353,7 +353,7 @@ BY_N = {e["n"]: e for e in ERAS}
 def build_prompt(era: dict) -> str:
     return (
         f"{STYLE}\n\n"
-        f"PALETTE — hold the whole image within these colours and shades between them: {era['pal']}\n"
+        f"PALETTE: hold the whole image within these colours and shades between them: {era['pal']}\n"
         f"{era['scene'].strip()}\n\n"
         f"DO NOT INCLUDE ANY OF THE FOLLOWING. They did not exist in this period and their "
         f"presence is a factual error: {era['never']}.\n"
@@ -469,7 +469,7 @@ def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple
     msg = data["choices"][0]["message"]
     images = msg.get("images") or []
     if not images:
-        raise RuntimeError(f"no image returned — {json.dumps(msg)[:300]}")
+        raise RuntimeError(f"no image returned: {json.dumps(msg)[:300]}")
     blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
     path = next_path(era, sniff_ext(blob), kind)
     path.write_bytes(blob)

@@ -1,5 +1,5 @@
 /*
- * index.css — components that exist only on the front page.
+ * index.css: components that exist only on the front page.
  *
  * Kept out of site.css because nothing here is reused by the sixteen era pages:
  * the proportional deep-time column, the survival-band legend, and the ranked
@@ -21,7 +21,7 @@
    These are ordered severity tiers, and the previous red/orange/amber/green/blue
    set failed on that: weeks-orange and months-amber measured only dE 11.5 apart
    under normal vision, against a floor of 15. That was not a bad pick, it was
-   structural — a severity order forces hue-neighbours to sit adjacent, and no
+   structural: a severity order forces hue-neighbours to sit adjacent, and no
    re-ordering or re-stepping of five hues can clear the gate.
    One hue with monotone lightness solves it and does something the rainbow never
    did: the ordering is legible in the colour itself. Intensity carries danger, so
@@ -34,7 +34,7 @@
 .band-years      { --band: #fabbb0; }
 .band-indefinite { --band: #ffe4de; }
 
-/* A reusable swatch. Text no longer wears the band colour anywhere — a coloured
+/* A reusable swatch. Text no longer wears the band colour anywhere: a coloured
    mark beside the words carries identity instead. That is the data-viz rule, and
    it is also why the palette was over-constrained before: requiring all five to
    be legible as small text left only hue to separate them. */
