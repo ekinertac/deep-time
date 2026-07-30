@@ -453,3 +453,38 @@ section + section { border-top: 1px solid var(--rule); }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ---- section figures: menu and kills ----
+   The hero is 21:9 and full width; these two are 3:2 and sit beside their
+   section's text so they read as evidence rather than as second heroes. The
+   figure is sticky because the death timeline is much taller than the image —
+   without it you scroll past the picture in the first beat and read the
+   remaining five with nothing on screen. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 41%) minmax(0, 1fr);
+  gap: clamp(1.6rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.split__fig { position: sticky; top: clamp(1rem, 5vh, 3rem); }
+.split__fig img { width: 100%; height: auto; border: 1px solid var(--rule); }
+.split__fig figcaption {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--ink-dim);
+  margin-top: 0.75rem;
+  padding-left: 0.7rem;
+  border-left: 1px solid var(--rule);
+}
+
+/* Inside a split the kit grid has half the room, so let it fall to two columns
+   rather than squeezing three. */
+.split .kit { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.3rem; }
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: 1.8rem; }
+  /* Sticky is wrong once the figure is stacked above its text: it would pin the
+     image to the top and let the words scroll out from under it. */
+  .split__fig { position: static; }
+}

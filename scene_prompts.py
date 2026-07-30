@@ -132,7 +132,7 @@ dense, faintly repellent and completely inedible.""",
           "no bare dry rock filling the frame"),
 
 "proterozoic": dict(
-    cap="Ice, meltwater and stone. The plate stays empty for another 1.9 billion years.",
+    cap="Ice, meltwater and stone. What life exists floats in the sea and offers nothing you can use.",
     scene="""
 THERE IS NOTHING TO EAT. A slab of blue-white glacial ice resting on dark wet \
 stone, its surface pocked and melting, a thin film of meltwater running off into \
@@ -623,3 +623,54 @@ def caption(kind: str, slug: str) -> str:
     the image. The model renders lettering badly, and baked-in text cannot be
     selected, translated or read aloud."""
     return {"menu": MENU, "kills": KILLS}[kind][slug]["cap"]
+
+
+# ---------------------------------------------------------------------------
+# Alt text, written from the finished images rather than from the prompts.
+# That distinction matters: the site already shipped alt text once that had been
+# copied from the hand-drawn SVGs and described animals the generated scenes did
+# not contain, so a screen reader announced a dragonfly and a mammoth that were
+# not there. Everything below was written while looking at the file.
+# ---------------------------------------------------------------------------
+MENU_ALT = {
+"hadean": "Bare black basalt, cracked and glassy, holding a shallow pool of cloudy water, with yellow sulfur staining at the rock edges. Nothing organic anywhere in frame.",
+"archean": "A flat sheet of blackish-green bacterial slime lying on shallow water, wrinkled and torn at the edges, inflated from below by gas bubbles, several of them burst into open craters.",
+"proterozoic": "A slab of melting blue-white glacial ice resting on dark wet stone, meltwater running off it into a shallow pool.",
+"ediacaran": "Two soft elongated Dickinsonia bodies lying on wet sediment, each ribbed with dozens of fine parallel bands running off a long central groove.",
+"cambrian": "Several trilobites and small smooth brachiopod shells lying raw and wet on bare grey fractured bedrock.",
+"ordovician": "A thick section of a giant straight nautiloid shell, cracked open lengthwise and running off both edges of the frame, with a heavy slab of pale muscle spilling from the open end and three tiny shellfish beside it for scale.",
+"silurian": "Small dark millipedes and smooth bivalve shells beside a tangled bundle of dried forking Cooksonia stems, with a scatter of ash and one charred stem end.",
+"devonian": "A heavy-bodied lobe-finned fish on bark, beside a scatter of tiny dark seeds and shredded woody cupules, with fern-like Archaeopteris fronds underneath.",
+"carboniferous": "Two freshwater fish, a large long-winged insect, a heap of seed-fern seeds and a length of jointed Calamites stem, laid on a sheet of Lepidodendron bark patterned with diamond leaf scars.",
+"permian": "Three strips of sun-dried leathery fish, small hard seeds and tongue-shaped Glossopteris leaves on cracked red desert clay, dusted with blown grit.",
+"triassic": "A cluster of large ripe orange cycad seeds, one split open to show the stony kernel, beside a small dark lizard and dry Y-forked seed-fern fronds on cracked pale mud.",
+"jurassic": "A dead crow-sized feathered theropod laid on forest litter, surrounded by a fish, a lizard, a shrew-sized mammal, three leathery eggs in a scrape and several beetles, with ginkgo leaves and araucaria foliage pushed to the margins.",
+"cretaceous": "Small dark figs, a cluster of palm drupes on a woody stalk and a magnolia seed cone studded with bright red seeds, lying on magnolia leaves over floodplain mud.",
+"paleogene": "Hard-shelled nuts, dark berries, palm drupes, acorns and two earth-covered tubers, one broken open to show pale starchy flesh, on broadleaf leaf litter.",
+"neogene": "Thin wispy wild grass heads with long bristles, half of them already shattered, beside a small scatter of loose husky seed, two fibrous roots and a portion of dark lean game meat.",
+"quaternary": "Cuts of dark red game meat, a cracked long bone with exposed marrow, a heap of berries, fibrous roots, hazelnuts and a whole fish, laid out on a flat lichen-covered stone.",
+}
+
+KILLS_ALT = {
+"hadean": "A narrow crack in black basalt with molten rock glowing orange inside it, a twisting rope of pale sulfurous vapour rising out, and ropy cooled lava filling the rest of the frame.",
+"archean": "Dense layered orange smog over still water, the sun reduced to a small hard disc, with a band of sickly yellow-green haze low in the frame.",
+"proterozoic": "Suspended ice crystals glittering in dead-still frigid air above frost feathers growing on a frozen surface.",
+"ediacaran": "A dark Charnia frond silhouetted against faint light from above, in a dim green-blue water column full of slowly drifting particles.",
+"cambrian": "A dry wind driving grey rock dust in visible ribbons across bare fractured stone, with nothing organic in the air at all.",
+"ordovician": "Freezing sleet and sea spray blowing horizontally across soaked black rock, the droplets caught mid-flight.",
+"silurian": "A single thin thread of pale smoke rising from a small smouldering bundle of stems, with embers glowing faintly at its base.",
+"devonian": "Humid forest air thick with drifting spores and fine organic dust, lit by shafts of amber light raking between dark trunks.",
+"carboniferous": "Embers and glowing flakes of ash lifting off burning leaf litter into dense smoke, with a low flame front running across visibly wet moss.",
+"permian": "The advancing wall of a rust-orange dust storm filling most of the frame, the sun a hard pale disc behind it, grit streaming across cracked clay.",
+"triassic": "A twisting dust devil rising off bare cracked mud beneath a wall of blown dust, with no vegetation anywhere in frame.",
+"jurassic": "Dense white fog packed between dark conifer trunks, with stiff scale-leaved araucaria boughs in the upper canopy and light shafts raking through the vapour.",
+"cretaceous": "A sky filled with hundreds of incandescent streaks of re-entering ejecta glowing through smoke, with magnolia leaves and palm fronds silhouetted and scorching in the foreground.",
+"paleogene": "Steam rising in thick layers off warm standing water and soaked leaf litter in a swamp forest, with light shafts cutting through the vapour.",
+"neogene": "Grass-fire smoke and suspended dust raking through dry bunch-grass in low golden light, with black burnt stubble in the foreground.",
+"quaternary": "Wind-driven snow streaming horizontally across frozen tussock grass, the horizon completely erased.",
+}
+
+
+def alt(kind: str, slug: str) -> str:
+    """Alt text for a finished image. See the note above MENU_ALT."""
+    return {"menu": MENU_ALT, "kills": KILLS_ALT}[kind][slug]
