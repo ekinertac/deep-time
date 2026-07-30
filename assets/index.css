@@ -17,11 +17,36 @@
  * of the durations), assets/site.css (typography and shell this builds on).
  */
 
-.band-minutes    { --band: #e2483a; }
-.band-weeks      { --band: #e8843a; }
-.band-months     { --band: #dfb445; }
-.band-years      { --band: #5cae5a; }
-.band-indefinite { --band: #64a8dc; }
+/* Survival bands: an ORDINAL ramp, not a rainbow.
+   These are ordered severity tiers, and the previous red/orange/amber/green/blue
+   set failed on that: weeks-orange and months-amber measured only dE 11.5 apart
+   under normal vision, against a floor of 15. That was not a bad pick, it was
+   structural — a severity order forces hue-neighbours to sit adjacent, and no
+   re-ordering or re-stepping of five hues can clear the gate.
+   One hue with monotone lightness solves it and does something the rainbow never
+   did: the ordering is legible in the colour itself. Intensity carries danger, so
+   the deepest red is 'you die in a minute' and the palest is 'indefinite'.
+   Validated as an ordinal ramp against this surface: monotone L, every adjacent
+   gap over 0.06, single hue within 5 degrees, 3.91:1 minimum contrast as marks. */
+.band-minutes    { --band: #c04339; }
+.band-weeks      { --band: #e05f51; }
+.band-months     { --band: #f18d7e; }
+.band-years      { --band: #fabbb0; }
+.band-indefinite { --band: #ffe4de; }
+
+/* A reusable swatch. Text no longer wears the band colour anywhere — a coloured
+   mark beside the words carries identity instead. That is the data-viz rule, and
+   it is also why the palette was over-constrained before: requiring all five to
+   be legible as small text left only hue to separate them. */
+.swatch::before {
+  content: '';
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 2px;
+  background: var(--band, var(--ink-faint));
+  margin-right: 0.5em;
+}
 
 /* ---- headline stat ---- */
 .stat {
@@ -38,7 +63,7 @@
   font-weight: 900;
   font-size: clamp(2.6rem, 5vw, 4rem);
   line-height: 0.85;
-  color: var(--band, var(--ink));
+  color: var(--ink);
 }
 .stat__k {
   font-family: var(--mono);
@@ -148,7 +173,7 @@
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   line-height: 0.9;
   text-transform: uppercase;
-  color: var(--band, var(--ink-faint));
+  color: var(--ink);
   min-height: 0.9em;
 }
 .roll__verdict {
@@ -157,7 +182,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--band, var(--ink-faint));
+  color: var(--ink-dim);
   min-height: 1.2em;
 }
 .roll__why { font-size: 0.96rem; color: var(--ink-dim); max-width: 54ch; min-height: 3em; }
@@ -240,7 +265,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--band);
+  color: var(--ink-dim);
   text-align: right;
   white-space: nowrap;
 }
@@ -270,6 +295,6 @@
 .rank tr:hover td { background: color-mix(in srgb, var(--ink) 4%, transparent); }
 .rank a { text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--rule); }
 .rank a:hover { border-color: var(--band); }
-.rank__v { color: var(--band); white-space: nowrap; }
+.rank__v { color: var(--ink-dim); white-space: nowrap; }
 .rank__why { color: var(--ink-dim); line-height: 1.6; font-size: 0.74rem; }
 .rank__wrap { overflow-x: auto; }

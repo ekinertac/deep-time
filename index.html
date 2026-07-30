@@ -46,15 +46,15 @@
     <div class="stat">
       <div class="stat__cell band-minutes">
         <span class="stat__n">88%</span>
-        <span class="stat__k">of Earth's history kills you in under a minute — no breathable oxygen</span>
+        <span class="stat__k swatch">of Earth's history kills you in under a minute — no breathable oxygen</span>
       </div>
       <div class="stat__cell band-weeks">
         <span class="stat__n">11%</span>
-        <span class="stat__k">is breathable but has nothing on land you can eat</span>
+        <span class="stat__k swatch">is breathable but has nothing on land you can eat</span>
       </div>
       <div class="stat__cell band-indefinite">
         <span class="stat__n">1.5%</span>
-        <span class="stat__k">would let you live out a normal life</span>
+        <span class="stat__k swatch">would let you live out a normal life</span>
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@
       <div class="roll__panel" id="roll-panel">
         <span class="roll__age" id="roll-age">— press the button —</span>
         <span class="roll__era" id="roll-era">Nowhere yet</span>
-        <span class="roll__verdict" id="roll-verdict"></span>
+        <span class="roll__verdict swatch" id="roll-verdict"></span>
         <p class="roll__why" id="roll-why"></p>
         <a class="roll__link" id="roll-link" href="#"></a>
       </div>
@@ -242,7 +242,7 @@
     return `<tr class="band-${e.band}">
       <td>${String(i + 1).padStart(2, '0')}</td>
       <td><a href="${eraFile(e)}">${e.name}</a></td>
-      <td class="rank__v">${e.verdict}</td>
+      <td class="rank__v swatch">${e.verdict}</td>
       <td class="rank__why">${WHY[slug]}</td>
     </tr>`;
   }).join('');

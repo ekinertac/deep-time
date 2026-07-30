@@ -52,10 +52,19 @@ The chart's series colours were validated rather than chosen: worst colour-visio
 separation dE 9.4 and worst normal-vision separation dE 20.9 under an all-pairs
 check, on the dark surface the site actually uses.
 
-The five survival-band colours on the index have a known defect. Weeks-orange and
-months-amber sit at dE 11.5, under the 15 floor, so they are harder to tell apart
-than they should be, and a five-hue rainbow is the wrong encoding for ordered
-data anyway. Not yet fixed.
+The five survival bands were a red/orange/amber/green/blue rainbow, which is the
+wrong encoding for ordered severity tiers and failed on it: weeks-orange and
+months-amber measured dE 11.5 apart against a floor of 15. That turned out to be
+structural rather than a bad pick, since a severity order forces hue-neighbours to
+sit adjacent and no re-ordering of five hues clears the gate. They are now a
+single-hue ordinal ramp, validated for monotone lightness, adjacent step size,
+single hue and 3.91:1 minimum contrast as marks. Intensity carries danger, so the
+ordering is legible in the colour itself.
+
+Nothing wears a data colour as text any more. Verdicts and figures use ink tokens
+with a coloured swatch beside them, which is both the right rule and the reason
+the palette was over-constrained before: requiring all five to be readable as
+small text left only hue to separate them.
 
 ## Licence
 
