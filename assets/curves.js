@@ -35,7 +35,7 @@ const O2 = [
 
 /* Carbon dioxide, ppm. Plotted on a log axis: the range spans three orders of
    magnitude. Starts at 4,000 Ma: Hadean CO₂ may have reached ~100 bar, which is
-   off the top of any scale that can also show 425 ppm. */
+   off the top of any scale that can also show today's 428 ppm. */
 const CO2 = [
   [4000, 200000], [3500, 120000], [3000, 60000], [2500, 30000], [2000, 12000],
   [1500, 7000], [1000, 4500], [800, 4500], [700, 5000], [635, 5000], [541, 5000],
@@ -89,8 +89,16 @@ const PANELS = [
     max: 40,
     ticks: [0, 10, 20, 30, 40],
     fmt: (v) => v.toFixed(v < 1 ? 2 : 0) + '%',
-    // The one line on this page that decides everything before 430 Ma.
-    rule: { at: 16, label: 'below 16% you lose consciousness' },
+    // TWO thresholds, not one, and they are the whole argument. Sustained
+    // combustion needs about 16%; a human loses consciousness nearer 10%.
+    // This site conflated them for a long time, which was wrong by roughly a
+    // factor of two and hid the more interesting fact: the two lines are
+    // crossed 130 million years apart, and it is the second one, fire, that
+    // turns survival from weeks into months.
+    rules: [
+      { at: 16, label: 'above 16%, fire will burn' },
+      { at: 10, label: 'below 10%, you lose consciousness' },
+    ],
   },
   {
     key: 'co2',
@@ -103,7 +111,7 @@ const PANELS = [
     max: 300000,
     ticks: [1000, 10000, 100000],
     fmt: (v) => (v >= 1000 ? Math.round(v / 1000) + 'k' : Math.round(v)) + ' ppm',
-    rule: { at: 425, label: 'today, 425 ppm' },
+    rules: [{ at: 425, label: 'today, about 428 ppm' }],
   },
   {
     key: 'temp',
@@ -116,6 +124,6 @@ const PANELS = [
     max: 60,
     ticks: [-20, 0, 20, 40, 60],
     fmt: (v) => Math.round(v) + ' °C',
-    rule: { at: 15, label: 'today, 15 °C' },
+    rules: [{ at: 15, label: 'today, 15 °C' }],
   },
 ];

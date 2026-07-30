@@ -4,8 +4,9 @@
 
  The sixteen era pages each quote oxygen, CO₂ and temperature for their own
  slice. This page puts all three on one shared time axis so the crossings are
- visible: oxygen clears the 16% consciousness threshold in the Silurian, and
- that is exactly where the survival times stop being measured in minutes.
+ visible: the oxygen panel carries two thresholds, not one. Consciousness fails
+  below about 10%, fire will not burn below about 16%, and those two lines are
+  crossed 130 million years apart.
 
  Three separate panels, never a dual axis. Scale break at 539 Ma, drawn and
  labelled. Markup here is a shell: assets/chart.js fills #chart and #c-table.
@@ -15,7 +16,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The curves: oxygen, CO₂ and temperature across 4.54 Gyr | Deep Time</title>
-<meta name="description" content="Atmospheric oxygen, carbon dioxide and mean global temperature over all of Earth's history, on one shared time axis, with the 16% oxygen threshold that decides survivability.">
+<meta name="description" content="Atmospheric oxygen, carbon dioxide and mean global temperature over all of Earth's history, on one shared time axis, with the two oxygen thresholds that decide survivability: consciousness, and fire.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/eras.css">
@@ -23,7 +24,7 @@
 </head>
 <body data-era="chart" class="viz-root">
 
-<nav class="rail" aria-label="All eras"></nav>
+<nav class="rail" aria-label="All intervals"></nav>
 
 <section class="hero">
  <div class="wrap">
@@ -34,10 +35,11 @@
   <h1 class="hero__name">The curves</h1>
   <div class="hero__dates">Oxygen · carbon dioxide · temperature &nbsp;·&nbsp; 4,540 Myr on one axis</div>
   <p class="hero__lede">
-   Every era page on this site quotes these three for its own slice of time.
-   Put them together and the argument stops needing words: oxygen crosses the
-   line a human can breathe at roughly 430 million years ago, and that is the
-   exact point where the survival times stop being measured in minutes.
+   Every interval page on this site quotes these three for its own slice of
+      time. Put them together and the argument stops needing words: oxygen crosses
+      the line you can stay conscious above at roughly 550 Ma, and does not reach
+      the line fire needs until roughly 420 Ma. The gap between those two numbers
+      is why the middle of this site reads the way it does.
   </p>
  </div>
 </section>
@@ -56,8 +58,9 @@
   <p class="c-hint">
    Hover anywhere on the chart to read all three at that moment, or focus it and
    use ← → (hold shift to move faster). The axis has a deliberate break at 539 Ma:
-   on a straight linear scale the whole Phanerozoic (every era you could survive
-   more than a minute in) is squeezed into the last 12% of the width.
+   on a straight linear scale the whole Phanerozoic, which is every interval you
+   could last more than a few minutes in, is squeezed into the last 12% of the
+   width.
   </p>
 
   <details class="c-tablewrap">
@@ -65,7 +68,7 @@
    <div class="c-tablescroll">
     <table class="c-table">
      <thead>
-      <tr><th>Era</th><th>Starts</th><th>Oxygen</th><th>CO₂</th><th>Mean temp</th><th>You last</th></tr>
+      <tr><th>Interval</th><th>Starts</th><th>Oxygen</th><th>CO₂</th><th>Mean temp</th><th>You last</th></tr>
      </thead>
      <tbody id="c-table"></tbody>
     </table>
@@ -79,8 +82,8 @@
   <h2 class="section-title">What to look at</h2>
   <div class="kit">
    <div class="kit__item">
-    <h3>01: The oxygen line</h3>
-    <p>The horizontal rule on the top panel sits at 16%, roughly where a human stops being able to stay conscious. The curve spends 4.1 billion years underneath it. Everything on this site follows from that one fact.</p>
+    <h3>01: The two oxygen lines</h3>
+      <p>The top panel carries two rules. The lower, near 10%, is where a human stops staying conscious, and the curve spends four billion years underneath it. The upper, near 16%, is where fire starts to burn. They are crossed 130 million years apart, and treating them as one number, which this site did until recently, hides the more interesting half of the story.</p>
    </div>
    <div class="kit__item">
     <h3>02: The Carboniferous spike</h3>
@@ -109,10 +112,10 @@
    <strong>The oxygen curve before the Devonian is model output.</strong> It comes from geochemical carbon–sulfur modelling, and independent groups disagree by roughly a factor of two on the Cambrian and Carboniferous values. The Carboniferous peak in particular is quoted anywhere between 25% and 35% depending on method.
   </div>
   <div class="caveat">
-   <strong>The Hadean is off the CO₂ scale.</strong> Early CO₂ may have reached tens of bar (millions of ppm), which no axis that also has to show 425 ppm can display. The CO₂ panel therefore starts at 4,000 Ma rather than 4,540.
+   <strong>The Hadean is off the CO₂ scale.</strong> Early CO₂ may have reached tens of bar (millions of ppm), which no axis that also has to show 428 ppm can display. The CO₂ panel therefore starts at 4,000 Ma rather than 4,540.
   </div>
   <div class="caveat">
-   <strong>A mean global temperature hides the distribution.</strong> Hothouse worlds are not uniformly hotter; they are flatter, warming the poles far more than the tropics. A single mean is the wrong number for asking whether a specific latitude was survivable, which is why the era pages carry that detail and this chart does not.
+   <strong>A mean global temperature hides the distribution.</strong> Hothouse worlds are not uniformly hotter; they are flatter, warming the poles far more than the tropics. A single mean is the wrong number for asking whether a specific latitude was survivable, which is why the interval pages carry that detail and this chart does not.
   </div>
   </div>
  </div>
@@ -121,7 +124,7 @@
 <footer class="foot">
  <span>Deep Time · the curves</span>
  <span>Three panels, one shared axis, no second y-scale</span>
- <span><a href="index.html">All sixteen eras</a></span>
+ <span><a href="index.html">All sixteen intervals</a></span>
 </footer>
 
 <script src="assets/data.js"></script>

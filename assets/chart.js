@@ -111,16 +111,18 @@
       )
       .join('');
 
-    // The threshold label sits at the LEFT edge of the plot, above its rule, so it
-    // never collides with the curve, which runs high on the right in every panel.
-    const ruleLabel = `<span class="c-rulelabel" style="top:${yPct(p.rule.at, y).toFixed(2)}%;left:${((PAD_L + 6) / W) * 100}%">${p.rule.label}</span>`;
+    // Threshold labels sit at the LEFT edge of the plot, above their rule, so they
+    // never collide with the curve, which runs high on the right in every panel.
+    const ruleLabels = p.rules.map((r) =>
+      `<span class="c-rulelabel" style="top:${yPct(r.at, y).toFixed(2)}%;left:${((PAD_L + 6) / W) * 100}%">${r.label}</span>`
+    ).join('');
 
     return `
       <div class="c-panel">
         <div class="c-head">
           <h3 class="c-title"><i style="background:${p.color}"></i>${p.title}</h3>
           <span class="c-unit">${p.unit}</span>
-          <span class="c-rulenote">${p.rule.label}</span>
+          ${p.rules.map((r) => `<span class="c-rulenote">${r.label}</span>`).join('')}
         </div>
         <div class="c-plot">
           ${breakMark()}
@@ -129,13 +131,13 @@
             ${gridLines}
             <path class="c-area" d="${area(pre, y)}" fill="${p.color}"/>
             <path class="c-area" d="${area(post, y)}" fill="${p.color}"/>
-            <line class="c-rule" x1="${PAD_L}" x2="${W - PAD_R}" y1="${y(p.rule.at).toFixed(2)}" y2="${y(p.rule.at).toFixed(2)}"/>
+            ${p.rules.map((r) => `<line class="c-rule" x1="${PAD_L}" x2="${W - PAD_R}" y1="${y(r.at).toFixed(2)}" y2="${y(r.at).toFixed(2)}"/>`).join('')}
             <path class="c-line" d="${path(pre, y)}" stroke="${p.color}"/>
             <path class="c-line" d="${path(post, y)}" stroke="${p.color}"/>
             <line class="c-cross" data-cross="${p.key}" y1="0" y2="${H}" style="display:none"/>
           </svg>
           <div class="c-labels">
-            ${yLabels}${ruleLabel}
+            ${yLabels}${ruleLabels}
             <span class="c-dot" data-dot="${p.key}" style="background:${p.color};display:none"></span>
           </div>
         </div>
