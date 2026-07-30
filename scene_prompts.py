@@ -494,10 +494,18 @@ important thing in this entire sequence of images."""),
 "devonian": dict(
     cap="Air thick with spores. Breathable at last, and still nothing to eat.",
     scene="""
-THE AIR IS THICK WITH DRIFTING SPORES. Humid still forest air dense with \
-countless pale spores and fine organic dust hanging suspended, lit by shafts of \
-amber light raking between dark woody trunks. The particles are the subject: the \
-air is visibly full of life and none of it is food."""),
+THE AIR IS THICK WITH DRIFTING SPORES AND THE SPORES ARE THE ONLY THING IN FOCUS.
+
+Humid still air packed with countless pale spores and fine organic dust hanging \
+suspended, every particle catching a shaft of amber light raking across the \
+frame. Sharp on the particles, so they read as individual specks and clumps \
+drifting at different depths.
+
+BEHIND THEM, THROWN COMPLETELY OUT OF FOCUS: bare dark tree trunks as plain soft \
+vertical silhouettes and nothing else. The trunks are smooth and clean — no moss, \
+no lichen, no hanging drapery, no beard lichen, no epiphytes, no undergrowth, no \
+ferns, no green. This is not a temperate rainforest. Reduce the background to \
+flat dark verticals and haze so that only the airborne particles have detail."""),
 
 "carboniferous": dict(
     cap="Embers riding 30% oxygen. Fire moves faster here than in air you have breathed.",
@@ -569,7 +577,8 @@ off the drifts. Grey-white, featureless, and violently cold."""),
 # The kills set shares one negative list — the failure mode there is a figure
 # appearing in frame, not the wrong organism.
 KILLS_NEVER = ("no people, no animals, no creatures, no faces, no skulls, no bones, no corpses, "
-               "no vehicles, no machines, no campfire ring, no tents")
+               "no vehicles, no machines, no campfire ring, no tents, no moss, no lichen, "
+               "no hanging epiphytes, no beard lichen, no temperate rainforest")
 
 
 def build(kind: str, slug: str) -> str:
