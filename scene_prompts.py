@@ -306,21 +306,39 @@ days of soaking that nobody has worked out yet.""",
           "no nuts, no bread, no cooked food, no warning label, no skull symbol"),
 
 "jurassic": dict(
-    cap="Conifer needles, ginkgo seeds, a cycad cone. Not one item here is safely edible.",
+    cap="Fish, lizards, eggs, insects. The plants are decoration — every one is indigestible or toxic.",
     scene="""
-A PLATE ON WHICH NOTHING IS SAFELY EDIBLE, AND THAT IS THE POINT. On damp forest \
-litter:
+YOU EAT ANIMALS HERE AND NOTHING ELSE. The animal food is the SUBJECT and fills \
+the centre of the frame; the plants are shoved out to the margins where they \
+belong, because not one of them can be eaten.
 
-A spray of stiff dark araucaria conifer foliage with small overlapping scale-like \
-leaves. A few GINKGO leaves, unmistakably fan-shaped and split into two lobes, \
-with a handful of pale fleshy ginkgo seeds that smell rancid. A broken CYCAD CONE, \
-barrel-shaped and armoured with tight overlapping woody scales, spilling toxic \
-seeds. Some tight coiled fern fiddleheads.
+CENTRE, the actual meal, on damp forest litter:
 
-Everything is tough, resinous, bitter or poisonous. There is not one flower, one \
-fruit or one grain anywhere in the world.""",
-    never="no flowers, no blossom, no fruit, no berries, no apples, no grass, no wheat, "
-          "no vegetables, no bread, no mushrooms, no meat, no cooked food, no palm fronds"),
+A SMALL FEATHERED THEROPOD DINOSAUR, dead and laid on its side, and it is the \
+centrepiece. About the size of a chicken or a crow — small enough to carry in one \
+hand. Body covered in coarse dark filamentous proto-feathers, shaggy rather than \
+sleek, with longer stiff feathers along the forearms and a long straight bony \
+tail. Slender neck, narrow tapering snout with small sharp teeth, NOT a beak. \
+Three-fingered hands with curved claws. Two long birdlike hind legs. It must read \
+as a small game animal you could actually catch, never as a monster.
+
+Around it: a whole freshwater fish, thick-scaled and heavy. Two small dark \
+lizards. A shrew-sized early mammal with coarse fur. A clutch of three large \
+off-white leathery-shelled eggs in a shallow scrape of leaf mould. Several big \
+dark beetles and a long-winged insect.
+
+MARGINS, pushed aside and clearly not the meal: a spray of stiff dark ARAUCARIA \
+foliage with small hard overlapping scale-leaves, two fan-shaped GINKGO leaves \
+split into two lobes with a couple of split discoloured rancid seeds, and tight \
+coiled fern fiddleheads. Resinous, hard, bitter, unappetising. Not a harvest.
+
+THERE IS NO CONE ANYWHERE IN THIS PICTURE.""",
+    never="no cones, no pine cones, no fir cones, no cycad cones, no cone-shaped object, "
+          "no pine nuts, no edible-looking nuts, no hazelnuts, no almonds, no acorns, "
+          "no plump seeds in a pile, no autumn harvest arrangement, no large dinosaur, "
+          "no tyrannosaurus, no raptor with a huge sickle claw, no scaly lizard-skinned "
+          "dinosaur, no flowers, no fruit, no berries, no grass, no wheat, no vegetables, "
+          "no bread, no mushrooms, no cooked food, no palm fronds"),
 
 "cretaceous": dict(
     cap="The first fruit on Earth. Small, fibrous, mostly seed, and nobody bred it for you.",
@@ -356,18 +374,25 @@ you.""",
 "neogene": dict(
     cap="Grass seed, roots and game. Enormous work for very few calories.",
     scene="""
-GRASS EXISTS NOW AND IT IS BARELY WORTH EATING. On dry cracked earth: several \
-whole GRASS SEED HEADS on long dry stalks, the individual grains tiny, hard, \
-tightly husked and scattering off the stem at a touch. A small pile of the loose \
-grains beside them, obviously a poor return for the effort.
+GRASS EXISTS NOW AND IT IS BARELY WORTH EATING. THIS IS WILD GRASS, NOT A CROP.
 
-With them, two fibrous earth-covered roots and a portion of dark lean game meat.
+THE SEED HEADS ARE NOT WHEAT AND NOT BARLEY. They are thin, wispy, open and \
+sparse — a few dozen tiny scattered seeds spaced along fine wiry side-branches, \
+with long hair-like bristles sticking out in all directions, so the head looks \
+more like a feathery weed than a grain ear. Half of them have already shattered \
+and dropped their seed. There is no dense packed spike, no neat rows, no fat \
+plump kernels.
 
-The grains are minute compared to anything cultivated: this is wild grass, \
-thousands of years before anyone selected it for bigger seed that stays on the \
-stalk.""",
-    never="no wheat ears, no barley, no cultivated cereal, no bread, no flour, no maize, "
-          "no rice bowl, no fruit, no vegetables, no cooked food, no sickle, no basket"),
+Beside them, the whole reward for stripping every head in the picture: a pitiful \
+small scatter of loose seed, each grain a slim dark sliver smaller than a grain \
+of rice and mostly husk. It should look like almost nothing — a thimbleful for an \
+hour of work.
+
+With them, two fibrous earth-covered roots and a portion of dark lean game meat, \
+which are what you will actually live on.""",
+    never="no wheat, no wheat ears, no barley, no oats, no rye, no cultivated cereal, "
+          "no dense grain spike, no plump kernels, no bread, no flour, no maize, no rice, "
+          "no fruit, no vegetables, no cooked food, no sickle, no basket, no sheaf"),
 
 "quaternary": dict(
     cap="Everything at once. This is the diet your body was actually built for.",
