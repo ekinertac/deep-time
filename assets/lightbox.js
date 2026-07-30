@@ -10,10 +10,10 @@
  * hands us the focus trap, the inert background, the backdrop and Esc-to-close
  * for free — all of which are easy to get wrong by hand.
  *
- * Two zoom levels. Default fits the viewport, which is already a 2–3x jump from
- * the inline size on a desktop. Clicking the image switches to actual pixels and
- * lets the stage scroll, which is the only way to see detail on a phone where
- * "fit the viewport" is not a zoom at all.
+ * The image is shown fit-to-viewport, which is a 2–3x jump from the inline size.
+ * Clicking anywhere closes, the picture included: an actual-pixel zoom toggle
+ * lived here briefly and fought the obvious expectation that clicking a lightbox
+ * dismisses it.
  *
  * Progressive enhancement: with JS off the images are still images. The triggers
  * are given role and tabindex here rather than in the markup so that a
@@ -41,11 +41,10 @@
     <div class="lb__bar">
       <span class="lb__count"></span>
       <span class="lb__cap"></span>
-      <span class="lb__hint">&larr; &rarr; between images &middot; click to zoom &middot; Esc to close</span>
+      <span class="lb__hint">&larr; &rarr; between images &middot; click anywhere to close</span>
     </div>`;
   document.body.append(dlg);
 
-  const stage = dlg.querySelector('.lb__stage');
   const big = dlg.querySelector('.lb__img');
   const count = dlg.querySelector('.lb__count');
   const cap = dlg.querySelector('.lb__cap');
@@ -54,7 +53,6 @@
   function show(n) {
     i = (n + imgs.length) % imgs.length;
     const src = imgs[i];
-    stage.classList.remove('is-zoomed');
     big.src = src.currentSrc || src.src;
     // The thumbnail's alt already describes the picture; reusing it keeps one
     // description rather than letting a second one drift out of date.
@@ -79,22 +77,11 @@
     });
   });
 
-  // Clicking the picture toggles between fit-to-viewport and actual pixels.
-  big.addEventListener('click', (e) => {
-    e.stopPropagation();
-    stage.classList.toggle('is-zoomed');
-    if (stage.classList.contains('is-zoomed')) {
-      // Centre the view on the click, so zooming goes where you pointed.
-      const r = big.getBoundingClientRect();
-      stage.scrollLeft = (e.clientX - r.left) / r.width * stage.scrollWidth - stage.clientWidth / 2;
-      stage.scrollTop = (e.clientY - r.top) / r.height * stage.scrollHeight - stage.clientHeight / 2;
-    }
-  });
-
   dlg.querySelector('.lb__close').addEventListener('click', () => dlg.close());
-  // Anywhere outside the picture closes. The stage fills the dialog, so this is
-  // the backdrop-click behaviour people expect.
-  dlg.addEventListener('click', (e) => { if (e.target !== big) dlg.close(); });
+  // Any click closes, including on the picture itself. An earlier version made
+  // clicking the image toggle an actual-pixel zoom, which fought the obvious
+  // expectation that clicking a lightbox dismisses it.
+  dlg.addEventListener('click', () => dlg.close());
 
   dlg.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1); }

@@ -492,8 +492,9 @@ section + section { border-top: 1px solid var(--rule); }
 /* ---- lightbox ----
    Native <dialog>, so the focus trap, inert background and Esc-to-close are the
    platform's job rather than ours. See assets/lightbox.js. */
-.is-zoomable { cursor: zoom-in; }
+.is-zoomable { cursor: pointer; }
 .is-zoomable:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
+.is-zoomable:hover { outline: 2px solid var(--accent-2); outline-offset: 3px; }
 
 .lb {
   /* Override the UA's dialog box, which is position:absolute, margin:auto and
@@ -523,12 +524,7 @@ section + section { border-top: 1px solid var(--rule); }
   min-height: 0;
   padding: clamp(0.75rem, 3vw, 2.5rem);
 }
-.lb__img { max-width: 100%; max-height: 100%; width: auto; height: auto; cursor: zoom-in; }
-
-/* Actual pixels, and the stage becomes the scroll container. place-items:center
-   has to go or a larger-than-stage image gets clipped instead of scrolled. */
-.lb__stage.is-zoomed { overflow: auto; place-items: start; padding: 0; }
-.lb__stage.is-zoomed .lb__img { max-width: none; max-height: none; cursor: zoom-out; }
+.lb__img { max-width: 100%; max-height: 100%; width: auto; height: auto; cursor: zoom-out; }
 
 .lb__bar {
   display: flex;
