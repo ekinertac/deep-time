@@ -395,7 +395,7 @@ which are what you will actually live on.""",
           "no fruit, no vegetables, no cooked food, no sickle, no basket, no sheaf"),
 
 "quaternary": dict(
-    cap="Everything at once. This is the diet your body was actually built for.",
+    cap="Meat, marrow, berries, roots, nuts, fish. Everything at once, and all of it wild.",
     scene="""
 THE DIET YOUR SPECIES WAS SHAPED BY. On a flat cold stone: cuts of dark red lean \
 game meat, a cracked long bone with exposed marrow, a heap of small dark berries, \
