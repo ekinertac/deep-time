@@ -416,11 +416,21 @@ KILLS = {
 "hadean": dict(
     cap="Sulfurous vapour off molten rock. One breath is enough.",
     scene="""
-THE AIR IS VENTING OUT OF THE GROUND. Ground-level detail of a glowing orange \
-fissure in black basalt crust, with dense sulfurous vapour pouring upward out of \
-it and rolling toward the camera. Heat distortion visibly warping everything \
-above the crack. Yellow sulfur crusting the fissure lips. The vapour is thick \
-enough to be the main mass in the frame."""),
+THE AIR IS VENTING OUT OF THE GROUND, AND THE FISSURE IS THE SUBJECT.
+
+A single narrow crack runs through cooled black basalt in the near foreground, \
+sharply in focus, close enough to touch. Inside it, molten rock glows hot orange \
+and yellow-white, the light spilling up the crack walls. The lips of the fissure \
+are crusted with pale yellow sulfur deposits.
+
+Rising straight out of that crack, a distinct twisting ROPE OF SULFUROUS VAPOUR — \
+a clearly defined pale yellow-green plume with visible curling structure, caught \
+against the darker rock behind it, thinning as it climbs. Not a diffuse fog: a \
+legible column of gas with an edge to it, coming out of one identifiable place. \
+Heat distortion warps the rock immediately above the crack.
+
+The ropy folded surface of cooled pahoehoe lava fills the rest of the frame, \
+falling off into haze at the edges. Nothing else competes with the fissure."""),
 
 "archean": dict(
     cap="Methane haze. It looks like a warm evening and there is no oxygen in it.",
@@ -443,10 +453,18 @@ silent and lethally dry."""),
 "ediacaran": dict(
     cap="The medium is water. There is no version of this you can breathe.",
     scene="""
-THE MEDIUM IS WATER AND YOU CANNOT BREATHE IT. Looking through a dim green-blue \
-water column: suspended organic particles and marine snow drifting slowly through \
-weak light shafts that attenuate and die within a few metres. The surface is \
-visible far above as a faint pale shimmer, unreachable. Heavy, cold, pressing."""),
+THE MEDIUM IS WATER AND YOU CANNOT BREATHE IT. Looking up through a dim \
+green-blue water column: suspended organic particles and marine snow drifting \
+through weak light shafts that attenuate and die within a few metres. The surface \
+is visible far above as a faint pale shimmer, unreachable.
+
+TO ANCHOR THE FRAME, one tall CHARNIA frond stands in the near foreground as a \
+dark silhouette against the faint light from above, rising from the bottom of the \
+frame. It is a slender upright frond built from a row of repeated identical \
+branch units along a central axis, each subdivided into smaller identical \
+branchlets — no midrib, no veins, not a fern and not a leaf. It is a black \
+cut-out shape, not lit or detailed, present only to give the murk a scale and an \
+edge. Heavy, cold, pressing."""),
 
 "cambrian": dict(
     cap="Dry wind over bare stone. Nothing organic in the air, and nothing to burn.",
