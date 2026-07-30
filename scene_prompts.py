@@ -527,18 +527,40 @@ the immediate foreground. The sun a hard pale disc barely visible through it."""
 "triassic": dict(
     cap="Thin hot air over cracked mud. Sea level here feels like 4,500 metres.",
     scene="""
-THE AIR IS THIN AND HOT AND VISIBLY MOVING. Heavy heat shimmer rising off a floor \
-of cracked pale mud, distorting everything above it into a wavering blur. Fine \
-dust lifting in a small spiralling dust devil in the middle distance. The light \
-is flat, washed out and dusty. Dead, dry and short of breath."""),
+THE AIR IS THIN AND HOT AND VISIBLY MOVING, AND THE GROUND IS BARE.
+
+Heavy heat shimmer rising off a floor of cracked pale mud in curtains, distorting \
+everything above it into a wavering blur. A small spiralling dust devil lifting \
+fine pale dust in the middle distance, with a clear twisting column. The light is \
+flat, washed out and dusty.
+
+THE GROUND IS COMPLETELY BARE — cracked mud plates, grit and scattered stones, \
+and nothing growing anywhere in the frame. No bushes, no shrubs, no twigs, no \
+scrub, no dry brush, no branching woody plants of any kind. Any vegetation would \
+be wrong here: flowering plants do not exist yet and a twiggy shrub is an \
+angiosperm shape. Empty ground, moving air, nothing else. Dead, dry and short of \
+breath."""),
 
 "jurassic": dict(
     cap="Fog between the trunks. The forest is full and none of it is edible.",
     scene="""
-THE AIR IS DENSE WHITE FOG. Thick humid fog packed between dark straight conifer \
-trunks, reducing everything beyond a few metres to grey silhouettes and swallowing \
-the ground entirely. Moisture beading on bark and fern fronds in the immediate \
-foreground. Close, muffled, disorienting, and something could be standing in it."""),
+THE AIR IS DENSE WHITE FOG AND THE FOG IS THE ONLY SUBJECT.
+
+Thick humid fog packed between trees, so heavy that everything beyond a few \
+metres dissolves and the ground disappears entirely. Visible layers and shafts \
+where light rakes through the vapour. Droplets suspended in the air, catching the \
+light.
+
+THE TREES ARE FLAT DARK SILHOUETTES AND NOTHING MORE. Reduce them to plain \
+vertical shapes with no visible bark texture, no needled branchlets, no drooping \
+sprays, no recognisable foliage. THESE ARE NOT SPRUCE, FIR OR PINE — no drooping \
+needled twigs, no Christmas-tree shape, no plantation forest. Where any foliage \
+edge shows at all it is a stiff blunt scale-leaved araucaria bough held out \
+straight, never a soft drooping needle spray.
+
+No fern understory, no undergrowth, no visible ground plants — the fog has \
+swallowed the floor. Close, muffled, disorienting, and something could be \
+standing in it."""),
 
 "cretaceous": dict(
     cap="Chicxulub. Ejecta re-entering, and the sky becomes a broiler.",
@@ -577,8 +599,8 @@ off the drifts. Grey-white, featureless, and violently cold."""),
 # The kills set shares one negative list — the failure mode there is a figure
 # appearing in frame, not the wrong organism.
 KILLS_NEVER = ("no people, no animals, no creatures, no faces, no skulls, no bones, no corpses, "
-               "no vehicles, no machines, no campfire ring, no tents, no moss, no lichen, "
-               "no hanging epiphytes, no beard lichen, no temperate rainforest")
+               "no vehicles, no machines, no campfire ring, no tents, "
+               "no beard lichen, no hanging epiphyte curtains, no modern temperate rainforest")
 
 
 def build(kind: str, slug: str) -> str:
