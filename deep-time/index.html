@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--
+ index.html: the front page and the argument the whole site makes.
+
+ Two devices carry it:
+  1. The proportional column (#timeline). Row height is the era's real share of
+   4.54 Gyr, so the four eras that kill you in under a minute physically fill
+   88% of it. The reader scrolls past four billion years of asphyxiation
+   before reaching anything survivable. No copy needed.
+  2. The ranked table (#ranked), which reorders the same sixteen by survival
+   rather than by time, because the two orderings are almost unrelated.
+
+ Both render from ERAS in assets/data.js, so adding or re-dating an era updates
+ the page, the rail and the pagers together. Structure and styling live in
+ assets/index.css; the shared shell is ../assets/site.css.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Time: how long would you survive in each interval of Earth?</title>
+<meta name="description" content="Sixteen eras of Earth's history, each rated by how long an unequipped modern human would last. Oxygen is the filter for four billion years; food is the filter after that.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://ekinertac.github.io/explorables/deep-time/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Deep Time">
+<meta property="og:url" content="https://ekinertac.github.io/explorables/deep-time/">
+<meta property="og:title" content="Deep Time: how long would you survive in each interval of Earth?">
+<meta property="og:description" content="Sixteen eras of Earth's history, each rated by how long an unequipped modern human would last. Oxygen is the filter for four billion years; food is the filter after that.">
+<meta property="og:image" content="https://ekinertac.github.io/explorables/deep-time/assets/og/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Deep Time: how long would you survive in each interval of Earth?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deep Time: how long would you survive in each interval of Earth?">
+<meta name="twitter:description" content="Sixteen eras of Earth's history, each rated by how long an unequipped modern human would last. Oxygen is the filter for four billion years; food is the filter after that.">
+<meta name="twitter:image" content="https://ekinertac.github.io/explorables/deep-time/assets/og/card.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="assets/eras.css">
+<link rel="stylesheet" href="assets/index.css">
+</head>
+<body data-era="index" id="top">
+
+<nav class="rail" aria-label="All intervals"></nav>
+
+<section class="hero">
+ <div class="wrap">
+  <div class="hero__meta">
+   <span class="hero__num">Deep Time</span>
+   <span class="eyebrow">4,540,000,000 years, rated</span>
+  </div>
+  <h1 class="hero__name">How long<br>would you last?</h1>
+  <div class="hero__dates">You arrive with the clothes you are wearing and a knife. Nothing else.</div>
+  <p class="hero__lede">
+   Earth has been habitable for humans for about 1.5% of its existence, and
+   comfortable for far less. Below: every interval, what the air and the food and the
+   weather were actually doing, and how long that gives you.
+  </p>
+
+  <p class="narrow" style="margin-top:1.6rem;font-family:var(--mono);font-size:0.86rem;line-height:1.75;color:var(--ink-dim)">
+     The survival times on this site are reasoned scenarios, not measurements. They
+     come from published reconstructions of the air, the climate and the food, and
+     from what is known about how a human body fails. Nobody has run the experiment,
+     the reconstructions themselves are disputed, and the answer would change with
+     the date, the latitude and the weather. Every page ends with a section on which
+     of its numbers are soft.
+    </p>
+
+    <div class="stat">
+   <div class="stat__cell band-minutes">
+    <span class="stat__n">88%</span>
+    <span class="stat__k swatch">of Earth's history has air you could not stay conscious in</span>
+   </div>
+   <div class="stat__cell band-weeks">
+    <span class="stat__n">11%</span>
+    <span class="stat__k swatch">is breathable but has nothing on land you can eat</span>
+   </div>
+   <div class="stat__cell band-indefinite">
+    <span class="stat__n">1.5%</span>
+    <span class="stat__k swatch">would let you live out a normal life</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="curves-promo">
+ <div class="wrap">
+  <a class="promo" href="chart.html">
+   <div class="promo__body">
+    <span class="eyebrow">The data behind all sixteen verdicts</span>
+    <h2 class="promo__title">The curves</h2>
+    <p class="promo__lede">
+     Oxygen, carbon dioxide and temperature across the whole 4.54 billion years,
+     on one shared axis. Oxygen crosses the line a human can breathe at roughly
+     430 million years ago: the exact point where the survival times on this
+     site stop being measured in minutes.
+    </p>
+    <span class="promo__cta">Open the chart</span>
+   </div>
+   <figure class="promo__spark">
+    <svg id="promo-spark" viewBox="0 0 320 110" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <figcaption>Atmospheric oxygen, 4.54 Ga → now. The lower line is consciousness, the upper one is fire.</figcaption>
+   </figure>
+  </a>
+ </div>
+</section>
+
+<section id="roll">
+ <div class="wrap">
+  <h2 class="section-title">Drop me somewhere</h2>
+  <p class="narrow" style="margin-bottom:2rem">
+   Pick a moment at random from the whole 4.54 billion years, with no weighting
+   of any kind. Because the four lethal intervals are also the four longest, the odds
+   are not close. Roll it ten times and watch the tally.
+  </p>
+
+  <div class="roll">
+   <div class="roll__side">
+    <button class="roll__btn" id="roll-btn" type="button">Drop me<br>somewhere</button>
+    <span class="roll__hint">Uniform random over 4,540 Myr. Every millisecond of Earth's history is equally likely.</span>
+   </div>
+
+   <div class="roll__panel" id="roll-panel">
+    <span class="roll__age" id="roll-age">press the button</span>
+    <span class="roll__era" id="roll-era">Nowhere yet</span>
+    <span class="roll__verdict swatch" id="roll-verdict"></span>
+    <p class="roll__why" id="roll-why"></p>
+    <a class="roll__link" id="roll-link" href="#"></a>
+   </div>
+
+   <div class="roll__tally">
+    <div class="roll__ticks" id="roll-ticks"></div>
+    <span class="roll__count" id="roll-count">No drops yet</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="timeline">
+ <div class="wrap">
+  <h2 class="section-title">To scale</h2>
+  <p class="narrow" style="margin-bottom:2rem">
+   Every row below is sized by its true share of the 4.54 billion years. This is
+   the part that never survives a textbook, where each period gets one tidy chapter
+   regardless of length. The Quaternary (ice ages, mammoths, all of human
+   existence) is the sliver at the bottom.
+  </p>
+
+  <div class="legend">
+   <span class="legend__i band-minutes">minutes</span>
+   <span class="legend__i band-weeks">weeks</span>
+   <span class="legend__i band-months">months</span>
+   <span class="legend__i band-years">years</span>
+   <span class="legend__i band-indefinite">indefinite</span>
+  </div>
+
+  <div class="tl" id="tl"></div>
+ </div>
+</section>
+
+<section id="ranked">
+ <div class="wrap">
+  <h2 class="section-title">Ranked by survival</h2>
+  <p class="narrow" style="margin-bottom:2rem">
+   The same sixteen, reordered. Chronology and survivability track each other
+   loosely at best: the Carboniferous beats the Jurassic by a wide margin, and
+   the Triassic is worse than the Silurian, 200 million years older.
+  </p>
+  <div class="rank__wrap">
+   <table class="rank">
+    <thead>
+     <tr><th>#</th><th>Interval</th><th>You last</th><th>The limiting factor</th></tr>
+    </thead>
+    <tbody id="rank"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section id="rules">
+ <div class="wrap">
+  <h2 class="section-title">Three rules that decide everything</h2>
+  <div class="kit">
+   <div class="kit__item">
+    <h3>01: Oxygen is the first filter</h3>
+    <p>Two thresholds, crossed 130 million years apart. Consciousness fails somewhere below about 10% oxygen, and Earth stayed under that line until roughly 550 Ma. Fire needs about 16%, which does not arrive until roughly 420 Ma. Before the first line everything is a suffocation problem. Between the two the air is breathable and nothing will burn.</p>
+   </div>
+   <div class="kit__item">
+    <h3>02, Then food is the filter</h3>
+    <p>Breathable air arrives long before edible land. No grass until roughly 55 Ma, no fruit until the mid-Cretaceous. A diet of lean meat alone starts to fail somewhere past roughly a third of calories from protein, though that threshold is soft and depends on total energy, available fat and how long you keep it up.</p>
+   </div>
+   <div class="kit__item">
+    <h3>03: Disease is a non-issue</h3>
+    <p>Pathogens co-evolve with their hosts, so most of what is out there would probably fail on you. That is not immunity: host jumps happen, and free-living organisms in soil and warm water infect people with no co-evolution at all. What reliably kills you is an ordinary infected wound, in every interval, with no antibiotics anywhere.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<footer class="foot">
+ <span>Deep Time · sixteen intervals</span>
+ <span>Boundaries rounded from the ICS 2023 chart</span>
+  <span>Called intervals, not intervals: the sixteen are three eons and thirteen periods</span>
+ <span>Figures are ranges where the science is; see each interval's last section</span>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/curves.js"></script>
+<script src="assets/nav.js"></script>
+<script src="assets/roll.js"></script>
+<script>
+/*
+ * Renders the two data views. Kept inline because it is the only page that uses
+ * it and it is short; anything that grows past this belongs in assets/.
+ */
+(function () {
+ const TOTAL = ERAS[0].from;      // 4540 Myr: the full span
+ // Total height for the column, scaled to the viewport. A fixed 2400px reads as
+ // deliberate emptiness on a desktop and as several screens of dead scrolling on
+ // a phone, where the Archean alone would outrun the display twice over.
+ const COLUMN_PX = Math.round(Math.max(1250, Math.min(2400, innerWidth * 2.1)));
+ const MIN_PX = 52;           // floor so the thinnest interval stays clickable
+
+ document.getElementById('tl').innerHTML = ERAS.map((e) => {
+  const dur = e.from - e.to;
+  const h = Math.max(MIN_PX, Math.round((dur / TOTAL) * COLUMN_PX));
+  const tight = h < 92 ? '1' : '0';
+  return `<a class="tl__row band-${e.band}" href="${eraFile(e)}" style="height:${h}px" data-tight="${tight}">
+   <span></span>
+   <span class="tl__n">${String(e.n).padStart(2, '0')}</span>
+   <span>
+    <span class="tl__name">${e.name}</span>
+    <span class="tl__span">${formatAge(e.from)} – ${formatAge(e.to)} · ${dur.toFixed(dur < 10 ? 2 : 0)} Myr · ${((dur / TOTAL) * 100).toFixed(1)}%</span>
+   </span>
+   <span class="tl__v">${e.verdict}</span>
+  </a>`;
+ }).join('');
+
+ // Worst to best by survival, then by age within a band: the ordering the
+ // table header promises. WHY lives in data.js; the randomiser reads it too.
+ const ORDER =['hadean','archean','proterozoic','ediacaran','cambrian','ordovician','triassic','silurian','jurassic','permian','devonian','carboniferous','cretaceous','paleogene','neogene','quaternary'];
+ const by = Object.fromEntries(ERAS.map((e) => [e.slug, e]));
+
+ /*
+  * Sparkline on the chart promo. Deliberately a plain LINEAR time axis, unlike
+  * the chart page's broken one: at this size the shape IS the argument: flat on
+  * the floor for 88% of the width, then a late spike. The chart page breaks the
+  * axis because it has to show detail; this one benefits from the distortion.
+  */
+ (function () {
+  const svg = document.getElementById('promo-spark');
+  if (!svg || typeof O2 === 'undefined') return;
+  const W = 320, H = 110, MAX = 40;
+  const px = (age) => ((4540 - age) / 4540) * W;
+  const py = (v) => H - (v / MAX) * H;
+  const d = O2.map(([a, v], i) => (i ? 'L' : 'M') + px(a).toFixed(1) + ' ' + py(v).toFixed(1)).join(' ');
+  const ruleY = py(16).toFixed(1);
+  svg.innerHTML =
+   `<path d="${d} L${W} ${H} L0 ${H} Z" fill="#3987e5" opacity="0.12"/>` +
+   `<line x1="0" y1="${ruleY}" x2="${W}" y2="${ruleY}" stroke="#565d68" stroke-width="1" vector-effect="non-scaling-stroke"/>` +
+   `<path d="${d}" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+ })();
+
+ document.getElementById('rank').innerHTML = ORDER.map((slug, i) => {
+  const e = by[slug];
+  return `<tr class="band-${e.band}">
+   <td>${String(i + 1).padStart(2, '0')}</td>
+   <td><a href="${eraFile(e)}">${e.name}</a></td>
+   <td class="rank__v swatch">${e.verdict}</td>
+   <td class="rank__why">${WHY[slug]}</td>
+  </tr>`;
+ }).join('');
+})();
+</script>
+</body>
+</html>

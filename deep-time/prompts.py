@@ -596,6 +596,135 @@ few metres of frozen tussock grass in the immediate foreground. Spindrift curlin
 off the drifts. Grey-white, featureless, and violently cold."""),
 }
 
+
+# ---------------------------------------------------------------------------
+# THE SCENE SET (21:9 hero). Lifted out of the generator when the repo became a
+# series: the engine is now episode-agnostic and every word that is specific to
+# Earth's history lives here. `never` names what did not exist yet in that
+# period, which is the part that most needs to be right and the part a general
+# image model gets wrong by default. Palette comes from PALETTES above, so the
+# hero lands inside the page theme.
+# ---------------------------------------------------------------------------
+SCENE = {
+"hadean": dict(scene="""
+A molten early Earth, 4.2 billion years ago. Black basalt plains fractured by a network of glowing orange lava fissures, the crust visibly thin over the melt. Low shield volcanoes venting. No liquid water anywhere.
+
+THE MOON IS ENORMOUS AND IS THE SUBJECT OF THIS PICTURE. It sits only 30,000 km away, twelve times closer than today. Its disc spans ROUGHLY HALF THE FULL WIDTH OF THE IMAGE and is so large that the top of it is cut off by the upper edge of the frame. Its lower limb hangs close to the horizon. A vast wall of dark grey-brown cratered rock dominating the whole upper half of the composition, lit along one limb. Do not render a small moon in the distance: it should feel oppressively close, as if it could be fallen into.
+
+Meteor streaks entering the atmosphere. The sky is a thick sulfurous red-black, lit from below by the lava.""",
+    never='no water, no ocean, no lakes, no plants, no trees, no grass, no animals, no life of any kind, no blue sky, no white clouds, no snow, no soil'),
+"archean": dict(scene="""
+A shallow tropical coastal sea, 2.7 billion years ago, under a thick orange photochemical methane haze like Titan's atmosphere. The sun is a small dim diffused disc, visibly weaker than today.
+
+STROMATOLITES fill the shallow water: low domed and club-shaped mounds built of finely laminated mineral layers, like stacked stone cabbages, half-submerged, their tops exposed at low tide. The water is a murky green from dissolved iron. A low bare black volcanic island on the horizon. The land is naked rock.""",
+    never='no plants, no trees, no grass, no moss, no green vegetation on land, no animals, no fish, no shells, no blue sky, no white clouds'),
+"proterozoic": dict(scene="""
+Snowball Earth at the Marinoan glaciation, 650 million years ago. A flat white sea-ice sheet reaching an unbroken horizon, split by a long lead of black open water. Pressure ridges of shattered pale-blue ice thrown up along the fractures. Wind-scoured sastrugi on the surface.
+
+The sun sits low and pale with a faint ice-crystal halo around it. The air is bitterly dry and clear. Absolutely nothing lives here.""",
+    never='no plants, no trees, no grass, no animals, no penguins, no polar bears, no seals, no birds, no people, no boats, no rock outcrops with vegetation'),
+"ediacaran": dict(scene="""
+A dim shallow sea floor, 560 million years ago, viewed from underwater. Weak shafts of light from the surface, suspended particles drifting.
+
+CHARNIA: tall soft fronds standing upright, each anchored by a round holdfast disc. THE FROND IS NOT A LEAF. It has no midrib, no central vein and no veins of any kind. It is built from a row of repeated identical branch units arranged alternately along a central axis, and each branch unit is itself subdivided into smaller identical branchlets: a self-similar fractal quilted texture, closer to a feather made of feathers than to any leaf.
+
+DICKINSONIA: flat soft-bodied oval mats lying directly on the sediment, like a quilted air mattress or a giant fingerprint. Divided into many dozens of fine parallel raised ridges running at a slight angle off a central line, the ridges on one side offset against the other. Boneless and thinner than a coin, no harder than a jellyfish.
+THEY ARE ABSOLUTELY NOT SHELLS. No hinge, no valve, no hard rim, no scallop or clam outline, and no ribs radiating out from a single point.
+
+The sea floor is carpeted in a wrinkled elephant-skin microbial mat, not sand.""",
+    never='no shells, no scallops, no clams, no bivalves, no oysters, no hinges, no radiating fan ribs, no leaf veins, no midribs, no fish, no crabs, no lobsters, no coral, no seaweed, no kelp, no jellyfish with trailing tentacles, no eyes, no legs, no mouths, no bones, no shrimp'),
+"cambrian": dict(scene="""
+A bare rocky coastline 510 million years ago under a pale hazy high-CO2 sky. Grey fractured bedrock, loose cobbles and coarse sand meeting a shallow green sea.
+
+THE LAND IS COMPLETELY STERILE. Not one plant, not a blade of anything, no soil, no lichen, no green tint on the rock. It looks like a Martian shore. Without roots to hold sediment the coast is raw stone and shifting gravel.
+
+In the clear shallow water, low segmented armoured arthropods rest on the bottom.""",
+    never='no land plants, no grass, no moss, no lichen, no trees, no soil, no green on land, no fish, no birds, no crabs, no seaweed, no coral reef'),
+"ordovician": dict(scene="""
+A bare rocky shore 450 million years ago. The only life on land is a thin flat crust of liverworts: dark green lobed sheets pressed directly against damp rock in the splash zone, no taller than a fingernail, with no stems and no leaves.
+
+In the warm shallow sea behind, a CAMEROCERAS: a giant nautiloid whose shell is a long straight narrow cone several metres in length, chambered by visible cross-walls, tapering to a point, with a cluster of tentacles at the wide open end.
+
+A white glacier front on the far horizon, the Hirnantian ice arriving.""",
+    never='no trees, no grass, no upright plants, no leaves, no flowers, no ferns, no moss cushions, no land animals, no insects, no fish with jaws, no birds'),
+"silurian": dict(scene="""
+A low damp coastal plain 425 million years ago, the first land plants in existence scattered across wet mud.
+
+COOKSONIA: tiny bright green stems only a few centimetres tall, thinner than a pencil. Each stem is completely leafless and forks into two, then forks again, and each tip carries a single small round spore capsule like a pinhead. Nothing is taller than an ankle. Between them, flat liverwort crusts on the wet ground.
+
+A calm estuary behind under warm, stable, hazy light. The scale is deliberately low and intimate: this is a landscape you could step over.""",
+    never='no trees, no leaves, no grass, no reeds, no flowers, no ferns, no bushes, no tall vegetation, no land vertebrates, no birds, no forest'),
+"devonian": dict(scene="""
+The world's first forest, 370 million years ago, on a meandering river bank of dark mud.
+
+ARCHAEOPTERIS: the first modern-looking tree. A thick woody trunk with rough bark, true lateral branches spaced along its length, and flat fern-like fronds of small leaves. Around 25 metres tall, conifer-like in silhouette but fern-leaved.
+PROTOTAXITES: rising among them, one enormous smooth featureless tapering column of pale fungal tissue, twice the height of the trees, with no bark texture, no branches and no leaves at all. Just a giant blank organic pillar.
+
+Amber late-afternoon light through the canopy. Fallen logs in the river shallows.""",
+    never='no grass, no flowers, no flowering plants, no fruit, no conifers, no pines, no palms, no broadleaf trees, no dinosaurs, no mammals, no birds, no people'),
+"carboniferous": dict(scene="""
+A dense coal swamp 310 million years ago.
+
+LEPIDODENDRON: the trees are NOT palms and NOT baobabs. Each has a straight, unbranched, column-like trunk of near-uniform thickness from base to top, covered in a dense diamond-lattice of rhomboid leaf scars like reptile scales. No branches anywhere along the trunk. Only at the very top does it split into a small tight crown of thin bare repeatedly-forking twigs.
+CALAMITES: between them, tall slender hollow bamboo-like stems with clear horizontal joints, carrying whorls of fine needle leaves radiating in rings at each joint.
+
+The ground is black standing water and bare dark mud strewn with fallen logs. A distant orange wildfire and a column of smoke on the horizon.""",
+    never='no grass, no grass tufts, no reeds, no palm trees, no palm fronds, no baobab or bottle-shaped trunks, no flowers, no broadleaf trees, no conifers, no dinosaurs, no mammals, no birds'),
+"permian": dict(scene="""
+The desert interior of the supercontinent Pangaea, 270 million years ago, thousands of kilometres from any coast.
+
+Wind-carved rust-orange dune fields and flat-topped eroded mesas of banded red sandstone. A wide braided riverbed, bone dry, its channels cracked and sun-baked. Airborne dust turns the sun into a hard pale disc with no glare.
+
+GLOSSOPTERIS: sparse low scrub clinging to the dry wash, bearing distinctive tongue-shaped leaves with a strong central midrib, growing in loose tufts on short woody stems. Nothing else grows.""",
+    never='no grass, no flowers, no cactus, no succulents, no agaves, no aloes, no rosettes of thick waxy pointed leaves, no palm trees, no conifers, no dinosaurs, no mammals, no birds, no camels, no people, no oasis'),
+"triassic": dict(scene="""
+A hot arid basin 240 million years ago on a half-empty planet still recovering from the largest extinction in history.
+
+A wide floor of cracked dry mud in polygonal plates, red-bed terraces and eroded badlands behind. Visible heat shimmer above the ground. The sky is washed out, dusty and pale rather than blue.
+
+Sparse widely spaced ARAUCARIA-like conifers cluster around a shrinking waterhole: straight trunks, branches in regular whorls, dense rounded canopies of small stiff scale leaves. DICROIDIUM seed ferns in low clumps, their fronds forked into a distinctive Y shape. Long distances of bare ground between plants.""",
+    never='no grass, no flowers, no broadleaf trees, no palm trees, no cactus, no mammals, no birds, no large dinosaurs, no people, no green lawn'),
+"jurassic": dict(scene="""
+A humid jade-green forest clearing 155 million years ago. Damp misty light shafts through a closed canopy.
+
+ARAUCARIA conifers: very tall, straight, branches in regular whorls, covered in stiff overlapping scale-like leaves.
+CYCADS: squat barrel-shaped trunks of rough diamond-patterned armour, each topped with a stiff rosette of long, hard, palm-like fronds, but they are NOT palms and have no smooth ringed trunk.
+GINKGO: trees carrying distinctive fan-shaped leaves, split into two lobes.
+TREE FERNS and horsetails filling the understory.
+
+There is not a single flower or blade of grass anywhere in this world.""",
+    never='no grass, no flowers, no blossom, no flowering plants, no fruit, no palm trees, no broadleaf deciduous trees, no oak, no maple, no mammals, no birds, no dinosaurs in frame'),
+"cretaceous": dict(scene="""
+A warm floodplain 70 million years ago, a wide slow silt-laden river under a hot blue sky with towering cumulus. Ice-free world, deep humid atmospheric distance.
+
+MAGNOLIA: early flowering trees on the near bank, with large simple glossy leaves and big pale cup-shaped blooms of thick waxy petals: primitive, beetle-pollinated flowers, not delicate modern ones.
+FAN PALMS with pleated leaves in the middle distance, and tall conifers on the far bank.
+
+Lush and green, but the ground between the trees is bare mud, leaf litter and low ferns, not lawn.""",
+    never='no grass, no grassland, no lawn, no meadow, no oak, no maple, no modern orchard fruit, no roses, no daisies, no mammals larger than a cat, no people'),
+"paleogene": dict(scene="""
+A dense humid broadleaf forest 45 million years ago, in the hottest stretch of the last 66 million years, at a latitude that will one day be temperate.
+
+A closed leafy canopy of large-leaved flowering trees with FAN PALMS growing right among them. Thick tangled undergrowth, vines, ferns. Small red and dark fruits on shrubs. Steam rising from wet leaf litter in shafts of gold light. Standing water and dark rich soil.
+
+Tropical in feel, and nothing about it says cold or seasonal.""",
+    never='no grass, no grassland, no open plains, no dinosaurs, no humans, no city, no conifer forest, no pine trees, no snow, no autumn colours'),
+"neogene": dict(scene="""
+Open dry savanna 8 million years ago, at the moment grass took over the world.
+
+Tall golden bunch-grass running unbroken to distant blue hills, moving in the wind. Widely spaced flat-topped acacia-like trees with fine compound leaves and umbrella crowns, casting long shadows. Dust suspended in low late-afternoon light. A vast open sky.
+
+Recognisably the landscape our own lineage evolved in, and completely empty of us.""",
+    never='no humans, no people, no huts, no fences, no roads, no vehicles, no cattle, no dinosaurs, no dense forest, no jungle, no mountains with snow'),
+"quaternary": dict(scene="""
+The mammoth steppe at the Last Glacial Maximum, 20,000 years ago. Cold, dry and immense.
+
+Pale wind-scoured tussock grass and low sedge over frozen ground, far more productive than modern tundra. Across the entire far horizon, the front of a continental ice sheet a kilometre thick, a flat white wall rather than a mountain range. A low winter sun in a hard steel-blue sky. Wind-driven snow streaming low across the ground.
+
+Bleak, open, and enormous.""",
+    never='no trees, no forest, no shrubs taller than a knee, no buildings, no roads, no vehicles, no modern objects, no snow-capped alpine peaks, no penguins, no people in frame'),
+}
+
 # The kills set shares one negative list: the failure mode there is a figure
 # appearing in frame, not the wrong organism.
 KILLS_NEVER = ("no people, no animals, no creatures, no faces, no skulls, no bones, no corpses, "
@@ -610,6 +739,12 @@ def build(kind: str, slug: str) -> str:
     return (f"{MENU_STYLE}\n{e['scene'].strip()}\n\n"
         f"DO NOT INCLUDE, these did not exist yet or are anachronistic: "
         f"{e['never']}.\nAlso: {NEVER}.")
+  if kind == "scene":
+    e = SCENE[slug]
+    return (f"{SCENE_STYLE}\n\nPALETTE: hold the whole image within these colours and "
+        f"shades between them: {PALETTES[slug]}\n{e['scene'].strip()}\n\n"
+        f"DO NOT INCLUDE ANY OF THE FOLLOWING. They did not exist in this period and "
+        f"their presence is a factual error: {e['never']}.\nAlso: {NEVER}.")
   if kind == "kills":
     e = KILLS[slug]
     return (f"{KILLS_STYLE}\n\nPALETTE: hold the image within these colours and shades "

@@ -1,5 +1,5 @@
 # qwok app definition: how this project runs (read by `qwok run`).
-name = "deep-time"
+name = "explorables"
 cmd  = "sh -c \"python3 -m http.server $PORT\""
 # type = "app"   # set for desktop/non-web projects (run directly, no portless/URL)
 # app_port = 3000   # optional: pin a fixed port (default: portless auto-assigns)

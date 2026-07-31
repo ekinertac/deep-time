@@ -1,0 +1,138 @@
+/*
+ * shelf.css: the series front page (/index.html) and nothing else.
+ *
+ * Kept out of site.css because none of it is reused: the episode pages never
+ * render a shelf, and the shelf never renders a hero, a kit or a beat. site.css
+ * supplies every token used here (--ink, --rule, --display, --pad, .wrap,
+ * .eyebrow), so this file only adds layout.
+ *
+ * One card per row on purpose. The whole genre is visual, the card image is a
+ * purpose-built 1200x630 rather than a screenshot, and a grid of small tiles
+ * would make the images too small to be the argument for opening them.
+ *
+ * Read alongside: index.html (the only page that loads this), assets/site.css
+ * (tokens and shell this builds on).
+ */
+
+.shelf-head {
+  padding: clamp(4rem, 12vh, 9rem) 0 clamp(2rem, 5vh, 3.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.shelf-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(4rem, 16vw, 11rem);
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.4rem;
+  text-transform: uppercase;
+}
+
+.shelf-lede {
+  max-width: 58ch;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+.shelf {
+  list-style: none;
+  margin: 0;
+  padding: clamp(2.5rem, 7vh, 5rem) 0;
+  display: grid;
+  gap: clamp(2.5rem, 7vh, 5rem);
+}
+
+.shelf-item > article {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+/* Image beside text only when there is room for the card to stay legible.
+   Below this it stacks, image first, because the image is the invitation. */
+@media (min-width: 900px) {
+  .shelf-item > article { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+}
+
+.shelf-shot {
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--bg-raise);
+  overflow: hidden;
+  transition: border-color 160ms ease;
+}
+
+.shelf-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 400ms cubic-bezier(.2,.7,.2,1);
+}
+
+.shelf-shot:hover { border-color: var(--ink-faint); }
+.shelf-shot:hover img { transform: scale(1.02); }
+
+.shelf-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.shelf-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent-2);
+  letter-spacing: 0.08em;
+}
+
+.shelf-name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.9rem;
+  text-transform: uppercase;
+}
+
+.shelf-name a { color: var(--ink); text-decoration: none; }
+.shelf-name a:hover { color: var(--accent-2); }
+
+.shelf-desc {
+  margin: 0 0 1.4rem;
+  max-width: 48ch;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+.shelf-go {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent-2);
+  padding-bottom: 0.2rem;
+}
+
+.shelf-go:hover { color: var(--accent-2); }
+
+.shelf-foot {
+  border-top: 1px solid var(--rule);
+  padding: 2.5rem 0 4rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.shelf-foot a { color: var(--ink-dim); }
+
+@media (prefers-reduced-motion: reduce) {
+  .shelf-shot img { transition: none; }
+  .shelf-shot:hover img { transform: none; }
+}
