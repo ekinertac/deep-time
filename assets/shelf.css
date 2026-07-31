@@ -14,6 +14,11 @@
  * (tokens and shell this builds on).
  */
 
+/* site.css reserves a left gutter for the fixed nav rail that every episode
+   page carries. The shelf has no rail, so without this the whole page sits
+   76px off-centre against a border that starts at zero. */
+body { padding-left: 0; }
+
 .shelf-head {
   padding: clamp(4rem, 12vh, 9rem) 0 clamp(2rem, 5vh, 3.5rem);
   border-bottom: 1px solid var(--rule);
