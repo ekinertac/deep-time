@@ -1,0 +1,2 @@
+# Markdown here is build input for build.py, not a document to render.
+# This turns off the global mkdown PostToolUse hook for this repo.
