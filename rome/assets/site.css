@@ -1,0 +1,481 @@
+/*
+ * site.css: the whole visual system for episode 02. One stylesheet, no build step.
+ *
+ * The page is an excavation: a dark soil field (CSS gradients + grain), a WebGL
+ * city floating in it, and a reading column that sits to the right of the model on
+ * wide screens and on top of a scrim on narrow ones. Colour carries meaning in
+ * exactly one place, the four survival bands, which are an ordinal ramp: single
+ * warm family, lightness rising with survival, so the order is readable in the
+ * colour and not only in the label.
+ *
+ * Layer order (z): strata -1 → canvas 0 → vignette 1 → content 2 → rail/hud 5.
+ * Nothing in the content layer depends on the canvas existing.
+ *
+ * Read alongside: index.html (structure), page.js (which classes it toggles).
+ */
+
+@import url('fonts.css');
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; }
+ol, ul { padding: 0; list-style: none; }
+
+:root {
+  --void:    #0a0806;
+  --soil-1:  #150f0a;
+  --soil-2:  #201709;
+  --ink:     #ece2cd;
+  --dim:     #a2947c;
+  --faint:   #6f6352;
+  --rule:    rgba(236,226,205,0.13);
+
+  --minium:  #c2402a;   /* cinnabar: the one hot accent */
+  --ochre:   #c79a44;
+  --verd:    #5f8d78;   /* bronze patina: the river, structural marks */
+
+  --b-weeks:    #a3301c;
+  --b-months:   #c06229;
+  --b-years:    #c99a3f;
+  --b-lifetime: #cfd8bd;
+
+  --disp: 'Instrument Serif', 'Big Caslon', Georgia, serif;
+  --caps: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --body: 'Spectral', Georgia, 'Times New Roman', serif;
+  --mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --pad:  clamp(1.15rem, 4vw, 5rem);
+  --rail-w: 54px;
+}
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(1.02rem, 0.45vw + 0.94rem, 1.16rem);
+  line-height: 1.72;
+  overflow-x: hidden;
+}
+
+/* ---------- background layers ---------- */
+
+/* Soil: warm at the top of the page, colder and deeper further down. The bands are
+   deliberately uneven, like fill, and they do not line up with the centuries. */
+.strata {
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(120% 80% at 18% 8%, rgba(199,154,68,0.16), transparent 62%),
+    radial-gradient(90% 60% at 82% 92%, rgba(95,141,120,0.10), transparent 70%),
+    linear-gradient(180deg, var(--soil-2) 0%, var(--soil-1) 34%, var(--void) 72%, #060504 100%);
+}
+/* Grain + vignette, over the canvas so the model sits in the same dirt as the page. */
+.vign {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(120% 100% at 50% 45%, transparent 38%, rgba(6,5,4,0.55) 88%, rgba(6,5,4,0.85) 100%);
+  mix-blend-mode: multiply;
+}
+.vign::after {
+  content: ''; position: absolute; inset: -200%;
+  opacity: 0.14; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* The far edge of the ground plane meets the page gradient in a hard line. Fading
+   the top of the canvas dissolves it, so the model sits in the soil rather than on
+   a horizon. */
+#city {
+  position: fixed; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  opacity: 0; transition: opacity 1.4s ease 0.2s;
+  -webkit-mask-image: linear-gradient(180deg, transparent 2%, #000 40%);
+  mask-image: linear-gradient(180deg, transparent 2%, #000 40%);
+}
+#city.on { opacity: 1; }
+/* Below the descent the model has said what it has to say, and the reading gets
+   priority: it stays as atmosphere, at a fraction of the weight. */
+#city.dim { opacity: 0.16; }
+
+/* ---------- shared type ---------- */
+.eyebrow {
+  font-family: var(--caps); font-weight: 600;
+  font-size: 0.66rem; letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--dim);
+}
+.sec-title {
+  font-family: var(--disp); font-weight: 400;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem); line-height: 1.06;
+  letter-spacing: -0.01em; margin-bottom: 1.6rem;
+}
+.col {
+  position: relative; z-index: 2;
+  max-width: 66ch; margin-inline: auto;
+  padding-inline: var(--pad);
+}
+b, strong { font-weight: 600; color: #fff8ea; }
+i, em { font-style: italic; }
+
+/* ---------- gate ---------- */
+.gate {
+  position: relative; z-index: 2;
+  min-height: 100svh; display: flex; flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 8vh, 7rem) var(--pad) 2.4rem;
+}
+.gate__inner { max-width: 1180px; margin-inline: auto; width: 100%; }
+.gate__title {
+  font-family: var(--disp); font-weight: 400;
+  /* Height-aware: three lines of display type plus a lede has to fit a laptop
+     viewport, so the vh term takes over on short screens. */
+  font-size: clamp(3.2rem, min(11.8vw, 15.5vh), 10.5rem);
+  line-height: 0.87; letter-spacing: -0.035em;
+  margin: 1.3rem 0 1.5rem; text-wrap: balance;
+}
+.gate__title span { display: block; }
+.gate__title .em {
+  font-style: italic; color: var(--minium);
+  text-shadow: 0 0 60px rgba(194,64,42,0.35);
+}
+.gate__lede {
+  max-width: 46ch; font-size: 1.12em; color: var(--ink);
+}
+.gate__q {
+  font-family: var(--disp); font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic; color: var(--ochre); margin-top: 1.1rem;
+}
+.gate__go {
+  display: inline-flex; align-items: center; gap: 1rem;
+  margin-top: 1.9rem; text-decoration: none;
+  font-family: var(--mono); font-size: 0.74rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: 0.85rem 1.3rem 0.8rem;
+  background: rgba(10,8,6,0.4); backdrop-filter: blur(3px);
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.gate__go:hover { color: var(--ink); border-color: var(--minium); background: rgba(194,64,42,0.10); }
+.gate__go svg { width: 13px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
+.gate__go:hover svg { animation: nudge 1.1s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateY(4px); } }
+.gate__foot {
+  max-width: 1180px; margin: auto auto 0; width: 100%;
+  font-family: var(--mono); font-size: 0.76rem; color: var(--faint);
+  border-top: 1px solid var(--rule); padding-top: 1rem;
+}
+
+/* staggered load-in, one orchestrated moment */
+.reveal { animation: rise 1s cubic-bezier(.16,.8,.3,1) both; animation-delay: var(--d, 0ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); filter: blur(6px); } }
+
+/* ---------- terms ---------- */
+.terms { position: relative; z-index: 2; padding: clamp(4rem, 12vh, 9rem) 0; }
+.terms .col { background: rgba(8,6,5,0.72); backdrop-filter: blur(6px);
+  border: 1px solid var(--rule); border-left: 2px solid var(--minium);
+  padding: clamp(1.6rem, 4vw, 3rem); max-width: 62ch; }
+.terms__list { counter-reset: t; margin-bottom: 1.8rem; }
+.terms__list li {
+  counter-increment: t; position: relative;
+  padding: 0.75rem 0 0.75rem 3.2rem;
+  border-top: 1px solid var(--rule);
+}
+.terms__list li::before {
+  content: counter(t, upper-roman); position: absolute; left: 0; top: 0.9rem;
+  font-family: var(--caps); font-size: 0.8rem; color: var(--minium); letter-spacing: 0.1em;
+}
+.terms__note {
+  font-family: var(--mono); font-size: 0.8rem; line-height: 1.8; color: var(--dim);
+  border-top: 1px solid var(--rule); padding-top: 1.4rem;
+}
+.key { margin-top: 2.6rem; max-width: 52ch; }
+.key p:last-child { font-size: 0.95rem; color: var(--dim); margin-top: 0.6rem; }
+
+/* ---------- the descent ---------- */
+.descent { position: relative; z-index: 2; }
+
+.cent {
+  position: relative;
+  min-height: 100svh; display: flex; align-items: center;
+  padding: 9vh var(--pad);
+}
+/* Reading column pushed right on wide screens so the model owns the left half. */
+.cent__body {
+  margin-left: auto; margin-right: clamp(0px, 3.5vw, 84px);
+  width: min(52ch, 46vw, 100%);
+  font-size: 0.97em; line-height: 1.64;
+  background: linear-gradient(180deg, rgba(8,6,5,0.86), rgba(8,6,5,0.74));
+  backdrop-filter: blur(7px);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--band, var(--rule));
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  box-shadow: 0 40px 80px -40px #000;
+}
+.cent__head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+.cent__num {
+  font-family: var(--caps); font-weight: 800; font-size: 2.4rem; line-height: 1;
+  letter-spacing: 0.04em; color: var(--band);
+}
+.cent__yrs { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; color: var(--dim); }
+.cent__title {
+  font-family: var(--disp); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  line-height: 1.08; margin: 0.6rem 0 1.1rem; text-wrap: balance;
+}
+.cent__body p { margin-bottom: 0.85rem; }
+.cent__meta {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule); margin: 1.1rem 0;
+}
+.cent__meta div { background: rgba(10,8,6,0.9); padding: 0.7rem 0.85rem; }
+.cent__meta .k {
+  display: block; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.25rem;
+}
+.cent__meta .v { font-family: var(--mono); font-size: 0.95rem; color: var(--ink); }
+.cent__meta .v.band { color: var(--band); }
+.cent__pop {
+  font-family: var(--mono); font-size: 0.68rem; line-height: 1.72;
+  color: var(--dim); border-left: 2px solid var(--rule); padding-left: 0.9rem; margin-bottom: 1.1rem;
+}
+.cent__danger {
+  font-size: 0.9rem; color: var(--dim);
+  border-top: 1px solid var(--rule); padding-top: 0.95rem;
+}
+.cent__danger b {
+  display: block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--minium); margin-bottom: 0.35rem;
+}
+.cent__ends {
+  font-family: var(--disp); font-style: italic; font-size: 1.25rem;
+  color: var(--band); margin-top: 1rem;
+}
+
+/* Ghost numeral, set in the soil behind the column. */
+.cent__ghost {
+  position: absolute; left: clamp(1rem, 5vw, 6rem); top: 50%; transform: translateY(-50%);
+  font-family: var(--caps); font-weight: 800;
+  font-size: clamp(7rem, 20vw, 20rem); line-height: 0.8;
+  color: transparent; -webkit-text-stroke: 1px rgba(236,226,205,0.10);
+  pointer-events: none; user-select: none;
+  transition: -webkit-text-stroke-color 0.8s;
+}
+.cent.is-live .cent__ghost { -webkit-text-stroke-color: rgba(236,226,205,0.2); }
+
+/* ---------- interrupts (full-bleed statements between centuries) ---------- */
+.beat {
+  position: relative; z-index: 2;
+  min-height: 78svh; display: flex; flex-direction: column; justify-content: center;
+  padding: 10vh var(--pad);
+  text-align: center;
+  border-block: 1px solid var(--rule);
+  background: linear-gradient(180deg, rgba(6,5,4,0), rgba(6,5,4,0.93) 28%, rgba(6,5,4,0.93) 72%, rgba(6,5,4,0));
+}
+.beat__yr {
+  font-family: var(--mono); font-size: clamp(2.6rem, 9vw, 6rem); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--minium); line-height: 1;
+}
+.beat__h {
+  font-family: var(--disp); font-size: clamp(1.7rem, 4.4vw, 3.4rem); line-height: 1.05;
+  margin: 1rem auto 1rem; max-width: 22ch; text-wrap: balance;
+}
+.beat p { max-width: 56ch; margin-inline: auto; color: var(--ink); }
+.beat--quiet .beat__yr { color: var(--verd); }
+
+/* ---------- image slots ---------- */
+.plate {
+  position: relative; z-index: 2; padding: 6vh var(--pad) 7vh;
+  background: linear-gradient(180deg, rgba(6,5,4,0), rgba(6,5,4,0.9) 14%, rgba(6,5,4,0.92) 86%, rgba(6,5,4,0));
+}
+.plate figure { max-width: 1180px; margin-inline: auto; }
+.plate__box {
+  position: relative; aspect-ratio: 21 / 9;
+  border: 1px solid var(--rule);
+  background:
+    repeating-linear-gradient(135deg, rgba(236,226,205,0.028) 0 2px, transparent 2px 9px),
+    linear-gradient(160deg, #191209, #0b0806 70%);
+  display: grid; place-content: center; gap: 0.6rem; text-align: center; padding: 2rem;
+}
+.plate__box::after {
+  content: ''; position: absolute; inset: 10px; border: 1px solid rgba(236,226,205,0.07);
+}
+.plate__tag {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--minium);
+}
+.plate__what { font-family: var(--caps); font-size: 0.95rem; letter-spacing: 0.08em; color: var(--dim); max-width: 44ch; }
+.plate figcaption {
+  font-family: var(--mono); font-size: 0.72rem; line-height: 1.8; color: var(--dim);
+  margin-top: 0.9rem; max-width: 68ch;
+}
+
+/* ---------- the finding ---------- */
+.finding {
+  position: relative; z-index: 2; padding: clamp(5rem, 14vh, 11rem) 0;
+  background: linear-gradient(180deg, rgba(6,5,4,0) 0%, rgba(6,5,4,0.9) 12%, rgba(6,5,4,0.94) 100%);
+}
+.finding__h {
+  font-family: var(--disp); font-weight: 400;
+  font-size: clamp(2rem, 4.6vw, 3.8rem); line-height: 1.04; margin: 1rem 0 2.5rem;
+  text-wrap: balance;
+}
+.finding__h em { color: var(--ochre); }
+.big { font-size: 1.14em; max-width: 54ch; }
+
+.mirror { max-width: 1180px; margin: 0 auto 3rem; padding-inline: var(--pad); }
+.mirror__box {
+  border: 1px solid var(--rule); background: rgba(9,7,5,0.94);
+  padding: 0.6rem 0.4rem;
+}
+#mirror { width: 100%; height: clamp(300px, 42vh, 460px); }
+.mirror figcaption { display: flex; flex-wrap: wrap; gap: 0.4rem 2rem; margin-top: 0.9rem; }
+.mirror__k { font-family: var(--mono); font-size: 0.7rem; color: var(--faint); }
+.mirror__k::before {
+  content: ''; display: inline-block; width: 22px; height: 2px; margin-right: 0.6rem;
+  vertical-align: middle;
+}
+.mirror__k.up::before { background: var(--ochre); }
+.mirror__k.dn::before { background: var(--minium); }
+
+.regimes {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--rule); border-block: 1px solid var(--rule);
+  max-width: 1180px; margin: 3.5rem auto 0;
+}
+.reg { background: #0a0806; padding: clamp(1.4rem, 3vw, 2.4rem); }
+.reg__w {
+  font-family: var(--caps); font-weight: 800; font-size: clamp(1.4rem, 2.6vw, 2rem);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--rw);
+}
+.reg__span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; color: var(--faint); display: block; margin: 0.4rem 0 1rem; }
+/* Specific enough to beat the `.reg p` rule below it. */
+.reg .reg__ask {
+  font-family: var(--disp); font-style: italic; font-size: 1.65rem; line-height: 1.2;
+  color: var(--ink); margin-bottom: 0.9rem;
+}
+.reg p { font-size: 0.95rem; color: var(--dim); }
+
+/* ---------- paradox ---------- */
+.paradox { position: relative; z-index: 2; padding: clamp(4rem, 12vh, 9rem) 0; background: rgba(6,5,4,0.94); }
+.para__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.para__cell { background: #0a0806; padding: 1.4rem; }
+.para__cell.wide { grid-column: 1 / -1; }
+.para__yr { font-family: var(--mono); font-weight: 700; font-size: 2rem; color: var(--verd); display: block; margin-bottom: 0.5rem; }
+
+/* ---------- finis ---------- */
+.finis {
+  position: relative; z-index: 2;
+  padding: clamp(6rem, 20vh, 14rem) var(--pad);
+  background: rgba(6,5,4,0.94);
+  display: flex; flex-direction: column; gap: 0.2em;
+}
+.finis__l {
+  font-family: var(--disp); font-weight: 400;
+  font-size: clamp(1.9rem, 5.2vw, 4.4rem); line-height: 1.02;
+  max-width: 24ch; text-wrap: balance;
+}
+.finis__l--b { font-style: italic; color: var(--ochre); margin-left: auto; text-align: right; }
+
+/* ---------- close ---------- */
+.close {
+  position: relative; z-index: 2; padding: clamp(4rem, 12vh, 9rem) 0 6rem;
+  border-top: 1px solid var(--rule); background: rgba(6,5,4,0.96);
+}
+.soft li { padding: 1rem 0; border-top: 1px solid var(--rule); font-size: 0.97rem; color: var(--dim); }
+.srcs li { padding: 0.5rem 0; border-top: 1px solid var(--rule); }
+.srcs a {
+  font-family: var(--mono); font-size: 0.76rem; color: var(--dim);
+  text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.25s, border-color 0.25s;
+}
+.srcs a:hover { color: var(--ink); border-color: var(--minium); }
+
+/* chart labels, set inside the SVG */
+#mirror .mx {
+  font-family: var(--caps); font-size: 14px; fill: var(--dim);
+  text-anchor: middle; dominant-baseline: middle;
+}
+#mirror .mn { font-family: var(--mono); font-size: 13px; fill: var(--dim); }
+.colophon { margin-top: 2.4rem; font-family: var(--mono); font-size: 0.72rem; color: var(--faint); line-height: 1.9; }
+
+/* ---------- instruments ---------- */
+.hud {
+  position: fixed; left: var(--pad); bottom: clamp(1rem, 3vh, 2rem); z-index: 5;
+  width: 232px; padding: 0.9rem 1rem;
+  background: rgba(6,5,4,0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--rule); border-left: 2px solid var(--band, var(--minium));
+  font-family: var(--mono);
+  opacity: 0; transform: translateY(14px); transition: opacity 0.6s, transform 0.6s, border-color 0.6s;
+  pointer-events: none;
+}
+.hud.on { opacity: 1; transform: none; }
+.hud__row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; padding: 0.22rem 0; }
+.hud__k { font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); }
+.hud__v { font-size: 0.78rem; color: var(--ink); text-align: right; }
+.hud__row--v { border-top: 1px solid var(--rule); margin-top: 0.35rem; padding-top: 0.45rem; }
+.hud__row--v .hud__v { color: var(--band); font-size: 0.9rem; }
+
+/* Right rail: navigation AND the survival chart. Tick length = months free. */
+.rail {
+  position: fixed; right: 0; top: 0; bottom: 0; z-index: 5; width: var(--rail-w);
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+  gap: 2px; padding-right: 10px;
+  opacity: 0; transition: opacity 0.6s;
+}
+.rail.on { opacity: 1; }
+.rail__t {
+  position: relative; display: block; height: 1.35vh; min-height: 9px;
+  width: var(--w); background: var(--band); opacity: 0.42;
+  transition: opacity 0.3s, transform 0.3s;
+  transform-origin: right center;
+}
+.rail__t::before {
+  content: attr(data-r);
+  position: absolute; right: calc(100% + 8px); top: 50%; transform: translateY(-50%);
+  font-family: var(--caps); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--dim);
+  opacity: 0; transition: opacity 0.25s; white-space: nowrap;
+}
+.rail__t:hover, .rail__t.is-live { opacity: 1; transform: scaleX(1.25); }
+.rail__t:hover::before, .rail__t.is-live::before { opacity: 1; }
+
+/* ---------- survival band colours (the only semantic colour on the page) ---------- */
+.band-weeks    { --band: var(--b-weeks); }
+.band-months   { --band: var(--b-months); }
+.band-years    { --band: var(--b-years); }
+.band-lifetime { --band: var(--b-lifetime); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  /* Room on the right for the tick rail, and at the bottom for the readout bar,
+     both of which are fixed and would otherwise sit on top of the text. */
+  body { padding-bottom: 4.6rem; }
+  .cent { padding: 8vh calc(var(--pad) + 34px) 8vh var(--pad); min-height: auto; }
+  .beat, .plate, .col { padding-right: calc(var(--pad) + 24px); }
+  .cent__body { margin-inline: auto; width: 100%; }
+  .cent__ghost { font-size: 22vw; left: auto; right: var(--pad); top: 0; transform: none; opacity: 0.7; }
+  .regimes, .para__grid { grid-template-columns: 1fr; }
+  .hud {
+    left: 0; right: 0; bottom: 0; width: 100%;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 0.8rem;
+    border-left: none; border-top: 2px solid var(--band, var(--minium));
+    padding: 0.5rem var(--pad) 0.55rem;
+  }
+  .hud__row { flex-direction: column; align-items: flex-start; gap: 0; padding: 0.1rem 0; }
+  .hud__row:nth-child(2) { display: none; }
+  .hud__row--v { border-top: none; margin: 0; padding-top: 0.1rem; }
+  .hud__v { text-align: left; font-size: 0.72rem; }
+  .rail { width: 34px; padding-right: 6px; }
+  .rail__t { height: 1.1vh; }
+  .plate__box { aspect-ratio: 4 / 3; }
+  /* On a phone the text lies directly over the model, so the model gives way. */
+  #city { opacity: 0; }
+  #city.on { opacity: 0.52; }
+  #city.dim { opacity: 0.12; }
+  .gate { background: linear-gradient(180deg, rgba(6,5,4,0.5) 0%, rgba(6,5,4,0.72) 45%, rgba(6,5,4,0.86) 100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { animation: none; }
+  .gate__go:hover svg { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+ index.html: the frame. Everything with content in it is built by assets/page.js
+ from assets/data.js, so the twenty centuries exist in exactly one place.
+
+ The page is one continuous descent, not an index plus sub-pages. Three layers,
+ back to front:
+   1. #city   - a WebGL canvas (assets/scene.js) drawing the walled city as a
+                field of instanced blocks whose count tracks the real population.
+                Strictly optional: it is aria-hidden, it never carries text, and
+                if WebGL is missing the layer simply does not exist.
+   2. .strata - CSS-only soil bands and grain. Carries the atmosphere when the
+                canvas is absent.
+   3. the reading column, which is plain scrolling HTML.
+
+ The instrument is the fixed readout (#hud) and the right-hand tick rail (#rail),
+ which is both navigation and the survival chart: tick length encodes how long the
+ traveller stays free in that century.
+
+ Read alongside: assets/data.js (all figures), assets/page.js (rendering and
+ scroll wiring), assets/scene.js (WebGL), assets/site.css (everything visual).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property, Pilgrim, Papers: twenty centuries of arriving in Rome with nothing</title>
+<meta name="description" content="Drop a modern human into Rome in each of the twenty centuries CE, with the clothes they are wearing and a knife. Survival does not track the city's wealth. It tracks whether the city has a category for you.">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Property, Pilgrim, Papers: twenty centuries of arriving in Rome with nothing">
+<meta property="og:description" content="Survival in Rome does not track the city's wealth. It tracks whether the city has a category for you. Twenty centuries, one place, one traveller with a knife.">
+<meta property="og:image" content="assets/img/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="strata" aria-hidden="true"></div>
+<canvas id="city" aria-hidden="true"></canvas>
+<div class="vign" aria-hidden="true"></div>
+
+<!-- ===================== GATE ===================== -->
+<header class="gate" id="top">
+  <div class="gate__inner">
+    <p class="eyebrow reveal" style="--d:0ms">Explorables &middot; episode 02 &middot; one place, twenty centuries</p>
+    <h1 class="gate__title">
+      <span class="reveal" style="--d:120ms">Property.</span>
+      <span class="reveal" style="--d:260ms">Pilgrim.</span>
+      <span class="reveal em" style="--d:400ms">Papers.</span>
+    </h1>
+    <p class="gate__lede reveal" style="--d:560ms">
+      You are dropped into Rome wearing what you have on, carrying a knife.
+      No papers, no money, not one word of the language. The city is the same
+      city every time. Only the century changes.
+    </p>
+    <p class="gate__q reveal" style="--d:700ms">How long do you last?</p>
+    <a class="gate__go reveal" href="#terms" style="--d:840ms">
+      <span>Begin at the year 1</span>
+      <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2 V34 M4 26 L12 36 L20 26" /></svg>
+    </a>
+  </div>
+  <p class="gate__foot reveal" style="--d:980ms">
+    The answer is not the one the wealth of the city predicts.
+  </p>
+</header>
+
+<!-- ===================== TERMS ===================== -->
+<section class="terms" id="terms">
+  <div class="col">
+    <h2 class="sec-title">The terms of the drop</h2>
+    <ol class="terms__list">
+      <li><b>You keep nothing.</b> Clothes, a knife. No documents, no coin, no metal anyone recognises as money.</li>
+      <li><b>You cannot speak.</b> Not Latin, not the Romanesco of the 14th century, not Italian. You can point.</li>
+      <li><b>You cannot catch anything from another person.</b> Plague, smallpox, cholera, typhus, tuberculosis: all off the table, in every century.</li>
+      <li><b>Everything else is unchanged.</b> An infected cut still kills you. So do sepsis, tetanus, a burst appendix, hunger, cold, water, and other people.</li>
+    </ol>
+    <p class="terms__note">
+      The clock stops when you die <b>or</b> when you become someone's property.
+      In the first centuries the second one arrives first, and it arrives fast.
+      Every duration on this page is a reasoned scenario, not a measurement; the
+      figures behind it are cited, and the ones that are disputed say so.
+    </p>
+  </div>
+
+  <div class="col key">
+    <p class="eyebrow">Reading the model</p>
+    <p>
+      Behind this column is the city, drawn as a diagram and not a map. Each block
+      is about <b>300 people</b> at the same exchange rate in every century, so the
+      field thins and thickens with the real population. Where the blocks sit
+      matters too: scattered across the whole walled area in late antiquity, packed
+      into the bend of the Tiber from the 11th century, spilling outside the wall
+      only in the 20th. The pale shapes that never disappear are monuments, because
+      they never did. The wall itself does not exist until 271.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== THE DESCENT ===================== -->
+<main class="descent" id="descent"><!-- built by page.js --></main>
+
+<!-- ===================== THE FINDING ===================== -->
+<section class="finding" id="finding">
+  <div class="col">
+    <p class="eyebrow">What the twenty centuries turn out to say</p>
+    <h2 class="finding__h">Survival does not track the city's wealth.<br>
+      <em>It tracks whether the city has a category for you.</em></h2>
+  </div>
+
+  <figure class="mirror">
+    <div class="mirror__box"><svg id="mirror" viewBox="0 0 1000 460" preserveAspectRatio="none" role="img"
+      aria-label="Two mirrored curves across twenty centuries. Above the axis, the population of Rome: about a million in the first two centuries, collapsing to roughly seventeen thousand by the fourteenth, then climbing to nearly three million in the twentieth. Below the axis, how long the traveller stays alive and free: months in the imperial centuries, weeks during the Gothic Wars, a full lifetime from the seventh to the fifteenth, then falling again to months in the twentieth."></svg></div>
+    <figcaption>
+      <span class="mirror__k up">above &mdash; inhabitants of Rome (log scale, midpoint of the cited range)</span>
+      <span class="mirror__k dn">below &mdash; months alive and free (log scale; the bar runs off the chart where the answer is "the rest of your life")</span>
+    </figcaption>
+  </figure>
+
+  <div class="col">
+    <p class="big">
+      The two curves are close to a reflection of each other. The Rome that can
+      feed a million people is the Rome most likely to sell you. The Rome with
+      cattle standing in its Forum is the one that takes you in, feeds you and
+      finds you work.
+    </p>
+  </div>
+
+  <div class="regimes" id="regimes"><!-- built by page.js --></div>
+</section>
+
+<!-- ===================== THE PARADOX ===================== -->
+<section class="paradox">
+  <div class="col">
+    <p class="eyebrow">Two dates you walk straight through</p>
+    <h2 class="sec-title">The centuries famous for killing everyone are the ones that hire you</h2>
+    <div class="para__grid">
+      <div class="para__cell">
+        <span class="para__yr">541</span>
+        <p>The Plague of Justinian reaches the Mediterranean. Nothing happens to you.</p>
+      </div>
+      <div class="para__cell">
+        <span class="para__yr">1347</span>
+        <p>The Black Death reaches Italy. Nothing happens to you either.</p>
+      </div>
+      <div class="para__cell wide">
+        <p>What follows a mass death is a labour shortage, and a labour shortage is
+        the one condition on earth where a man with no kin, no guild, no letter and
+        no claim on anybody can name his price. England passed the
+        <b>Statute of Labourers in 1351</b> for exactly this reason: to force wages
+        back to their pre-plague levels, because workers were demanding more and
+        getting it. Legislation is evidence. You do not write a law against
+        something that is not happening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINIS ===================== -->
+<section class="finis">
+  <p class="finis__l">Rome at a million people will own you.</p>
+  <p class="finis__l finis__l--b">Rome at seventeen thousand will feed you.</p>
+</section>
+
+<!-- ===================== CLOSE ===================== -->
+<footer class="close" id="close">
+  <div class="col">
+    <h2 class="sec-title">What is soft here</h2>
+    <ul class="soft">
+      <li><b>Every pre-modern population figure.</b> Rome never counted itself. The imperial million comes from the grain dole and from insula counts in the 4th-century regionary catalogues; it has been argued down to around 450,000 on the grounds that the buildable area cannot hold more. The medieval figures, including the famous 17,000, are reconstructions from hearths, parishes and inhabited area. Ranges are given for this reason.</li>
+      <li><b>The survival durations are scenarios, not data.</b> Nobody has run this experiment. They are reasoned from what the city was doing at the time and from how a body and a legal system fail, and a different date, season or gate would give a different answer.</li>
+      <li><b>The depth readings are schematic.</b> Rome's ground level did rise by roughly ten metres in the low-lying centre over two thousand years, but the rise was neither steady nor uniform: it was fastest where debris and Tiber silt collected, and barely happened on the hills. The gauge maps centuries to metres smoothly, which the real stratigraphy does not.</li>
+      <li><b>The city model is a diagram.</b> Block counts track the cited population, and the inhabited area contracts toward the Tiber bend the way the historical <i>abitato</i> did, but the street plan is not a survey and no individual block is a real building.</li>
+    </ul>
+    <h2 class="sec-title" style="margin-top:3.5rem">Where the numbers come from</h2>
+    <ul class="srcs" id="sources"><!-- built by page.js --></ul>
+
+    <p class="colophon">
+      Cinzel, Instrument Serif, Spectral and Space Mono, self-hosted.
+      Three.js (MIT) for the city, vendored. No trackers, no third-party requests,
+      nothing loaded from anywhere else.
+    </p>
+  </div>
+</footer>
+
+<!-- ===================== INSTRUMENTS ===================== -->
+<aside class="hud" id="hud" aria-hidden="true">
+  <div class="hud__row"><span class="hud__k">century</span><span class="hud__v" id="hud-c">I</span></div>
+  <div class="hud__row"><span class="hud__k">years</span><span class="hud__v" id="hud-y">1 – 100 CE</span></div>
+  <div class="hud__row"><span class="hud__k">inhabitants</span><span class="hud__v" id="hud-p">800k – 1M</span></div>
+  <div class="hud__row"><span class="hud__k">street level</span><span class="hud__v" id="hud-d">−10.0 m</span></div>
+  <div class="hud__row hud__row--v"><span class="hud__k">you stay free</span><span class="hud__v" id="hud-v">months</span></div>
+</aside>
+
+<nav class="rail" id="rail" aria-label="Jump to a century"><!-- built by page.js --></nav>
+
+<script src="assets/data.js"></script>
+<script src="assets/page.js"></script>
+<script type="module" src="assets/scene.js"></script>
+</body>
+</html>
