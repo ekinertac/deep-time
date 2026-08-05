@@ -81,8 +81,11 @@ import urllib.error
 import urllib.request
 
 API = "https://openrouter.ai/api/v1/chat/completions"
+IMAGES = "https://openrouter.ai/api/v1/images"
 PRO = "google/gemini-3-pro-image"
 FLASH = "google/gemini-2.5-flash-image"
+QWEN = "qwen/qwen-image-3"
+QWEN_PRO = "qwen/qwen-image-3-pro"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # Filled in by load_episode() before anything else runs. Module-level rather
@@ -111,7 +114,19 @@ def load_episode(name: str):
     EP = importlib.import_module("prompts")
     OUT = d / "assets" / "scenes"
     LOG = OUT / "generated.jsonl"
-    ITEMS = [{"n": i, "slug": slug} for i, slug in enumerate(EP.SLUGS, 1)]
+
+
+def use_set(kind: str) -> None:
+    """Point ITEMS at the slug list for one set.
+
+    Sets do not have to cover the same items. Rome's three per-century sets run
+    across all twenty centuries, but its plates, doors and social card are a
+    handful of one-off images that exist at their own slugs. An episode can
+    declare SLUGS_FOR = {kind: [...]} for those; anything absent falls back to
+    SLUGS, which is what every set in episode 01 does."""
+    global ITEMS, BY_N
+    slugs = getattr(EP, "SLUGS_FOR", {}).get(kind, EP.SLUGS)
+    ITEMS = [{"n": i, "slug": slug} for i, slug in enumerate(slugs, 1)]
     BY_N = {e["n"]: e for e in ITEMS}
 
 def parse_selection(tokens: list[str]) -> list[int]:
@@ -204,18 +219,9 @@ def record(path: pathlib.Path, era: dict, kind: str, model: str, seed: int,
         }, ensure_ascii=False) + "\n")
 
 
-def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple[pathlib.Path, float, int]:
-    seed = random.randrange(1, 2**31 - 1) if seed is None else seed
-    prompt = prompt_for(era, kind)
-    body = {
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "modalities": ["image", "text"],
-        "image_config": {"aspect_ratio": ratio(kind)},
-        "seed": seed,
-    }
+def post(url: str, body: dict) -> dict:
     req = urllib.request.Request(
-        API, data=json.dumps(body).encode(),
+        url, data=json.dumps(body).encode(),
         headers={
             "Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}",
             "Content-Type": "application/json",
@@ -224,13 +230,50 @@ def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple
         },
     )
     with urllib.request.urlopen(req, timeout=420) as r:
-        data = json.load(r)
+        return json.load(r)
 
-    msg = data["choices"][0]["message"]
-    images = msg.get("images") or []
-    if not images:
-        raise RuntimeError(f"no image returned: {json.dumps(msg)[:300]}")
-    blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
+
+def is_images_api(model: str) -> bool:
+    """OpenRouter serves image models through two incompatible shapes.
+
+    Gemini/nano-banana take an OpenAI chat body on /chat/completions and return a
+    data URL inside message.images. Qwen's image models reject that endpoint with
+    a 404 that reads like the model does not exist, and want a flat DALL-E-style
+    body on /images, returning base64 in data[].b64_json. Routing by id prefix is
+    crude but honest; the alternative is probing /models/<id>/endpoints on every
+    run to learn something that changes about once a year."""
+    return model.startswith("qwen/")
+
+
+def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple[pathlib.Path, float, int]:
+    seed = random.randrange(1, 2**31 - 1) if seed is None else seed
+    prompt = prompt_for(era, kind)
+
+    if is_images_api(model):
+        # No input_references on purpose. They are image-to-image, not style
+        # transfer: Qwen drags the reference's subject into every frame. Series
+        # consistency comes from the style contract in the prompt plus one seed.
+        data = post(IMAGES, {
+            "model": model, "prompt": prompt, "n": 1,
+            "resolution": "2K", "aspect_ratio": ratio(kind), "seed": seed,
+        })
+        items = data.get("data") or []
+        if not items or "b64_json" not in items[0]:
+            raise RuntimeError(f"no image returned: {json.dumps(data)[:300]}")
+        blob = base64.b64decode(items[0]["b64_json"])
+    else:
+        data = post(API, {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "modalities": ["image", "text"],
+            "image_config": {"aspect_ratio": ratio(kind)},
+            "seed": seed,
+        })
+        msg = data["choices"][0]["message"]
+        images = msg.get("images") or []
+        if not images:
+            raise RuntimeError(f"no image returned: {json.dumps(msg)[:300]}")
+        blob = base64.b64decode(images[0]["image_url"]["url"].split(",", 1)[1])
     path = next_path(era, sniff_ext(blob), kind)
     path.write_bytes(blob)
     cost = float(data.get("usage", {}).get("cost") or 0.0)
@@ -249,7 +292,9 @@ def main() -> int:
     ap.add_argument("--set", dest="kind", default="scene",
                     help="which image set (default: scene). Names are the episode's own.")
     ap.add_argument("--dry-run", action="store_true", help="print the prompt, generate nothing")
-    ap.add_argument("--flash", action="store_true", help="use the cheap model (worse anatomy)")
+    ap.add_argument("--flash", action="store_true", help="use the cheap Gemini model (worse anatomy)")
+    ap.add_argument("--qwen", action="store_true", help="use qwen-image-3 (different endpoint, honours --seed)")
+    ap.add_argument("--qwen-pro", action="store_true", help="use qwen-image-3-pro")
     ap.add_argument("--seed", type=int, default=None,
                     help="reproduce a previous draw (see <episode>/assets/scenes/generated.jsonl)")
     ap.add_argument("--list", action="store_true", help="list the episode's items and exit")
@@ -257,6 +302,7 @@ def main() -> int:
     load_episode(args.episode)
     if args.kind not in sets():
         sys.exit(f"{args.episode} has no set {args.kind!r}. It has: {', '.join(sets())}")
+    use_set(args.kind)
 
     if args.list:
         for e in ITEMS:
@@ -266,7 +312,7 @@ def main() -> int:
         ap.print_help()
         return 1
 
-    model = FLASH if args.flash else PRO
+    model = QWEN_PRO if args.qwen_pro else QWEN if args.qwen else FLASH if args.flash else PRO
     OUT.mkdir(parents=True, exist_ok=True)
     picks = parse_selection(args.eras)
 

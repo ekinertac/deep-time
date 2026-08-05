@@ -58,6 +58,22 @@ SETS = {
   "scene": ("hero", "21:9"),
   "menu":  ("menu", "3:2"),
   "tag":   ("tag",  "3:2"),
+  # The sets the built site actually shows. The three above were written for an
+  # earlier per-century page schema that this episode no longer has; they are
+  # kept because prompts are research and the schema may come back.
+  "door":  ("door",  "16:9"),
+  # 16:9, not 21:9: Qwen's image endpoint rejects 21:9 outright ("no provider
+  # supports the requested parameter(s)"). Taller suits a full-bleed plate anyway.
+  "plate": ("plate", "16:9"),
+  "card":  ("card",  "16:9"),
+}
+
+# These three sets do not run across the twenty centuries. They are one-off
+# images at their own slugs, so the engine reads their item list from here.
+SLUGS_FOR = {
+  "door":  ["property", "pilgrim", "papers"],
+  "plate": ["wall", "dry-arches", "schola", "campo-vaccino", "register"],
+  "card":  ["og"],
 }
 
 # ---------------------------------------------------------------------------
@@ -895,6 +911,97 @@ Together they decide whether you eat and whether you are stopped.""",
 }
 
 
+# ---------------------------------------------------------------------------
+# THE DOORS (16:9, full screen). One per regime, at the moment the regime
+# begins. These carry the whole argument, so they are the opposite of the WebGL
+# city they interrupt: the model is wide, cold, abstract and untouchable, and
+# these are close, warm, material and in reach. Skin, iron, wool, wax, paper.
+#
+# Register is deliberately harder than the plates. A door is meant to stop the
+# scroll, so restraint is the wrong instinct: strong single-source light, deep
+# shadow, high micro-contrast, the subject filling the frame.
+# ---------------------------------------------------------------------------
+DOOR_STYLE = """Photorealistic close photograph, 16:9 format, shot on 65mm at close range. ONE SUBJECT FILLS THE FRAME and is close enough to touch. A single hard light source raking across it from one side, deep shadow on the other, strong micro-contrast so that grain, corrosion, fibre, wear and fingerprints all read. Shallow depth of field, the background falling into darkness. Heavy, physical, tactile and slightly oppressive. Muted colour, but not washed out: rich blacks and one warm highlight."""
+
+DOOR_NEVER = ("no faces, no eyes, no portrait, no whole person, no crowd, no modern "
+    "clothing, no plastic, no printed text a viewer could read as a caption, no "
+    "watermark, no logo, no studio softbox, no clean museum background")
+
+DOOR = {
+"property": dict(
+  scene="""A heavy iron slave collar, Roman, lying open on dark wet stone. Hand-forged band about two fingers wide, pitted and scaled with rust, closed by a riveted loop. Hanging from it, a thin bronze identification tag stamped with worn Latin lettering, the strokes half-eaten by corrosion so the words are visible as marks rather than as readable text. The metal is scarred where it has been worn against a neck.
+
+Nothing else in frame. Cold hard light from the upper left, the rest going black.""",
+  cap="Roman slave collars carried a tag telling whoever found you where to return you. "
+      "One surviving example reads <i>tene me quia fugi</i>: hold me, for I have fled."),
+
+"pilgrim": dict(
+  scene="""A stone doorstep worn into a deep smooth hollow by centuries of feet, at the threshold of a medieval hospice. The dip is several centimetres deep and polished pale where the traffic passed. Resting in it, a wooden bowl and a coarse undyed wool blanket folded once. Warm lamplight spilling from inside across the step and stopping at the edge of the frame.
+
+No people. The wear in the stone is the subject.""",
+  cap="Rome ran hospices for arrivals who could not explain themselves. The step is the "
+      "evidence: it is worn by the number of people the city let in."),
+
+"papers": dict(
+  scene="""A twentieth-century Italian identity card lying on a bare wooden desk under a single overhead bulb. Stiff folded card stock, furred at the corners, a rubber-stamp impression across one corner in violet ink, ruled fields filled in by hand in fountain pen, the writing rendered as ink strokes rather than as readable words. Beside it the edge of a rubber stamp and an ink pad, lid open.
+
+Flat institutional light, hard shadow under the card, everything else dark.""",
+  cap="From 1871 the anagrafe is compulsory in every Italian commune, and from 1931 the "
+      "identity card. Existing becomes an administrative act."),
+}
+
+
+# ---------------------------------------------------------------------------
+# THE PLATES (16:9, full bleed). The five moments between centuries. Wider and
+# cooler than the doors: these are places rather than objects, and they are the
+# one thing on the page allowed to look like a landscape.
+# ---------------------------------------------------------------------------
+PLATE_STYLE = """Photorealistic wide landscape photograph, 16:9 format, shot on 65mm. Low raking sun near the horizon, long shadows, volumetric dust and haze separating the depth layers. Desaturated warm earth colours, muted, no modern colour grading. Deep focus, everything sharp from foreground to distance. Documentary rather than cinematic: the frame is level, the composition is plain, nothing is staged."""
+
+PLATE_NEVER = ("no faces in close-up, no portraits, no modern objects, no vehicles, no "
+    "power lines, no tarmac, no glass buildings, no printed text, no watermark, no logo, "
+    "no tourists, no signage")
+
+PLATE = {
+"wall": dict(
+  scene="""The Aurelian Wall under construction, Rome, 271 CE. A brick-faced concrete curtain wall about six metres high running away from the camera to the horizon, with square towers at regular intervals. Timber scaffolding lashed to the finished sections, baskets of brick and rubble, a lime-slaking pit in the foreground. Distant labourers, small in frame, no faces. Behind the wall, the roofs of an enormous dense city.""",
+  cap="Begun 271, finished about 275. Nineteen kilometres of circuit, about 13.7 km² "
+      "enclosed, and it is still standing."),
+
+"dry-arches": dict(
+  scene="""A dry Roman aqueduct arcade crossing empty open country outside the walls, 6th century. Tall brick arches marching to the horizon, several collapsed into rubble piles, the water channel on top broken open and full of dust and weeds. Parched grass, sheep grazing between the piers, no water anywhere.""",
+  cap="The Goths cut the aqueducts in 537. Of eleven or more lines, only the Aqua Virgo "
+      "ran continuously into the Middle Ages."),
+
+"schola": dict(
+  scene="""The Schola Saxonum in the Borgo, Rome, 8th century. A low walled compound of rough stone and timber buildings around a beaten-earth courtyard: a dormitory range, a kitchen with smoke rising, a small church with a squat tower. Sleeping mats and bundles in the courtyard, a well, a laden handcart by the gate. Modest, functional, crowded.""",
+  cap="Traditionally founded in 727. One of four national quarters in the Borgo, built "
+      "for arrivals who spoke no Latin. The district is still called Sassia."),
+
+"campo-vaccino": dict(
+  scene="""The Roman Forum as pasture, around 1400. Cattle standing and lying among the tops of half-buried marble columns, the ground level risen so high that only the upper thirds of the shafts and the crowns of triumphal arches show above the turf. Broken capitals used as gateposts, a rough farm track through the middle, scrub and thistle.""",
+  cap="The Campo Vaccino, the cow field. Grazed through the Middle Ages, painted by "
+      "Claude Lorrain in 1636, excavated from 1803."),
+
+"register": dict(
+  scene="""A parish register open on a heavy table in a bare room, 17th century. A large leather-bound volume with hand-ruled columns filled in a cramped clerical hand, the ink rendered as strokes rather than readable words. A quill in a stand, an inkwell, a guttering candle, a pair of spectacles, a stack of closed volumes at the edge of frame. Cold daylight from a high window on the left.""",
+  cap="From the early 17th century every Roman parish wrote down every soul in every "
+      "house, once a year. The question the city asks a stranger changes here."),
+}
+
+
+# ---------------------------------------------------------------------------
+# THE SOCIAL CARD (16:9, cropped to 1200x630). What a shared link looks like.
+# It gets one job: make the trade visible in a thumbnail, so it pairs the two
+# things the site keeps putting side by side.
+# ---------------------------------------------------------------------------
+CARD = {
+"og": dict(
+  scene="""A heavy rusted iron slave collar and a plain worn wooden pilgrim's bowl lying side by side on dark stone, equally lit, nothing else in frame. The collar on the left, the bowl on the right, a hand's width of empty stone between them. Hard raking light from the left, deep shadow, rich blacks. The two objects are the same size in frame and are photographed with exactly the same care.""",
+  cap="What the city offers you, in two objects."),
+}
+
+
 def build(kind: str, slug: str) -> str:
   """Assemble the full prompt for one image. `kind` is scene, menu or tag."""
   if kind == "scene":
@@ -914,6 +1021,14 @@ def build(kind: str, slug: str) -> str:
     return (f"{TAG_STYLE}\n\nPALETTE: hold the image within these colours and shades "
         f"between them: {PALETTES[slug]}\n{e['scene'].strip()}\n\n"
         f"DO NOT INCLUDE: {TAG_NEVER}.\nAlso: {NEVER}.")
+  if kind in ("door", "card"):
+    e = (DOOR if kind == "door" else CARD)[slug]
+    return (f"{DOOR_STYLE}\n\n{e['scene'].strip()}\n\n"
+        f"DO NOT INCLUDE: {DOOR_NEVER}.\nAlso: {NEVER}.")
+  if kind == "plate":
+    e = PLATE[slug]
+    return (f"{PLATE_STYLE}\n\n{e['scene'].strip()}\n\n"
+        f"DO NOT INCLUDE: {PLATE_NEVER}.\nAlso: {NEVER}.")
   raise ValueError(f"unknown set: {kind}")
 
 
@@ -921,4 +1036,5 @@ def caption(kind: str, slug: str) -> str:
   """The page caption, rendered as HTML under the figure and never drawn into
   the image. The model renders lettering badly, and baked-in text cannot be
   selected, translated or read aloud."""
-  return {"menu": MENU, "tag": TAG}[kind][slug]["cap"]
+  return {"menu": MENU, "tag": TAG, "door": DOOR,
+          "plate": PLATE, "card": CARD}[kind][slug]["cap"]
