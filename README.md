@@ -9,6 +9,7 @@ Live at <https://ekinertac.github.io/explorables/>.
 | # | Episode | The set | The question |
 |---|---------|---------|--------------|
 | 01 | [Deep Time](deep-time/) | 16 intervals of Earth's history | How long would an unequipped modern human survive in each? |
+| 02 | [Property. Pilgrim. Papers.](rome/) | 20 centuries in one city, Rome | How long would you last, arriving with nothing? |
 
 ## What makes one of these
 
@@ -37,8 +38,10 @@ assets/        shared by every episode: site.css, fonts, lightbox.js, favicon
 tools/         gen_img.py, the image engine, knows nothing about any subject
 <episode>/     one directory per explorable, self-contained
   index.html   that episode's front page
+  content/     its Markdown sources (episode 02 onward)
+  build.py     content/ -> the data the page reads (episode 02 onward)
   prompts.py   its items, prompt sets, palettes and captions
-  assets/      its own data.js, themes and generated images
+  assets/      its own stylesheet, fonts, data and generated images
 index.html     the shelf
 ```
 

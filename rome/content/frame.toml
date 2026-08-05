@@ -1,0 +1,94 @@
+# The finding in three words. Rendered as the closing summary.
+
+[[regimes]]
+key = "property"
+from = 1
+to = 5
+word = "Property"
+colour = "var(--b-months)"
+ask = "Whose are you?"
+line = "A city of hundreds of thousands, possibly a million, and a large part of its labour force is owned. A man who cannot name his people is not read as a free stranger. He is read as missing property."
+
+[[regimes]]
+key = "pilgrim"
+from = 6
+to = 15
+word = "Pilgrim"
+colour = "var(--b-lifetime)"
+ask = "Are you hungry?"
+line = "The city falls to as few as fifteen thousand people, with cattle in the Forum and farmland inside the walls, and it industrialises hospitality to strangers. A man arriving on foot with nothing is not an anomaly. He is the main import."
+
+[[regimes]]
+key = "papers"
+from = 16
+to = 20
+word = "Papers"
+colour = "var(--b-months)"
+ask = "Who are you?"
+line = "The register replaces the hospice. Parish census, health pass, passport, anagrafe, identity card. Every earlier Rome had somewhere to put an unexplained man, even if it was a slave market. This one has nowhere."
+
+# Every claim on the site traces to one of these.
+
+[[sources]]
+title = "Storey, *The Population of Ancient Rome*"
+url = "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/BACD7DF32B0B77609CD6713B8AF88882/S0003598X00085859a.pdf/the-population-of-ancient-rome.pdf"
+
+[[sources]]
+title = "Scheidel, *Roman Population Size: The Logic of the Debate*"
+url = "https://homepages.uc.edu/~martinj/Latin/Roman_Population/Scheildel%20-%20Roman%20population%20Size.pdf"
+
+[[sources]]
+title = "Aurelian Walls"
+url = "https://en.wikipedia.org/wiki/Aurelian_Walls"
+
+[[sources]]
+title = "Siege of Rome, 537–538"
+url = "https://en.wikipedia.org/wiki/Siege_of_Rome_(537%E2%80%93538)"
+
+[[sources]]
+title = "Roman aqueducts after antiquity"
+url = "http://www.romanaqueducts.info/aquasite/romaaftermath/index.html"
+
+[[sources]]
+title = "The disabitato (Carleton Guide to Medieval Rome)"
+url = "https://cgmr.carleton.edu/exhibits/show/uninhabited_rome/introduction"
+
+[[sources]]
+title = "Campo Vaccino"
+url = "https://penelope.uchicago.edu/encyclopaedia_romana/romanforum/campovaccino.html"
+
+[[sources]]
+title = "Schola Saxonum in the Borgo"
+url = "https://www.medievalists.net/2015/01/schola-saxonum-borgo-rome/"
+
+[[sources]]
+title = "Ospedale di Santo Spirito in Sassia"
+url = "https://en.wikipedia.org/wiki/Ospedale_di_Santo_Spirito_in_Sassia"
+
+[[sources]]
+title = "The Zoninus collar"
+url = "https://en.wikipedia.org/wiki/Zoninus_collar"
+
+[[sources]]
+title = "Sack of Rome, 1527"
+url = "https://en.wikipedia.org/wiki/Sack_of_Rome_(1527)"
+
+[[sources]]
+title = "Statute of Labourers 1351"
+url = "https://en.wikipedia.org/wiki/Statute_of_Labourers_1351"
+
+[[sources]]
+title = "Pamuk, *The Black Death and the origins of the Great Divergence*"
+url = "https://ata.bogazici.edu.tr/sites/ata.boun.edu.tr/files/faculty/sevket.pamuk/pamuk_ereh_black_death.pdf"
+
+[[sources]]
+title = "Caferro, *Florentine Wages at the Time of the Black Death*"
+url = "https://economics.yale.edu/sites/default/files/florence_wages-caferro.pdf"
+
+[[sources]]
+title = "Anagrafe in Italia"
+url = "https://it.wikipedia.org/wiki/Anagrafe_in_Italia"
+
+[[sources]]
+title = "Rome, city of the popes (Britannica)"
+url = "https://www.britannica.com/place/Rome/City-of-the-popes"
