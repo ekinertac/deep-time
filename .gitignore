@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 README.html
 __pycache__/
+
+# mkdown artifacts (auto-managed)
+centuries/content/01-first.html
+centuries/content/*.html

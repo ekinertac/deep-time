@@ -147,15 +147,30 @@ def sniff_ext(blob: bytes) -> str:
     return "bin"
 
 
-# One directory per set. "hero" rather than "scene" so the path does not read
-# scenes/scene, and so the wide establishing image is named for its job.
-FOLDER = {"scene": "hero", "menu": "menu", "kills": "kills"}
+# Set names come from the episode, because the third set is not the same subject
+# twice: in deep-time it is the air that kills you, in centuries it is the object
+# that decides what you are. Only the shape is fixed, one wide establishing image
+# and two detail sets. An episode declares SETS = {name: (folder, ratio)}; the
+# fallback keeps deep-time working unchanged if it ever drops the declaration.
+DEFAULT_SETS = {"scene": ("hero", "21:9"), "menu": ("menu", "3:2"), "kills": ("kills", "3:2")}
+
+
+def sets() -> dict:
+    return getattr(EP, "SETS", DEFAULT_SETS)
+
+
+def folder(kind: str) -> str:
+    return sets()[kind][0]
+
+
+def ratio(kind: str) -> str:
+    return sets()[kind][1]
 
 
 def next_path(era: dict, ext: str, kind: str) -> pathlib.Path:
     """Never overwrite. Second run of an era becomes -v2, then -v3, counting
     across every extension so versions stay in one sequence."""
-    d = OUT / FOLDER[kind]
+    d = OUT / folder(kind)
     d.mkdir(parents=True, exist_ok=True)
     base = f"{era['n']:02d}-{era['slug']}"
     if not list(d.glob(f"{base}.*")):
@@ -164,11 +179,6 @@ def next_path(era: dict, ext: str, kind: str) -> pathlib.Path:
     while list(d.glob(f"{base}-v{v}.*")):
         v += 1
     return d / f"{base}-v{v}.{ext}"
-
-
-# The hero establishes; the two detail sets sit inside the page. Two ratios
-# reads as a system, three reads as an accident.
-RATIO = {"scene": "21:9", "menu": "3:2", "kills": "3:2"}
 
 
 def prompt_for(era: dict, kind: str) -> str:
@@ -188,7 +198,7 @@ def record(path: pathlib.Path, era: dict, kind: str, model: str, seed: int,
             "era": era["slug"],
             "model": model,
             "seed": seed,
-            "aspect": RATIO[kind],
+            "aspect": ratio(kind),
             "cost": round(cost, 5),
             "prompt": prompt,
         }, ensure_ascii=False) + "\n")
@@ -201,7 +211,7 @@ def generate(era: dict, model: str, kind: str, seed: int | None = None) -> tuple
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "modalities": ["image", "text"],
-        "image_config": {"aspect_ratio": RATIO[kind]},
+        "image_config": {"aspect_ratio": ratio(kind)},
         "seed": seed,
     }
     req = urllib.request.Request(
@@ -236,8 +246,8 @@ def main() -> int:
     ap.add_argument("--episode", default="deep-time",
                     help="which episode directory to generate for (default: deep-time)")
     ap.add_argument("eras", nargs="*", help="item numbers, ranges like 1-6, slugs, or 'all'")
-    ap.add_argument("--set", dest="kind", default="scene", choices=("scene", "menu", "kills"),
-                    help="which image set (default: scene)")
+    ap.add_argument("--set", dest="kind", default="scene",
+                    help="which image set (default: scene). Names are the episode's own.")
     ap.add_argument("--dry-run", action="store_true", help="print the prompt, generate nothing")
     ap.add_argument("--flash", action="store_true", help="use the cheap model (worse anatomy)")
     ap.add_argument("--seed", type=int, default=None,
@@ -245,6 +255,8 @@ def main() -> int:
     ap.add_argument("--list", action="store_true", help="list the episode's items and exit")
     args = ap.parse_args()
     load_episode(args.episode)
+    if args.kind not in sets():
+        sys.exit(f"{args.episode} has no set {args.kind!r}. It has: {', '.join(sets())}")
 
     if args.list:
         for e in ITEMS:
@@ -261,7 +273,7 @@ def main() -> int:
     if args.dry_run:
         for n in picks:
             era = BY_N[n]
-            print(f"\n{'=' * 72}\n{args.kind}  {n:02d} {era['slug']}  ({RATIO[args.kind]})\n{'=' * 72}")
+            print(f"\n{'=' * 72}\n{args.kind}  {n:02d} {era['slug']}  ({ratio(args.kind)})\n{'=' * 72}")
             print(prompt_for(era, args.kind))
             if args.kind != "scene":
                 print(f"\n[page caption] {EP.caption(args.kind, era['slug'])}")
@@ -283,7 +295,7 @@ def main() -> int:
         except Exception as e:  # keep going through a batch
             print(f"  {n:02d} {era['slug']:14s} FAILED: {e}", file=sys.stderr)
 
-    print(f"\n  {args.kind}: {len(picks)} requested · ${total:.4f} total · {OUT / FOLDER[args.kind]}")
+    print(f"\n  {args.kind}: {len(picks)} requested · ${total:.4f} total · {OUT / folder(args.kind)}")
     return 0
 
 

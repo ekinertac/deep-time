@@ -69,6 +69,15 @@ NEVER = ("no text, no letters, no numbers, no watermark, no signature, no border
      "no lens flare, no modern objects, no fences, no paths, no buildings")
 
 # Order and slugs must match ERAS in assets/data.js.
+# The three sets this episode has, each mapping to its output folder and aspect
+# ratio. "hero" rather than "scene" as a folder so the path does not read
+# scenes/scene. Two ratios reads as a system, three reads as an accident.
+SETS = {
+  "scene": ("hero", "21:9"),
+  "menu":  ("menu", "3:2"),
+  "kills": ("kills", "3:2"),
+}
+
 SLUGS = [
   "hadean", "archean", "proterozoic", "ediacaran", "cambrian", "ordovician",
   "silurian", "devonian", "carboniferous", "permian", "triassic", "jurassic",
