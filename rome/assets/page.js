@@ -75,13 +75,29 @@
       '</article></section>';
   }
 
+  // alt text goes into an attribute, so quotes and angle brackets have to die.
+  function esc(t) {
+    return String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function beatHTML(b) {
+    if (b.kind === 'door') {
+      // Full-bleed, full-height, and the only thing on screen when it is on
+      // screen. The city model is wide, cold and abstract; a door is close,
+      // material and in reach, which is the whole reason it interrupts.
+      return '<section class="door" id="door-' + b.key + '">' +
+        '<img class="door__img" src="' + b.src + '" alt="' + esc(b.what) + '"' +
+        ' width="1920" height="1080" loading="lazy" decoding="async">' +
+        '<div class="door__text"><p class="door__word">' + b.word + '</p>' +
+        '<p class="door__ask">' + b.ask + '</p>' +
+        '<p class="door__cap">' + b.cap + '</p></div></section>';
+    }
     if (b.kind === 'plate') {
       return '<div class="plate"><figure>' +
-        '<div class="plate__box" role="img" aria-label="' + b.what.replace(/"/g, '&quot;') + '">' +
-          '<span class="plate__tag">image to be generated &middot; ' + b.src + '</span>' +
-          '<span class="plate__what">' + b.what + '</span>' +
-        '</div><figcaption>' + b.cap + '</figcaption></figure></div>';
+        '<img class="plate__img" src="' + b.src + '" alt="' + esc(b.what) + '"' +
+        ' width="1920" height="1080" loading="lazy" decoding="async">' +
+        '<figcaption>' + b.cap + '</figcaption></figure></div>';
     }
     return '<section class="beat' + (b.quiet ? ' beat--quiet' : '') + '">' +
       '<p class="beat__yr">' + b.yr + '</p><h2 class="beat__h">' + b.h + '</h2><p>' + b.p + '</p></section>';
@@ -89,6 +105,9 @@
 
   function render() {
     var out = [];
+    /* after:0 means "before the first century", which the loop below cannot
+       express because it hangs interludes off the century they follow. */
+    BEATS.filter(function (b) { return b.after === 0; }).forEach(function (b) { out.push(beatHTML(b)); });
     CENTURIES.forEach(function (c) {
       out.push(centHTML(c));
       BEATS.filter(function (b) { return b.after === c.n; }).forEach(function (b) { out.push(beatHTML(b)); });
@@ -118,6 +137,26 @@
         return '<li><a href="' + s[1] + '" rel="noopener">' + s[0] + '</a></li>';
       }).join('');
     }
+  }
+
+  /* A door is a full-screen interruption, so the instruments step out of its
+     way. Without this the fixed readout sits on top of the door's caption, and
+     the rail ticks compete with a photograph that is meant to stop the scroll. */
+  function doorWatch() {
+    var doors = document.querySelectorAll('.door');
+    if (!doors.length || !('IntersectionObserver' in window)) return;
+    /* A set, not a counter: the observer's first callback reports every element,
+       including the ones off screen, so counting would start at minus three. */
+    var open = [];
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var i = open.indexOf(e.target);
+        if (e.isIntersecting && i < 0) open.push(e.target);
+        if (!e.isIntersecting && i >= 0) open.splice(i, 1);
+      });
+      document.body.classList.toggle('in-door', open.length > 0);
+    }, { threshold: 0.55 });
+    doors.forEach(function (d) { io.observe(d); });
   }
 
   /* ---------- 2. the mirror chart ---------- */
@@ -242,6 +281,7 @@
   }
 
   render();
+  doorWatch();
   mirror();
   track();
 })();

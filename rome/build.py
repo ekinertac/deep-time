@@ -19,8 +19,9 @@ THE SOURCE FORMAT
   content/NN.md        one century. TOML frontmatter between +++ fences carries
                        every number; `# heading` is the century's title; the
                        paragraphs after it become `body`.
-  content/interludes.md   the full-bleed statements and image plates that sit
-                       between centuries, as ::: fenced directives.
+  content/interludes.md   the doors, full-bleed statements and image plates that
+                       sit between centuries, as ::: fenced directives. after=0
+                       places one before the first century.
   content/frame.toml   the three regimes and the source list. No prose worth
                        writing in Markdown, so it is TOML the whole way down.
 
@@ -108,6 +109,17 @@ def parse_interludes(path: pathlib.Path) -> list[dict]:
                 sys.exit(f"interludes.md: :::plate after={opt['after']} needs a description "
                          f"paragraph and a caption paragraph, got {len(chunks)}")
             out.append({"after": int(opt["after"]), "kind": "plate", "src": opt.get("src", ""),
+                        "what": inline(" ".join(chunks[0].split())),
+                        "cap": inline(" ".join(chunks[1].split()))})
+        elif kind == "door":
+            if len(chunks) != 2:
+                sys.exit(f"interludes.md: :::door after={opt['after']} needs an alt-text "
+                         f"paragraph and a caption paragraph, got {len(chunks)}")
+            for k in ("key", "src", "word", "ask"):
+                if k not in opt:
+                    sys.exit(f"interludes.md: :::door after={opt['after']} is missing {k}=")
+            out.append({"after": int(opt["after"]), "kind": "door", "key": opt["key"],
+                        "src": opt["src"], "word": opt["word"], "ask": opt["ask"],
                         "what": inline(" ".join(chunks[0].split())),
                         "cap": inline(" ".join(chunks[1].split()))})
         elif kind == "beat":
