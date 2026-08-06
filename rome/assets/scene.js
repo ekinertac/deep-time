@@ -277,9 +277,39 @@ let shown = new Float32Array(blocks.length);   // eased per-block presence
 let wallUp = 0, smoothT = 0, started = performance.now();
 let mx = 0, my = 0, tmx = 0, tmy = 0;
 
+/* ---------- idling ----------
+ * Every frame rewrites ~9,000 instance matrices and re-uploads them, so running
+ * unconditionally at 60fps burns a core even when the page is completely still.
+ * The scene only actually changes while the scroll is settling, the intro is
+ * playing, the parallax is catching up or the layout moved. Outside those it is
+ * a static picture, and a static picture does not need redrawing.
+ *
+ * `dirty()` is called by anything that changes the scene; the loop does the work
+ * only when something is pending, and stops entirely when the canvas is off
+ * screen or the tab is hidden.
+ */
+let pending = true, onScreen = true, running = false;
+function dirty() {
+  pending = true;
+  if (!running && onScreen && !document.hidden) { running = true; requestAnimationFrame(frame); }
+}
+addEventListener('resize', dirty);
+/* page.js writes RomeState.t on scroll but cannot reach in here, and polling for
+   a change is the thing we are trying to stop doing. A passive listener that only
+   sets a flag is cheap, and the loop sleeps again once the scroll has settled. */
+addEventListener('scroll', dirty, { passive: true });
+document.addEventListener('visibilitychange', function () { if (!document.hidden) dirty(); });
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(function (es) {
+    onScreen = es[0].isIntersecting;
+    if (onScreen) dirty();
+  }, { threshold: 0 }).observe(canvas);
+}
+
 addEventListener('pointermove', e => {
   tmx = (e.clientX / innerWidth - 0.5);
   tmy = (e.clientY / innerHeight - 0.5);
+  dirty();
 }, { passive: true });
 
 /* The reading column sits left on the gate and right through the descent, so the
@@ -304,14 +334,23 @@ addEventListener('resize', resize);
 resize();
 
 function frame(now) {
+  const target = Math.max(0, Math.min(19, state.t || 0));
+  const intro0 = Math.min(1, (now - started) / 1600);
+
+  /* Has anything moved? Compare before easing, so the last frame of a settle is
+     still drawn and the one after it is not. */
+  const moving = Math.abs(target - smoothT) > 0.0004 ||
+                 Math.abs(tmx - mx) > 0.0005 || Math.abs(tmy - my) > 0.0005 ||
+                 intro0 < 1 || pending;
+  pending = false;
+  if (!moving || !onScreen || document.hidden) { running = false; return; }
   requestAnimationFrame(frame);
 
-  const target = Math.max(0, Math.min(19, state.t || 0));
   smoothT += (target - smoothT) * (REDUCED ? 1 : 0.075);
   const i0 = Math.min(18, Math.floor(smoothT)), f = smoothT - i0;
 
   /* intro: the field settles in over the first second and a half */
-  const intro = REDUCED ? 1 : Math.min(1, (now - started) / 1600);
+  const intro = REDUCED ? 1 : intro0;
   const ease = intro * intro * (3 - 2 * intro);
 
   /* blocks */
@@ -365,5 +404,5 @@ function frame(now) {
   renderer.render(scene, camera);
 }
 
-requestAnimationFrame(frame);
+dirty();
 canvas.classList.add('on');
