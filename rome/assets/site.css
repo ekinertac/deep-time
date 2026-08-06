@@ -525,3 +525,210 @@ body.in-door #rail { opacity: 0; pointer-events: none; }
   .gate__go:hover svg { animation: none; }
   * { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- the finds tray (plate lightbox, tray.js) ----------
+ * A plate is a find: clicking one lifts it onto an examination surface. The
+ * backdrop is the dig house after dark with one lamp on; the image is
+ * uncovered under a pass of raking light; around it sit the record's
+ * instruments: registration corner marks, catalogue tag, a minium-and-ink
+ * ranging rod for pixel scale, the loupe, and the finds register of numerals.
+ * Everything here is self-contained; nothing below this line is used above it.
+ */
+
+/* Registration corner marks, shared by the inline plates (hover cue) and the
+   tray frame. Eight hairline gradients, two per corner. */
+.marks { position: absolute; inset: 10px; pointer-events: none; }
+.marks::before {
+  content: ''; position: absolute; inset: 0;
+  --c: rgba(236, 226, 205, 0.65);
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / 18px 1px,
+    linear-gradient(var(--c), var(--c)) 0 0 / 1px 18px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 18px 1px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 1px 18px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 18px 1px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 1px 18px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 18px 1px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 1px 18px;
+  background-repeat: no-repeat;
+}
+
+/* The inline trigger: the whole figure image is the button. */
+.plate__open {
+  display: block; position: relative; width: 100%;
+  padding: 0; border: 0; background: none; color: inherit; font: inherit;
+  cursor: zoom-in; -webkit-tap-highlight-color: transparent;
+}
+.plate__open .marks { opacity: 0; transition: opacity 0.35s; }
+.plate__open .plate__lift {
+  position: absolute; right: 14px; bottom: 12px;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink);
+  background: rgba(6, 5, 4, 0.72); border: 1px solid var(--rule);
+  padding: 0.42rem 0.65rem 0.36rem;
+  opacity: 0; translate: 0 4px; transition: opacity 0.35s, translate 0.35s;
+  pointer-events: none;
+}
+.plate__open:hover .marks, .plate__open:focus-visible .marks,
+.plate__open:hover .plate__lift, .plate__open:focus-visible .plate__lift {
+  opacity: 1; translate: 0 0;
+}
+.plate__open:hover .plate__img { filter: brightness(1.07); }
+.plate__img { transition: filter 0.35s; }
+.plate__open:focus-visible { outline: 2px solid var(--ochre); outline-offset: 4px; }
+
+/* Scroll stays where it was while the tray is open. */
+html.tray-open { overflow: hidden; }
+
+.tray {
+  border: 0; padding: 0; margin: auto; outline: none;
+  background: transparent; color: var(--ink);
+  width: min(1560px, 100vw); max-width: none; max-height: none;
+  overflow: visible;
+}
+/* The dig house after dark: soil gradient, one warm lamp, the page's grain. */
+.tray::backdrop {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(90% 70% at 50% 38%, rgba(199, 154, 68, 0.09), transparent 62%),
+    linear-gradient(180deg, rgba(10, 8, 6, 0.94), rgba(6, 5, 4, 0.97));
+  backdrop-filter: blur(9px);
+}
+
+.tray__head {
+  display: flex; align-items: baseline; gap: 1.4rem; flex-wrap: wrap;
+  padding: 0 var(--pad); margin-bottom: 1rem;
+}
+.tray__pl {
+  font-family: var(--caps); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.34em; text-transform: uppercase; color: var(--dim);
+}
+.tray__pn {
+  font-family: var(--caps); font-weight: 800; font-size: 1.7rem;
+  letter-spacing: 0.06em; color: var(--ochre);
+}
+.tray__meta {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  color: var(--dim);
+}
+.tray__close {
+  margin-left: auto; cursor: pointer;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--dim);
+  background: rgba(10, 8, 6, 0.4); border: 1px solid var(--rule);
+  padding: 0.6rem 0.9rem 0.55rem;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.tray__close:hover { color: var(--ink); border-color: var(--minium); background: rgba(194, 64, 42, 0.10); }
+.tray__close:focus-visible { outline: 2px solid var(--ochre); outline-offset: 3px; }
+
+.tray__stage { display: flex; justify-content: center; padding: 0 var(--pad); }
+.tray__frame { position: relative; display: block; }
+.tray__frame .marks { inset: -11px; }
+.tray__img {
+  display: block; width: auto; height: auto;
+  max-width: calc(100vw - 2 * var(--pad));
+  max-height: calc(100svh - 17rem);
+  border: 1px solid var(--rule); background: #000;
+  /* Fully uncovered at rest; the open animation slides this mask through. */
+  -webkit-mask-image: linear-gradient(200deg, #000 55%, transparent 78%);
+          mask-image: linear-gradient(200deg, #000 55%, transparent 78%);
+  -webkit-mask-size: 100% 300%; mask-size: 100% 300%;
+  -webkit-mask-position: 0 0; mask-position: 0 0;
+}
+.tray__img.is-swap { opacity: 0; }
+.tray__img { transition: opacity 0.22s ease; }
+
+/* Uncovering: the frame rises out of the soil, the mask brushes the image
+   clear top-to-bottom, and one pass of raking light crosses it. */
+.tray.is-open .tray__frame { animation: tray-rise 0.7s cubic-bezier(0.22, 0.75, 0.25, 1) both; }
+@keyframes tray-rise {
+  from { opacity: 0; transform: translateY(26px); }
+}
+.tray.is-open .tray__img { animation: tray-brush 0.9s cubic-bezier(0.3, 0.5, 0.2, 1) both; }
+@keyframes tray-brush {
+  from { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+  to   { -webkit-mask-position: 0 0;    mask-position: 0 0; }
+}
+.tray__sweep {
+  position: absolute; inset: 1px; pointer-events: none;
+  mix-blend-mode: overlay; opacity: 0;
+  background: linear-gradient(115deg, transparent 32%, rgba(255, 218, 158, 0.95) 50%, transparent 68%);
+  background-size: 320% 100%; background-repeat: no-repeat;
+}
+.tray.is-open .tray__sweep { animation: tray-rake 1.5s ease-out 0.25s; }
+@keyframes tray-rake {
+  0%   { opacity: 0; background-position: 130% 0; }
+  20%  { opacity: 1; }
+  100% { opacity: 0; background-position: -60% 0; }
+}
+
+/* The loupe: actual pixels of the plate inside a brass ring. Shown only for
+   fine pointers (tray.js gates the listeners the same way). */
+.tray__loupe {
+  position: absolute; width: 190px; height: 190px; border-radius: 50%;
+  display: none; pointer-events: none; z-index: 2;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(199, 154, 68, 0.85);
+  box-shadow: 0 0 0 6px rgba(6, 5, 4, 0.55), 0 22px 50px -12px #000,
+              inset 0 0 34px rgba(6, 5, 4, 0.55);
+  background-repeat: no-repeat; background-color: #0a0806;
+}
+.tray__frame.has-loupe .tray__loupe { display: block; }
+.tray__frame.has-loupe .tray__img { cursor: none; }
+.tray__lscale {
+  position: absolute; left: 50%; top: calc(100% + 9px); transform: translateX(-50%);
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.24em;
+  color: var(--ochre); white-space: nowrap;
+}
+
+.tray__foot {
+  display: grid; grid-template-columns: 1fr auto; align-items: end;
+  gap: 0.35rem 3rem; padding: 1.1rem var(--pad) 0;
+}
+.tray__bar { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.55rem; }
+/* The ranging rod: alternating minium and bone segments, the archaeologist's
+   scale stick, except the unit is source pixels rather than centimetres. */
+.tray__ruler { display: inline-flex; height: 6px; border: 1px solid rgba(236, 226, 205, 0.45); }
+.tray__ruler i { display: block; height: 100%; flex: 1; }
+.tray__ruler i:nth-child(odd)  { background: rgba(194, 64, 42, 0.8); }
+.tray__ruler i:nth-child(even) { background: rgba(236, 226, 205, 0.75); }
+.tray__px {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--faint);
+}
+.tray__what {
+  font-family: var(--disp); font-style: italic; font-size: 1.12rem;
+  line-height: 1.4; color: var(--ink); max-width: 64ch;
+}
+.tray__cap {
+  font-family: var(--mono); font-size: 0.7rem; line-height: 1.8;
+  color: var(--dim); max-width: 68ch; margin-top: 0.3rem;
+}
+/* The finds register: numerals as border-top ticks, kin to the rail. */
+.tray__reg { grid-column: 2; grid-row: 1 / span 3; display: flex; gap: 2px; }
+.tray__reg button {
+  font-family: var(--caps); font-weight: 600; font-size: 0.74rem; letter-spacing: 0.08em;
+  color: var(--faint); background: none; border: 0; cursor: pointer;
+  border-top: 2px solid var(--rule); padding: 0.55rem 0.85rem 0.2rem;
+  transition: color 0.25s, border-color 0.25s;
+}
+.tray__reg button:hover { color: var(--ink); }
+.tray__reg button[aria-current] { color: var(--ochre); border-top-color: var(--ochre); }
+.tray__reg button:focus-visible { outline: 2px solid var(--ochre); outline-offset: 2px; }
+
+@media (max-width: 900px) {
+  .tray__head { gap: 0.6rem 1.2rem; margin-bottom: 0.7rem; }
+  .tray__meta { order: 3; width: 100%; }
+  .tray__img { max-height: calc(100svh - 15rem); }
+  .tray__foot { grid-template-columns: 1fr; gap: 0.3rem; }
+  .tray__reg { grid-column: 1; grid-row: auto; margin-top: 0.8rem; }
+  .tray__what { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tray__img { -webkit-mask-image: none; mask-image: none; }
+  .tray.is-open .tray__frame,
+  .tray.is-open .tray__img,
+  .tray.is-open .tray__sweep { animation: none; }
+}

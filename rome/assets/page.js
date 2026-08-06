@@ -14,7 +14,9 @@
  * scene.js is a consumer of RomeState and nothing else; if WebGL is unavailable it
  * simply never loads and every line above still runs. No library, no build step.
  *
- * Read alongside: data.js (all figures), site.css (the classes toggled here).
+ * Read alongside: data.js (all figures), site.css (the classes toggled here),
+ * tray.js (the plate lightbox: it reads RomeState.depth and wires the
+ * .plate__open buttons rendered below).
  */
 (function () {
   'use strict';
@@ -37,6 +39,9 @@
     for (i = 0; i < 20; i++) { out[i] = -9 * (1 - cum / total); cum += w[i]; }
     return out;
   })();
+  /* tray.js prints the street depth on a plate's catalogue tag; publishing the
+     curve here keeps it defined in exactly one place. */
+  RomeState.depth = DEPTH;
 
   /* ---------- helpers ---------- */
   function human(n) {
@@ -94,9 +99,17 @@
         '<p class="door__cap">' + b.cap + '</p></div></section>';
     }
     if (b.kind === 'plate') {
+      // The image sits inside a button that opens the finds tray (tray.js),
+      // where the plate is examined at full size under its catalogue tag.
+      // Without tray.js the figure still reads as a plain captioned image.
       return '<div class="plate"><figure>' +
+        '<button class="plate__open" type="button" aria-haspopup="dialog"' +
+        ' aria-label="Lift the plate: ' + esc(b.what) + '">' +
         '<img class="plate__img" src="' + b.src + '" alt="' + esc(b.what) + '"' +
         ' width="1920" height="1080" loading="lazy" decoding="async">' +
+        '<span class="marks" aria-hidden="true"></span>' +
+        '<span class="plate__lift" aria-hidden="true">lift the plate</span>' +
+        '</button>' +
         '<figcaption>' + b.cap + '</figcaption></figure></div>';
     }
     return '<section class="beat' + (b.quiet ? ' beat--quiet' : '') + '">' +
