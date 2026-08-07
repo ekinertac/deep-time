@@ -39,7 +39,14 @@
 
   var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   var ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
-  var LOUPE = 190;   // loupe diameter, must match .tray__loupe in site.css
+  /* Loupe geometry and magnification. The diameter is pushed into CSS as a
+     custom property rather than duplicated there, because the offset maths below
+     depends on it and the two drifting apart is a silent bug. */
+  var LOUPE = 300;          // diameter in px
+  var ZOOM_MIN = 0.5;       // below 1 the loupe shows more of the plate, not less
+  var ZOOM_MAX = 8;
+  var zoom = 1;             // 1 = the plate's actual pixels, 1:1
+  var lastX = null, lastY = null;
 
   /* ---------- the dialog ---------- */
   var dlg = document.createElement('dialog');
@@ -104,7 +111,10 @@
     if (!w || !nw) return;
     el.ruler.style.width = (w / 4).toFixed(0) + 'px';
     el.px.textContent = Math.round(nw / 4) + ' px of ' + nw + ' · shown at ' +
-      Math.round(w / nw * 100) + '%' + (fine ? ' · loupe 1:1' : '');
+      Math.round(w / nw * 100) + '%' +
+      // The loupe carries its own ratio, which changes with the wheel, so the
+      // ruler must not also claim one or the two disagree the moment you zoom.
+      (fine ? ' · scroll on the loupe to magnify' : '');
   }
 
   /* ---------- showing a plate ---------- */
@@ -122,6 +132,7 @@
       else r.removeAttribute('aria-current');
     });
     loupe.style.backgroundImage = 'url("' + b.src + '")';
+    zoom = 1;
     if (img.getAttribute('src') !== b.src) {
       img.classList.add('is-swap');
       img.src = b.src;                     // 'load' fires even from cache
@@ -164,16 +175,43 @@
         return;
       }
       frame.classList.add('has-loupe');
-      loupe.style.left = x + 'px';
-      loupe.style.top = y + 'px';
-      loupe.style.backgroundSize = img.naturalWidth + 'px ' + img.naturalHeight + 'px';
-      loupe.style.backgroundPosition =
-        (LOUPE / 2 - x / r.width * img.naturalWidth) + 'px ' +
-        (LOUPE / 2 - y / r.height * img.naturalHeight) + 'px';
+      lastX = x; lastY = y;
+      place(r);
     });
     frame.addEventListener('pointerleave', function () {
       frame.classList.remove('has-loupe');
     });
+
+    /* Scroll to change magnification. Multiplicative, so each notch feels the
+       same at every zoom, and preventDefault because the wheel would otherwise
+       scroll the tray out from under the hand. */
+    frame.addEventListener('wheel', function (e) {
+      if (!frame.classList.contains('has-loupe')) return;
+      e.preventDefault();
+      var step = Math.exp(-e.deltaY * 0.0015);
+      zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoom * step));
+      place(img.getBoundingClientRect());
+    }, { passive: false });
+  }
+
+  /* Draw the loupe at the last known pointer position and current zoom. The
+     background is the plate's own file at natural size times the zoom, so what
+     is inside the ring really is the plate's pixels rather than an upscale of
+     what the page is showing. */
+  function place(r) {
+    if (lastX === null) return;
+    var w = img.naturalWidth * zoom, h = img.naturalHeight * zoom;
+    loupe.style.setProperty('--loupe-d', LOUPE + 'px');
+    loupe.style.left = lastX + 'px';
+    loupe.style.top = lastY + 'px';
+    loupe.style.backgroundSize = w + 'px ' + h + 'px';
+    loupe.style.backgroundPosition =
+      (LOUPE / 2 - lastX / r.width * w) + 'px ' +
+      (LOUPE / 2 - lastY / r.height * h) + 'px';
+    var lbl = loupe.querySelector('.tray__lscale');
+    if (lbl) lbl.textContent = zoom >= 0.995 && zoom <= 1.005
+      ? '1 : 1'
+      : (zoom < 1 ? '1 : ' + (1 / zoom).toFixed(1) : zoom.toFixed(1) + ' : 1');
   }
 
   /* ---------- wiring ---------- */

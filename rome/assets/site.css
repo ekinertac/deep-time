@@ -666,7 +666,7 @@ html.tray-open { overflow: hidden; }
 /* The loupe: actual pixels of the plate inside a brass ring. Shown only for
    fine pointers (tray.js gates the listeners the same way). */
 .tray__loupe {
-  position: absolute; width: 190px; height: 190px; border-radius: 50%;
+  position: absolute; width: var(--loupe-d, 300px); height: var(--loupe-d, 300px); border-radius: 50%;
   display: none; pointer-events: none; z-index: 2;
   transform: translate(-50%, -50%);
   border: 1px solid rgba(199, 154, 68, 0.85);
